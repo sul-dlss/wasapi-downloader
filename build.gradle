@@ -1,0 +1,56 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+}
+
+plugins {
+    id 'java'
+    id 'application'
+}
+
+version 1.0
+
+mainClassName = 'edu.stanford.dlss.WasapiDownloader'
+
+repositories {
+    jcenter()
+    mavenCentral() // for jacoco and kt3k.coveralls plugins
+}
+
+dependencies {
+    //For basic command line parsing and option definitions.
+    compile 'commons-cli:commons-cli:1.4'
+
+    //Unit testing framework.
+    testCompile 'junit:junit:4.12'
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src'
+        }
+    }
+    test {
+        java {
+            srcDir 'test'
+        }
+    }
+}
+
+//Attributes to add to Jar
+Map<String, String> jarAttributes = [
+        "Gradle-Version": gradle.gradleVersion,
+        "Host": InetAddress.getLocalHost().getHostName(),
+        "Built-By": System.getProperty("user.name"),
+        "Build-Jdk": System.getProperty("java.version"),
+        "GradleProjectName": project.name,
+        "Main-Class": mainClassName
+]
+
+jar {
+    manifest {
+        attributes(jarAttributes)
+    }
+} 
