@@ -6,6 +6,8 @@ buildscript {
 
 plugins {
     id 'java'
+    id 'jacoco'
+    id 'com.github.kt3k.coveralls' version '2.8.1'
     id 'application'
 }
 
@@ -38,6 +40,15 @@ sourceSets {
         }
     }
 }
+
+jacocoTestReport {
+    reports {
+        xml.enabled = true // coveralls plugin depends on xml format report
+        html.enabled = true
+    }
+}
+
+check.dependsOn jacocoTestReport
 
 //Attributes to add to Jar
 Map<String, String> jarAttributes = [
