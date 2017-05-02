@@ -1,0 +1,67 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+}
+
+plugins {
+    id 'java'
+    id 'jacoco'
+    id 'com.github.kt3k.coveralls' version '2.8.1'
+    id 'application'
+}
+
+version 1.0
+
+mainClassName = 'edu.stanford.dlss.was.WasapiDownloader'
+
+repositories {
+    jcenter()
+    mavenCentral() // for jacoco and kt3k.coveralls plugins
+}
+
+dependencies {
+    //For basic command line parsing and option definitions.
+    compile 'commons-cli:commons-cli:1.4'
+
+    //Unit testing framework.
+    testCompile 'junit:junit:4.12'
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src'
+        }
+    }
+    test {
+        java {
+            srcDir 'test'
+        }
+    }
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled = true // coveralls plugin depends on xml format report
+        html.enabled = true
+    }
+}
+
+check.dependsOn jacocoTestReport
+
+//Attributes to add to Jar
+Map<String, String> jarAttributes = [
+        "Gradle-Version": gradle.gradleVersion,
+        "Host": InetAddress.getLocalHost().getHostName(),
+        "Built-By": System.getProperty("user.name"),
+        "Build-Jdk": System.getProperty("java.version"),
+        "GradleProjectName": project.name,
+        "Main-Class": mainClassName
+]
+
+jar {
+    manifest {
+        attributes(jarAttributes)
+    }
+} 
