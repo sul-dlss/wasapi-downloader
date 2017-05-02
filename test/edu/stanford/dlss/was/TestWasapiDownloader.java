@@ -1,9 +1,9 @@
-package edu.stanford.dlss;
+package edu.stanford.dlss.was;
 
 import static org.junit.Assert.*;
 import org.junit.*;
 
-import edu.stanford.dlss.WasapiDownloader;
+import edu.stanford.dlss.was.WasapiDownloader;
 
 public class TestWasapiDownloader
 {

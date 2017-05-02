@@ -1,4 +1,4 @@
-package edu.stanford.dlss;
+package edu.stanford.dlss.was;
 
 public class WasapiDownloader
 {

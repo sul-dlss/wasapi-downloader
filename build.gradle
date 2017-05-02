@@ -11,7 +11,7 @@ plugins {
 
 version 1.0
 
-mainClassName = 'edu.stanford.dlss.WasapiDownloader'
+mainClassName = 'edu.stanford.dlss.was.WasapiDownloader'
 
 repositories {
     jcenter()
