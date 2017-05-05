@@ -16,7 +16,7 @@ version 1.0
 mainClassName = 'edu.stanford.dlss.was.WasapiDownloader'
 
 repositories {
-    jcenter()
+    jcenter() // for mockito
     mavenCentral() // for jacoco and kt3k.coveralls plugins
 }
 
@@ -26,6 +26,7 @@ dependencies {
 
     //Unit testing framework.
     testCompile 'junit:junit:4.12'
+    //testCompile "org.mockito:mockito-core:2.+"
 }
 
 sourceSets {
