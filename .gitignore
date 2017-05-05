@@ -1,6 +1,7 @@
 **/*.class
 build/
 .gradle
+log/capistrano.log
 
 # eclipse project files
 .classpath
