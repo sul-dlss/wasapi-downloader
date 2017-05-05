@@ -25,7 +25,7 @@ set :deploy_to, "/opt/app/#{fetch(:user)}/#{fetch(:application)}"
 # append :linked_files, 'config/settings.yml'
 
 # Default value for linked_dirs is []
-# append :linked_dirs, 'log'
+set :linked_dirs, %w{build .gradle}
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
@@ -35,3 +35,13 @@ set :deploy_to, "/opt/app/#{fetch(:user)}/#{fetch(:application)}"
 
 # update shared_configs before restarting app
 # before 'deploy:restart', 'shared_configs:update'
+
+namespace :gradle do
+  desc 'Assemble a jar archive containing the main classes.'
+  task :jar do
+    on roles(:app) do
+      execute "cd #{current_path} && ./gradlew jar"
+    end
+  end
+end
+after 'deploy:finished', 'gradle:jar'
