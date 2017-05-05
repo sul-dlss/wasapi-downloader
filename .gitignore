@@ -1,12 +1,14 @@
 **/*.class
 build/
-.gradle
 log/capistrano.log
+
+.gradle
 
 # eclipse project files
 .classpath
 .externalToolBuilders/
 .project
+.settings
 bin/
 build.xml
 
