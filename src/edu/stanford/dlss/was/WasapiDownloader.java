@@ -1,7 +1,6 @@
 package edu.stanford.dlss.was;
 
 import java.io.IOException;
-import java.util.Properties;
 
 public class WasapiDownloader {
   public static final String SETTINGS_FILE_LOCATION = "config/settings.properties";
