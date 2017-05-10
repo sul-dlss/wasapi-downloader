@@ -14,12 +14,9 @@ public class TestWasapiDownloader {
     }
 
     @Test
-    public void constructorReadsPropertiesFile() throws IOException {
-      WasapiDownloader myInstance = new WasapiDownloader();
+    public void constructorLoadsSettings() throws IOException {
+      WasapiDownloader myInstance = new WasapiDownloader(WasapiDownloader.SETTINGS_FILE_LOCATION, null);
       assertNotNull(myInstance.settings);
-      assertEquals("incorrect default settings.properties baseurl value", myInstance.settings.getProperty("baseurl"), "http://example.org");
-      assertEquals("incorrect default settings.properties username value", myInstance.settings.getProperty("username"), "user");
-      assertEquals("incorrect default settings.properties password value", myInstance.settings.getProperty("password"), "pass");
     }
 
     @Test
