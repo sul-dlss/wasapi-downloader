@@ -8,12 +8,21 @@ public class WasapiDownloader {
   public WasapiDownloaderSettings settings = null;
 
 
-  public WasapiDownloader(String settingsFileLocation, String[] args) throws IOException {
+  public WasapiDownloader(String settingsFileLocation, String[] args) throws SettingsLoadException {
     settings = new WasapiDownloaderSettings(settingsFileLocation, args);
   }
 
+  public void executeFromCmdLine() {
+    if (settings.shouldDisplayHelp()) {
+      System.out.print(settings.getHelpAndSettingsMessage());
+      return;
+    }
 
-  public static void main(String[] args) throws IOException {
-    new WasapiDownloader(SETTINGS_FILE_LOCATION, args);
+    //TODO: useful work
+  }
+
+  public static void main(String[] args) throws SettingsLoadException {
+    WasapiDownloader downloader = new WasapiDownloader(SETTINGS_FILE_LOCATION, args);
+    downloader.executeFromCmdLine();
   }
 }

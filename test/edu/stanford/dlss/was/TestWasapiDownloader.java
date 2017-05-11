@@ -14,13 +14,19 @@ public class TestWasapiDownloader {
     }
 
     @Test
-    public void constructorLoadsSettings() throws IOException {
+    public void constructorLoadsSettings() throws SettingsLoadException {
       WasapiDownloader myInstance = new WasapiDownloader(WasapiDownloader.SETTINGS_FILE_LOCATION, null);
       assertNotNull(myInstance.settings);
     }
 
     @Test
-    public void canExecuteMainWithoutCrashing() throws IOException {
+    public void canExecuteMainNoHelpWithoutCrashing() throws SettingsLoadException {
       WasapiDownloader.main(null);
+    }
+
+    @Test
+    public void canExecuteMainWithHelpWithoutCrashing() throws SettingsLoadException {
+      String[] args = { "-h" };
+      WasapiDownloader.main(args);
     }
 }
