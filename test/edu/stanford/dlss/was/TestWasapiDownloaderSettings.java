@@ -15,7 +15,7 @@ public class TestWasapiDownloaderSettings {
     }
 
     @Test
-    public void constructorReadsPropertiesFileAndArgs() throws SettingsLoadException {
+    public void constructor_readsPropertiesFileAndArgs() throws SettingsLoadException {
       // args is a String array, in the style of the `String[] args` param taken by the main method of a Java class.
       // JVM splits the whole command line argument string on whitespace, and passes the resultant String array into main, so
       // the below args array would come from something like:
@@ -35,7 +35,7 @@ public class TestWasapiDownloaderSettings {
     }
 
     @Test
-    public void getHelpAndSettingsMessageContainsUsageAndSettingsInfo() throws SettingsLoadException {
+    public void getHelpAndSettingsMessage_containsUsageAndSettingsInfo() throws SettingsLoadException {
       String[] args = { "-h", "--collectionId", "123", "--jobId=456", "--crawlStartAfter", "2014-03-14", "--crawlStartBefore=2017-03-14" };
       WasapiDownloaderSettings settings = new WasapiDownloaderSettings(WasapiDownloader.SETTINGS_FILE_LOCATION, args);
 
@@ -56,7 +56,7 @@ public class TestWasapiDownloaderSettings {
     }
 
     @Test
-    public void toStringAliasesGetHelpAndSettingsMessage() throws SettingsLoadException {
+    public void toString_aliasesGetHelpAndSettingsMessage() throws SettingsLoadException {
       String[] args = { "-h", "--collectionId", "123", "--jobId=456", "--crawlStartAfter", "2014-03-14", "--crawlStartBefore=2017-03-14" };
       WasapiDownloaderSettings settings = new WasapiDownloaderSettings(WasapiDownloader.SETTINGS_FILE_LOCATION, args);
 
@@ -64,7 +64,7 @@ public class TestWasapiDownloaderSettings {
     }
 
     @Test
-    public void constructorThrowsSettingsLoadExceptionOnMissingSettingsFile() {
+    public void constructor_throwsSettingsLoadExceptionOnMissingSettingsFile() {
       boolean hasThrownException = false;
       try {
         new WasapiDownloaderSettings("does/not/exist", null);
@@ -76,7 +76,7 @@ public class TestWasapiDownloaderSettings {
     }
 
     @Test
-    public void constructorThrowsSettingsLoadExceptionOnBadArgs() {
+    public void constructor_throwsSettingsLoadExceptionOnBadArgs() {
       boolean hasThrownException = false;
       try {
         String[] args = { "--unrecognizedOpt", "123" };
