@@ -1,0 +1,1007 @@
+{
+    "next": "https:\/\/partner.archive-it.org\/wasapi\/v1\/webdata?page=2",
+    "count": 867,
+    "previous": null,
+    "includes-extra": false,
+    "files": [{
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-CRAWL_SELECTED_SEEDS-JOB300171-SEED1375341-20170510203126848-00000-hwgx28k5.warc.gz"],
+        "crawl": 300171,
+        "account": 925,
+        "size": 628888,
+        "crawl_start": "2017-05-10T20:29:58Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-CRAWL_SELECTED_SEEDS-JOB300171-SEED1375341-20170510203126848-00000-hwgx28k5.warc.gz",
+        "checksum": "sha1:e1437dc0e419f881d1bf7203368a4b6ee6afaecd; md5:b007a9507bd443a441281bdd408ef059"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-CRAWL_SELECTED_SEEDS-JOB300171-SEED1358138-20170510203128516-00000-kr6mbcy4.warc.gz"],
+        "crawl": 300171,
+        "account": 925,
+        "size": 40513,
+        "crawl_start": "2017-05-10T20:29:58Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-CRAWL_SELECTED_SEEDS-JOB300171-SEED1358138-20170510203128516-00000-kr6mbcy4.warc.gz",
+        "checksum": "sha1:3419a608623b41a8378840e978ca445f1388a26e; md5:fd79fd0ec3eef07b4e809127f7c20dbe"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-CRAWL_SELECTED_SEEDS-JOB300171-SEED1389645-20170510204149617-00000-1dp7e3s9.warc.gz"],
+        "crawl": 300171,
+        "account": 925,
+        "size": 3185,
+        "crawl_start": "2017-05-10T20:29:58Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-CRAWL_SELECTED_SEEDS-JOB300171-SEED1389645-20170510204149617-00000-1dp7e3s9.warc.gz",
+        "checksum": "sha1:3be0d8563dfe9c421380037171e71c2f04edb304; md5:e5bf5c9a2dcd133c311668d7271e4309"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-CRAWL_SELECTED_SEEDS-JOB300171-SEED1381603-20170510203123666-00000-zw0xp9f6.warc.gz"],
+        "crawl": 300171,
+        "account": 925,
+        "size": 496304,
+        "crawl_start": "2017-05-10T20:29:58Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-CRAWL_SELECTED_SEEDS-JOB300171-SEED1381603-20170510203123666-00000-zw0xp9f6.warc.gz",
+        "checksum": "sha1:9d9308f47fd6d00cebcc58ba0db00b4750465b56; md5:72897483873d70e4bd06bcdd22f794f5"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-CRAWL_SELECTED_SEEDS-JOB300171-SEED1375343-20170510203126041-00000-hgn9tdim.warc.gz"],
+        "crawl": 300171,
+        "account": 925,
+        "size": 472007,
+        "crawl_start": "2017-05-10T20:29:58Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-CRAWL_SELECTED_SEEDS-JOB300171-SEED1375343-20170510203126041-00000-hgn9tdim.warc.gz",
+        "checksum": "sha1:568d924641129a61dd20ba2ad93431bd1325f233; md5:44378d5cb54d0de0aac192ce3de5748f"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-CRAWL_SELECTED_SEEDS-JOB299019-20170504225811451-00000.warc.gz"],
+        "crawl": 299019,
+        "account": 925,
+        "size": 231145356,
+        "crawl_start": "2017-05-04T22:58:04Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-CRAWL_SELECTED_SEEDS-JOB299019-20170504225811451-00000.warc.gz",
+        "checksum": "sha1:24cf2dd655cda1000349282dd0193a32642cb751; md5:70c9a0ae2d7b90a64bd7fc000fae5277"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-CRAWL_SELECTED_SEEDS-JOB299022-SEED1049762-20170504230431379-00000-2jyo48mf.warc.gz"],
+        "crawl": 299022,
+        "account": 925,
+        "size": 28682,
+        "crawl_start": "2017-05-04T23:04:11Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-CRAWL_SELECTED_SEEDS-JOB299022-SEED1049762-20170504230431379-00000-2jyo48mf.warc.gz",
+        "checksum": "sha1:91ea45d051f1e93c5ca974d46af1e22b5a2314a0; md5:7da383ea4381c1e070991d772864a45a"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-CRAWL_SELECTED_SEEDS-JOB299018-20170504225705120-00000.warc.gz"],
+        "crawl": 299018,
+        "account": 925,
+        "size": 1691769,
+        "crawl_start": "2017-05-04T22:56:57Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-CRAWL_SELECTED_SEEDS-JOB299018-20170504225705120-00000.warc.gz",
+        "checksum": "sha1:a47d86a43c470f44c53a5b19e7d5f2edcb59642a; md5:a5349258b8397a28a6c890860d82e295"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-CRAWL_SELECTED_SEEDS-JOB299011-SEED1356200-20170504214050745-00000-0lh9mcae.warc.gz"],
+        "crawl": 299011,
+        "account": 925,
+        "size": 40347,
+        "crawl_start": "2017-05-04T21:38:23Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-CRAWL_SELECTED_SEEDS-JOB299011-SEED1356200-20170504214050745-00000-0lh9mcae.warc.gz",
+        "checksum": "sha1:ba098e9a840b78a823a84af1c3a17138d7a46752; md5:41dfa95a96ec680061f25d20dd2d21a0"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-MONTHLY-JOB292430-20170427164004376-00022.warc.gz"],
+        "crawl": 292430,
+        "account": 925,
+        "size": 403516884,
+        "crawl_start": "2017-04-23T18:19:36Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-MONTHLY-JOB292430-20170427164004376-00022.warc.gz",
+        "checksum": "sha1:fb51596bf6d7a96187037b4d0d5645dc22be8303; md5:64bd773886f364572b1a3bb14d196783"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-MONTHLY-JOB292430-20170430180736264-00036.warc.gz"],
+        "crawl": 292430,
+        "account": 925,
+        "size": 297943104,
+        "crawl_start": "2017-04-23T18:19:36Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-MONTHLY-JOB292430-20170430180736264-00036.warc.gz",
+        "checksum": "sha1:a80f6be50de945c1b72735f01c8aaace5c564fcd; md5:27e855ff19233f5ce3a052ab09fe9da9"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-MONTHLY-JOB292430-20170430083101595-00035.warc.gz"],
+        "crawl": 292430,
+        "account": 925,
+        "size": 1000016425,
+        "crawl_start": "2017-04-23T18:19:36Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-MONTHLY-JOB292430-20170430083101595-00035.warc.gz",
+        "checksum": "sha1:99bda3da2f70e727536e00cd82f5ba5f747479b6; md5:3b42c66c16fcb2e25116c96c2046c3d7"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-MONTHLY-JOB292430-20170430014404166-00034.warc.gz"],
+        "crawl": 292430,
+        "account": 925,
+        "size": 1000111891,
+        "crawl_start": "2017-04-23T18:19:36Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-MONTHLY-JOB292430-20170430014404166-00034.warc.gz",
+        "checksum": "sha1:fa09bd7069f348347506cefdc128dd35d149526a; md5:0f9c1a76d5e3198dfaa6776f071c9424"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-MONTHLY-JOB292430-20170430013349882-00033.warc.gz"],
+        "crawl": 292430,
+        "account": 925,
+        "size": 1012369420,
+        "crawl_start": "2017-04-23T18:19:36Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-MONTHLY-JOB292430-20170430013349882-00033.warc.gz",
+        "checksum": "sha1:4768bbc74d7ca743246744c47c153f0a2fdb6a1d; md5:1a7cfe77be0f277405206e7d9b8864f6"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-MONTHLY-JOB292430-20170430012240694-00032.warc.gz"],
+        "crawl": 292430,
+        "account": 925,
+        "size": 1009798096,
+        "crawl_start": "2017-04-23T18:19:36Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-MONTHLY-JOB292430-20170430012240694-00032.warc.gz",
+        "checksum": "sha1:f59b1ae453ff7dd3f50aebe1de96637c30722cf3; md5:41131fefe322249d04af84be77804af3"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-MONTHLY-JOB292430-20170430010607499-00031.warc.gz"],
+        "crawl": 292430,
+        "account": 925,
+        "size": 1000007167,
+        "crawl_start": "2017-04-23T18:19:36Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-MONTHLY-JOB292430-20170430010607499-00031.warc.gz",
+        "checksum": "sha1:e65fac34ebd933a3822bbe14798aa8465d580d61; md5:873a024aa5889d0b706903be7ccb6c68"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-MONTHLY-JOB292430-20170430005057476-00030.warc.gz"],
+        "crawl": 292430,
+        "account": 925,
+        "size": 1002047804,
+        "crawl_start": "2017-04-23T18:19:36Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-MONTHLY-JOB292430-20170430005057476-00030.warc.gz",
+        "checksum": "sha1:189bf7e1f5c85779d414b6fcf723bbd74a8b3f25; md5:ce407830119a414e5b2c0d8b6c1b542e"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-MONTHLY-JOB292430-20170430003939171-00029.warc.gz"],
+        "crawl": 292430,
+        "account": 925,
+        "size": 1002540415,
+        "crawl_start": "2017-04-23T18:19:36Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-MONTHLY-JOB292430-20170430003939171-00029.warc.gz",
+        "checksum": "sha1:0d6d457f51b70998c22d9d331730b59eb9c0c41b; md5:ff95ea6bab2bf80b3d01760ae4f4e35c"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-MONTHLY-JOB292430-20170429153640427-00028.warc.gz"],
+        "crawl": 292430,
+        "account": 925,
+        "size": 1009354894,
+        "crawl_start": "2017-04-23T18:19:36Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-MONTHLY-JOB292430-20170429153640427-00028.warc.gz",
+        "checksum": "sha1:6e9e280bcc1fd565d0a245114cd1f9d645a6052b; md5:bf496f95f347a9fb7d96e68b9820ce13"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-MONTHLY-JOB292430-20170429112535810-00027.warc.gz"],
+        "crawl": 292430,
+        "account": 925,
+        "size": 1000002639,
+        "crawl_start": "2017-04-23T18:19:36Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-MONTHLY-JOB292430-20170429112535810-00027.warc.gz",
+        "checksum": "sha1:9cda5ecd3d92a23d96d3602e3f8229c881e10654; md5:08706b05d74580d00bf48d71ff862cb5"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-MONTHLY-JOB292430-20170429061658471-00026.warc.gz"],
+        "crawl": 292430,
+        "account": 925,
+        "size": 1005617436,
+        "crawl_start": "2017-04-23T18:19:36Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-MONTHLY-JOB292430-20170429061658471-00026.warc.gz",
+        "checksum": "sha1:cf4d3d0ab477e7546cbade4cdde5d59f6b9bdf09; md5:e86b12c2b6a2a53c67909d62b03ab7bc"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-MONTHLY-JOB292430-20170428211725862-00025.warc.gz"],
+        "crawl": 292430,
+        "account": 925,
+        "size": 1000032284,
+        "crawl_start": "2017-04-23T18:19:36Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-MONTHLY-JOB292430-20170428211725862-00025.warc.gz",
+        "checksum": "sha1:841a11849cce972c4293a444a5193daf31def2e5; md5:651e0ac39734f5c1f7752b9759e3be3a"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-MONTHLY-JOB292430-20170428115200774-00024.warc.gz"],
+        "crawl": 292430,
+        "account": 925,
+        "size": 1000026466,
+        "crawl_start": "2017-04-23T18:19:36Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-MONTHLY-JOB292430-20170428115200774-00024.warc.gz",
+        "checksum": "sha1:45d91d69c2ca996f3c39242be8bc360eb3e52ede; md5:7eaa44ded0449386b482c3620f325579"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-MONTHLY-JOB292430-20170428013733603-00023.warc.gz"],
+        "crawl": 292430,
+        "account": 925,
+        "size": 1000022969,
+        "crawl_start": "2017-04-23T18:19:36Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-MONTHLY-JOB292430-20170428013733603-00023.warc.gz",
+        "checksum": "sha1:18604f55a05f1474fbbb286da1809d9119c82174; md5:ddd6355424095d623c771b069b153c6c"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-MONTHLY-JOB292430-20170427095626399-00021.warc.gz"],
+        "crawl": 292430,
+        "account": 925,
+        "size": 1000000743,
+        "crawl_start": "2017-04-23T18:19:36Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-MONTHLY-JOB292430-20170427095626399-00021.warc.gz",
+        "checksum": "sha1:dd6439864428a91ae083a9ba34df1f32ee76be6c; md5:9560b12415fd6a5f414f0994eb64f0e3"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-MONTHLY-JOB292430-20170427073026861-00020.warc.gz"],
+        "crawl": 292430,
+        "account": 925,
+        "size": 1002042251,
+        "crawl_start": "2017-04-23T18:19:36Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-MONTHLY-JOB292430-20170427073026861-00020.warc.gz",
+        "checksum": "sha1:223af7f557ccf1b3362190ca05a6bc760ca292dc; md5:6874036176fd7ecc3dd5ccdd38756afd"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-MONTHLY-JOB292430-20170427071853611-00019.warc.gz"],
+        "crawl": 292430,
+        "account": 925,
+        "size": 1001728910,
+        "crawl_start": "2017-04-23T18:19:36Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-MONTHLY-JOB292430-20170427071853611-00019.warc.gz",
+        "checksum": "sha1:14f4b1ebce8e668e10ab21c10e8bfec020a33bac; md5:6161f2813425ee0d8e0ac2f365db5591"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-MONTHLY-JOB292430-20170427070148467-00018.warc.gz"],
+        "crawl": 292430,
+        "account": 925,
+        "size": 1002164739,
+        "crawl_start": "2017-04-23T18:19:36Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-MONTHLY-JOB292430-20170427070148467-00018.warc.gz",
+        "checksum": "sha1:163d12f6210f6a5fa1e15b3c3b3a3917c4762816; md5:0a9e38e2f7e7c6e8d800a59bf1d7de27"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-MONTHLY-JOB292430-20170427060133092-00017.warc.gz"],
+        "crawl": 292430,
+        "account": 925,
+        "size": 1000001030,
+        "crawl_start": "2017-04-23T18:19:36Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-MONTHLY-JOB292430-20170427060133092-00017.warc.gz",
+        "checksum": "sha1:a66b5e88579c2adb07867c314951a459b30e5e7b; md5:48af5def8b9d77c61c9325a4664927e3"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-MONTHLY-JOB292430-20170427043824342-00016.warc.gz"],
+        "crawl": 292430,
+        "account": 925,
+        "size": 1042349303,
+        "crawl_start": "2017-04-23T18:19:36Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-MONTHLY-JOB292430-20170427043824342-00016.warc.gz",
+        "checksum": "sha1:18bd4cd301cad9c75b571ea96b7f13d04ee5213b; md5:fce9dbd745a200c9752aff209e56d108"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-MONTHLY-JOB292430-20170426201139081-00015.warc.gz"],
+        "crawl": 292430,
+        "account": 925,
+        "size": 1000001813,
+        "crawl_start": "2017-04-23T18:19:36Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-MONTHLY-JOB292430-20170426201139081-00015.warc.gz",
+        "checksum": "sha1:73b22c7997222ce5147c96eb61a48c34904348c8; md5:eae9706e3dc820895c526557434201c1"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-MONTHLY-JOB292430-20170426104147089-00014.warc.gz"],
+        "crawl": 292430,
+        "account": 925,
+        "size": 1000004345,
+        "crawl_start": "2017-04-23T18:19:36Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-MONTHLY-JOB292430-20170426104147089-00014.warc.gz",
+        "checksum": "sha1:8d64e90079b9ce51842c72714dce38c1bb7bce5a; md5:859e89d4d8010f202cdfe178122f2d5d"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-CRAWL_SELECTED_SEEDS-JOB297306-SEED1358138-20170426175506870-00000-qfeyzrpo.warc.gz"],
+        "crawl": 297306,
+        "account": 925,
+        "size": 343102,
+        "crawl_start": "2017-04-26T17:53:16Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-CRAWL_SELECTED_SEEDS-JOB297306-SEED1358138-20170426175506870-00000-qfeyzrpo.warc.gz",
+        "checksum": "sha1:68e0ff5c7321522c58c7bef8700b6f1cea12f0cd; md5:265130d1d8ddb605efa3fb7f49dad195"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-CRAWL_SELECTED_SEEDS-JOB297306-SEED1356200-20170426175357341-00000-sl41atnm.warc.gz"],
+        "crawl": 297306,
+        "account": 925,
+        "size": 699628,
+        "crawl_start": "2017-04-26T17:53:16Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-CRAWL_SELECTED_SEEDS-JOB297306-SEED1356200-20170426175357341-00000-sl41atnm.warc.gz",
+        "checksum": "sha1:50df76b81c98104d2845ff9e46532a4523cb18dc; md5:cc27752262e02e07a7c490023ed49135"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-CRAWL_SELECTED_SEEDS-JOB297306-SEED1356210-20170426175346173-00000-5wf2r4ca.warc.gz"],
+        "crawl": 297306,
+        "account": 925,
+        "size": 84279,
+        "crawl_start": "2017-04-26T17:53:16Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-CRAWL_SELECTED_SEEDS-JOB297306-SEED1356210-20170426175346173-00000-5wf2r4ca.warc.gz",
+        "checksum": "sha1:a4755f6b444b314a8d282a8e054fe009e62cc572; md5:199b77a42f52a24029a08c93dada6ae9"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-CRAWL_SELECTED_SEEDS-JOB297306-SEED1358138-20170426175346440-00000-pvng97jw.warc.gz"],
+        "crawl": 297306,
+        "account": 925,
+        "size": 14440,
+        "crawl_start": "2017-04-26T17:53:16Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-CRAWL_SELECTED_SEEDS-JOB297306-SEED1358138-20170426175346440-00000-pvng97jw.warc.gz",
+        "checksum": "sha1:4d0fcf890bd9254a172488e34e208d75f8d87792; md5:fbbc09aa7c5412349c4821c0108df045"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-CRAWL_SELECTED_SEEDS-JOB297306-SEED1356204-20170426175359159-00000-t6i1nb2f.warc.gz"],
+        "crawl": 297306,
+        "account": 925,
+        "size": 27826,
+        "crawl_start": "2017-04-26T17:53:16Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-CRAWL_SELECTED_SEEDS-JOB297306-SEED1356204-20170426175359159-00000-t6i1nb2f.warc.gz",
+        "checksum": "sha1:c7dff430d5d725c3d2b786d5b247eb5a8d53b228; md5:f08b0bf60733b61216e288cb7620bd4a"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-MONTHLY-JOB292430-20170426052206709-00013.warc.gz"],
+        "crawl": 292430,
+        "account": 925,
+        "size": 1000005180,
+        "crawl_start": "2017-04-23T18:19:36Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-MONTHLY-JOB292430-20170426052206709-00013.warc.gz",
+        "checksum": "sha1:60cf734b6cdff2590a8d15b12ee19b3cffdaee66; md5:64c4ec83fa684fb5211e4723bff66893"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-MONTHLY-JOB292430-20170426010927721-00012.warc.gz"],
+        "crawl": 292430,
+        "account": 925,
+        "size": 1000005888,
+        "crawl_start": "2017-04-23T18:19:36Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-MONTHLY-JOB292430-20170426010927721-00012.warc.gz",
+        "checksum": "sha1:a698e1a0bd307fc1e12e8968d0b0d793ca931c1c; md5:db59915bbcac7a0aa46d9575a8133cb8"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-MONTHLY-JOB292430-20170425202941069-00011.warc.gz"],
+        "crawl": 292430,
+        "account": 925,
+        "size": 1000002983,
+        "crawl_start": "2017-04-23T18:19:36Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-MONTHLY-JOB292430-20170425202941069-00011.warc.gz",
+        "checksum": "sha1:ce5d26ce6455fd1e396a62f5da889b7ab40cdebc; md5:a4d4abcd81fa9fa12c0423f5e3776d59"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-MONTHLY-JOB292430-20170425175046026-00010.warc.gz"],
+        "crawl": 292430,
+        "account": 925,
+        "size": 1000002393,
+        "crawl_start": "2017-04-23T18:19:36Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-MONTHLY-JOB292430-20170425175046026-00010.warc.gz",
+        "checksum": "sha1:36b8e1c52433a222bdc4bc2f208f82c5dd69014b; md5:118f93423b69c7707f72c106962d3c72"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-MONTHLY-JOB292430-20170425104356923-00009.warc.gz"],
+        "crawl": 292430,
+        "account": 925,
+        "size": 1000000254,
+        "crawl_start": "2017-04-23T18:19:36Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-MONTHLY-JOB292430-20170425104356923-00009.warc.gz",
+        "checksum": "sha1:df6f25f5c31518f420587512adfba2a218c6cbd6; md5:229e0e8854850b3453f23f98db1052d4"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-MONTHLY-JOB292430-20170425011534845-00008.warc.gz"],
+        "crawl": 292430,
+        "account": 925,
+        "size": 1000038507,
+        "crawl_start": "2017-04-23T18:19:36Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-MONTHLY-JOB292430-20170425011534845-00008.warc.gz",
+        "checksum": "sha1:9280ccae23231fa8a121e8f9190ad00a0a8993bc; md5:67e99032c4d2dc8994c0ec1fe39af5d6"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-MONTHLY-JOB292430-20170425002641106-00007.warc.gz"],
+        "crawl": 292430,
+        "account": 925,
+        "size": 1000014347,
+        "crawl_start": "2017-04-23T18:19:36Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-MONTHLY-JOB292430-20170425002641106-00007.warc.gz",
+        "checksum": "sha1:cf29af59bc75659e2a7ac6e3295c0444e25ad55f; md5:37ce9f1d6f192ecce07969da290bf283"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-MONTHLY-JOB292430-20170425000126315-00006.warc.gz"],
+        "crawl": 292430,
+        "account": 925,
+        "size": 1001743359,
+        "crawl_start": "2017-04-23T18:19:36Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-MONTHLY-JOB292430-20170425000126315-00006.warc.gz",
+        "checksum": "sha1:28a15809b501bf8c6b12bc233afc4c84d94cfe11; md5:4a2d2a2334758b968c818ead7c18d7ee"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-MONTHLY-JOB292430-20170424224805159-00005.warc.gz"],
+        "crawl": 292430,
+        "account": 925,
+        "size": 1006418481,
+        "crawl_start": "2017-04-23T18:19:36Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-MONTHLY-JOB292430-20170424224805159-00005.warc.gz",
+        "checksum": "sha1:a462e29ebafd5421328d56c487d4a21475ea4131; md5:291e2dbb99a83f45c378daf88ea24f43"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-MONTHLY-JOB292430-20170424204722889-00004.warc.gz"],
+        "crawl": 292430,
+        "account": 925,
+        "size": 1000030075,
+        "crawl_start": "2017-04-23T18:19:36Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-MONTHLY-JOB292430-20170424204722889-00004.warc.gz",
+        "checksum": "sha1:2d720888683c912e0b1f2b885a957c0c52fe176a; md5:c68ab0351bd7a71950166f6f0f4650d1"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-MONTHLY-JOB292430-20170424140532708-00003.warc.gz"],
+        "crawl": 292430,
+        "account": 925,
+        "size": 1000000467,
+        "crawl_start": "2017-04-23T18:19:36Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-MONTHLY-JOB292430-20170424140532708-00003.warc.gz",
+        "checksum": "sha1:ba48d7c725263d16ac2db81ed0619e9340229064; md5:d9643be6c969bb661471c4caedc172ea"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-MONTHLY-JOB292430-20170424062008768-00002.warc.gz"],
+        "crawl": 292430,
+        "account": 925,
+        "size": 1000002131,
+        "crawl_start": "2017-04-23T18:19:36Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-MONTHLY-JOB292430-20170424062008768-00002.warc.gz",
+        "checksum": "sha1:630d607e599613bd64f3d5179a99757f424788f8; md5:1d87992ba5d22bdadda6023157fbfc2a"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-MONTHLY-JOB292430-20170423234711213-00001.warc.gz"],
+        "crawl": 292430,
+        "account": 925,
+        "size": 1000027636,
+        "crawl_start": "2017-04-23T18:19:36Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-MONTHLY-JOB292430-20170423234711213-00001.warc.gz",
+        "checksum": "sha1:806d05b314012add15fb721be555318a5cba1bd6; md5:72b652f5ded0baa75c9650a394de592f"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-MONTHLY-JOB292430-20170423181956124-00000.warc.gz"],
+        "crawl": 292430,
+        "account": 925,
+        "size": 1000159995,
+        "crawl_start": "2017-04-23T18:19:36Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-MONTHLY-JOB292430-20170423181956124-00000.warc.gz",
+        "checksum": "sha1:36670b8945b790978565b0371fe1ca0d9a91cba2; md5:aa2e6b9cfbdf9f6dadb30d7478a90530"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-CRAWL_SELECTED_SEEDS-JOB291568-20170420183459113-00019.warc.gz"],
+        "crawl": 291568,
+        "account": 925,
+        "size": 617660858,
+        "crawl_start": "2017-04-18T17:33:31Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-CRAWL_SELECTED_SEEDS-JOB291568-20170420183459113-00019.warc.gz",
+        "checksum": "sha1:e778e36521d0e26d787adaa45561675be96ad08c; md5:26021bede32dbd2b18631938938e917b"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-CRAWL_SELECTED_SEEDS-JOB291568-20170420180127067-00018.warc.gz"],
+        "crawl": 291568,
+        "account": 925,
+        "size": 1000002716,
+        "crawl_start": "2017-04-18T17:33:31Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-CRAWL_SELECTED_SEEDS-JOB291568-20170420180127067-00018.warc.gz",
+        "checksum": "sha1:71ecac8d166798c4013fc855cde671bded6fb243; md5:c84fd633a185e2b09a21477c6a54b46a"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-CRAWL_SELECTED_SEEDS-JOB291568-20170420174238424-00017.warc.gz"],
+        "crawl": 291568,
+        "account": 925,
+        "size": 1017205996,
+        "crawl_start": "2017-04-18T17:33:31Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-CRAWL_SELECTED_SEEDS-JOB291568-20170420174238424-00017.warc.gz",
+        "checksum": "sha1:9659eabff0560b250284e70ca1d1e0be22e75189; md5:ad139c7c183f93d491e944fed29ca4d3"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-CRAWL_SELECTED_SEEDS-JOB291568-20170420162655960-00016.warc.gz"],
+        "crawl": 291568,
+        "account": 925,
+        "size": 1004102492,
+        "crawl_start": "2017-04-18T17:33:31Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-CRAWL_SELECTED_SEEDS-JOB291568-20170420162655960-00016.warc.gz",
+        "checksum": "sha1:3f75b61bdcb902b52bc57fc40224a104dc9deefa; md5:0b068ae3e79729ce2df867dd276995b3"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-CRAWL_SELECTED_SEEDS-JOB291568-20170420141546171-00015.warc.gz"],
+        "crawl": 291568,
+        "account": 925,
+        "size": 1014587365,
+        "crawl_start": "2017-04-18T17:33:31Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-CRAWL_SELECTED_SEEDS-JOB291568-20170420141546171-00015.warc.gz",
+        "checksum": "sha1:f0e533517a601cdb6d6f96b6e497107906a67fe2; md5:46142de9a4d26b89139da10105ad86ab"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-CRAWL_SELECTED_SEEDS-JOB291568-20170420140633626-00014.warc.gz"],
+        "crawl": 291568,
+        "account": 925,
+        "size": 1000871288,
+        "crawl_start": "2017-04-18T17:33:31Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-CRAWL_SELECTED_SEEDS-JOB291568-20170420140633626-00014.warc.gz",
+        "checksum": "sha1:ff18628935ea12f1b41d8b6eec59a5506917862d; md5:7adf95fcd01c807e2a769090a286d9f5"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-CRAWL_SELECTED_SEEDS-JOB291568-20170420134844139-00013.warc.gz"],
+        "crawl": 291568,
+        "account": 925,
+        "size": 1014918148,
+        "crawl_start": "2017-04-18T17:33:31Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-CRAWL_SELECTED_SEEDS-JOB291568-20170420134844139-00013.warc.gz",
+        "checksum": "sha1:7b86f8018966af2b5edc8ad5b2d654c9296e9ef7; md5:5b4e2af910dda0f4245d1d5073d633e0"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-CRAWL_SELECTED_SEEDS-JOB291568-20170420133250444-00012.warc.gz"],
+        "crawl": 291568,
+        "account": 925,
+        "size": 1001231747,
+        "crawl_start": "2017-04-18T17:33:31Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-CRAWL_SELECTED_SEEDS-JOB291568-20170420133250444-00012.warc.gz",
+        "checksum": "sha1:60cced7ead458b4ab7905eaaa86faade8a204067; md5:e591540bf8aa3738caf52d9a37fb5237"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-CRAWL_SELECTED_SEEDS-JOB291568-20170420130210026-00011.warc.gz"],
+        "crawl": 291568,
+        "account": 925,
+        "size": 1004625843,
+        "crawl_start": "2017-04-18T17:33:31Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-CRAWL_SELECTED_SEEDS-JOB291568-20170420130210026-00011.warc.gz",
+        "checksum": "sha1:e527897c8d7d8e12e786a44a16b49ff6d3e60686; md5:d63dcfe0b2d77c8f0ad3d27b3b5dfff3"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-CRAWL_SELECTED_SEEDS-JOB291568-20170420123722216-00010.warc.gz"],
+        "crawl": 291568,
+        "account": 925,
+        "size": 1000571253,
+        "crawl_start": "2017-04-18T17:33:31Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-CRAWL_SELECTED_SEEDS-JOB291568-20170420123722216-00010.warc.gz",
+        "checksum": "sha1:beddd2454de7d3831e67083c308cef6de0062b20; md5:2972b3318d612fcd84411f50a17b711d"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-CRAWL_SELECTED_SEEDS-JOB291568-20170420114757374-00009.warc.gz"],
+        "crawl": 291568,
+        "account": 925,
+        "size": 1001538195,
+        "crawl_start": "2017-04-18T17:33:31Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-CRAWL_SELECTED_SEEDS-JOB291568-20170420114757374-00009.warc.gz",
+        "checksum": "sha1:0e7636f79b56fcb125b81a9d211089c2930c75bd; md5:98a193bd6bc1b958f100e15be2a7a234"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-CRAWL_SELECTED_SEEDS-JOB291568-20170419201050187-00008.warc.gz"],
+        "crawl": 291568,
+        "account": 925,
+        "size": 1001189903,
+        "crawl_start": "2017-04-18T17:33:31Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-CRAWL_SELECTED_SEEDS-JOB291568-20170419201050187-00008.warc.gz",
+        "checksum": "sha1:d26f383748a7a7b0e4e23b8c379a68408761c8a2; md5:ef5a502b80bd17f8d7e5e110fb174378"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-CRAWL_SELECTED_SEEDS-JOB291568-20170419043909623-00007.warc.gz"],
+        "crawl": 291568,
+        "account": 925,
+        "size": 1000126514,
+        "crawl_start": "2017-04-18T17:33:31Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-CRAWL_SELECTED_SEEDS-JOB291568-20170419043909623-00007.warc.gz",
+        "checksum": "sha1:bb44a0e0919c821ad59689bd411c1b29a6a4bc51; md5:dc0505ef451b624ea7b61b22f0fa97a1"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-CRAWL_SELECTED_SEEDS-JOB291568-20170419031003273-00006.warc.gz"],
+        "crawl": 291568,
+        "account": 925,
+        "size": 1000132366,
+        "crawl_start": "2017-04-18T17:33:31Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-CRAWL_SELECTED_SEEDS-JOB291568-20170419031003273-00006.warc.gz",
+        "checksum": "sha1:bb6e55eac3c764298c851b12c3a3bb266758827f; md5:318a2a2e382b394ed1e3c7d16215e764"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-CRAWL_SELECTED_SEEDS-JOB291568-20170419025151658-00005.warc.gz"],
+        "crawl": 291568,
+        "account": 925,
+        "size": 1004533828,
+        "crawl_start": "2017-04-18T17:33:31Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-CRAWL_SELECTED_SEEDS-JOB291568-20170419025151658-00005.warc.gz",
+        "checksum": "sha1:88c67ab534f64dff42c5b2ab3a552e1b0b677817; md5:76a5e95622418356fc7a59d13643b01c"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-CRAWL_SELECTED_SEEDS-JOB291568-20170419023522483-00004.warc.gz"],
+        "crawl": 291568,
+        "account": 925,
+        "size": 1003394586,
+        "crawl_start": "2017-04-18T17:33:31Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-CRAWL_SELECTED_SEEDS-JOB291568-20170419023522483-00004.warc.gz",
+        "checksum": "sha1:b1d4c539b14eaf52af085cd6c8b81948738730a0; md5:f3c9aa8363e832d8bdb203264a36416c"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-CRAWL_SELECTED_SEEDS-JOB291568-20170419002807681-00003.warc.gz"],
+        "crawl": 291568,
+        "account": 925,
+        "size": 1002709743,
+        "crawl_start": "2017-04-18T17:33:31Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-CRAWL_SELECTED_SEEDS-JOB291568-20170419002807681-00003.warc.gz",
+        "checksum": "sha1:725b0016f537154143e3921bd770bb8d69faef93; md5:755e9e0d5dd03c7fd87ade4d42669d0a"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-CRAWL_SELECTED_SEEDS-JOB291568-20170418202058735-00002.warc.gz"],
+        "crawl": 291568,
+        "account": 925,
+        "size": 1000003066,
+        "crawl_start": "2017-04-18T17:33:31Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-CRAWL_SELECTED_SEEDS-JOB291568-20170418202058735-00002.warc.gz",
+        "checksum": "sha1:30c285e2ded590fcedfad0c5f63baf203743f0da; md5:63c31c0818031ea979067125479305d8"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-CRAWL_SELECTED_SEEDS-JOB291568-20170418180544095-00001.warc.gz"],
+        "crawl": 291568,
+        "account": 925,
+        "size": 1000007328,
+        "crawl_start": "2017-04-18T17:33:31Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-CRAWL_SELECTED_SEEDS-JOB291568-20170418180544095-00001.warc.gz",
+        "checksum": "sha1:6afc1f0bce322787d8b59ff1673245f4e3a6e85f; md5:52811f21735f7b96300b71ae4d48165f"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-CRAWL_SELECTED_SEEDS-JOB291568-20170418173341571-00000.warc.gz"],
+        "crawl": 291568,
+        "account": 925,
+        "size": 1002562124,
+        "crawl_start": "2017-04-18T17:33:31Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-CRAWL_SELECTED_SEEDS-JOB291568-20170418173341571-00000.warc.gz",
+        "checksum": "sha1:de5a0d41bc468945c1c78ed3e2211f25b5ed010a; md5:994f9c81d2310046be0cf7604e95210b"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-TEST-JOB291011-20170414210658058-00000.warc.gz"],
+        "crawl": 291011,
+        "account": 925,
+        "size": 1365364,
+        "crawl_start": "2017-04-14T21:06:52Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-TEST-JOB291011-20170414210658058-00000.warc.gz",
+        "checksum": "sha1:442a7d9df1b7bbf3669dbd42882ef2806681817b; md5:ec6c79f423f1ee0f205d8072eebf0e23"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-ONE_TIME-JOB290867-20170415041617130-00001.warc.gz"],
+        "crawl": 290867,
+        "account": 925,
+        "size": 134761337,
+        "crawl_start": "2017-04-14T17:07:19Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-ONE_TIME-JOB290867-20170415041617130-00001.warc.gz",
+        "checksum": "sha1:98a039826e9606d2df153ae0d2d7019e04cf2284; md5:ca390f11b019abc5e24575f8dfe91468"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-ONE_TIME-JOB290867-20170414170728103-00000.warc.gz"],
+        "crawl": 290867,
+        "account": 925,
+        "size": 1000022946,
+        "crawl_start": "2017-04-14T17:07:19Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-ONE_TIME-JOB290867-20170414170728103-00000.warc.gz",
+        "checksum": "sha1:f352721859bf4f8fc286a1dc0300e8ea4cb49dda; md5:e0be3fdbaf18be48c78e54060f3fb78c"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-MONTHLY-JOB286007-20170330142356659-00026.warc.gz"],
+        "crawl": 286007,
+        "account": 925,
+        "size": 172857164,
+        "crawl_start": "2017-03-23T18:19:38Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-MONTHLY-JOB286007-20170330142356659-00026.warc.gz",
+        "checksum": "sha1:6baf8310dd83f468b0b46e13446a747928470b12; md5:49f64d5b7eccf30ebf6e093b4ec99f3a"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-MONTHLY-JOB286007-20170329160753431-00025.warc.gz"],
+        "crawl": 286007,
+        "account": 925,
+        "size": 1000022495,
+        "crawl_start": "2017-03-23T18:19:38Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-MONTHLY-JOB286007-20170329160753431-00025.warc.gz",
+        "checksum": "sha1:53a9b9c1906367e445abdd902f626fde1b1ba8b6; md5:74e0a0890dfb2ecc7a232820cd94c89a"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-MONTHLY-JOB286007-20170328210245287-00024.warc.gz"],
+        "crawl": 286007,
+        "account": 925,
+        "size": 1000000420,
+        "crawl_start": "2017-03-23T18:19:38Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-MONTHLY-JOB286007-20170328210245287-00024.warc.gz",
+        "checksum": "sha1:422bb8c3a0b50ce1d9c67f082fb0977dbdbc40e6; md5:38b05283e5da313fcd1fbfbedd87cbdc"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-MONTHLY-JOB286007-20170328013346018-00023.warc.gz"],
+        "crawl": 286007,
+        "account": 925,
+        "size": 1000021336,
+        "crawl_start": "2017-03-23T18:19:38Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-MONTHLY-JOB286007-20170328013346018-00023.warc.gz",
+        "checksum": "sha1:e9b400164147772f72c2dcd63b9137c5aa9c7666; md5:b410ce986a8a327fc857403222dec317"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-MONTHLY-JOB286007-20170327163701594-00022.warc.gz"],
+        "crawl": 286007,
+        "account": 925,
+        "size": 1000017279,
+        "crawl_start": "2017-03-23T18:19:38Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-MONTHLY-JOB286007-20170327163701594-00022.warc.gz",
+        "checksum": "sha1:ddd8f9bff04394e1d591c48bad609e2df36fe24e; md5:163ec4084981816d9e17a3491ec91083"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-MONTHLY-JOB286007-20170327052054372-00021.warc.gz"],
+        "crawl": 286007,
+        "account": 925,
+        "size": 1000008539,
+        "crawl_start": "2017-03-23T18:19:38Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-MONTHLY-JOB286007-20170327052054372-00021.warc.gz",
+        "checksum": "sha1:b230d1a26ec55b7145c8318f50e34c84d8394a9c; md5:d349eb9c4028bed6637daef5ab6f3c39"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-MONTHLY-JOB286007-20170326212502647-00020.warc.gz"],
+        "crawl": 286007,
+        "account": 925,
+        "size": 1000004607,
+        "crawl_start": "2017-03-23T18:19:38Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-MONTHLY-JOB286007-20170326212502647-00020.warc.gz",
+        "checksum": "sha1:eeb4295c91bff6a5df56c801418e6847c7d95681; md5:5816138872bfb52adfc23eebd8b2ebf3"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-MONTHLY-JOB286007-20170326162351347-00019.warc.gz"],
+        "crawl": 286007,
+        "account": 925,
+        "size": 1000018991,
+        "crawl_start": "2017-03-23T18:19:38Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-MONTHLY-JOB286007-20170326162351347-00019.warc.gz",
+        "checksum": "sha1:345b202a57dab2931402f3f6864b7845eef3d3f7; md5:51efb14c9da0ebe316c724dcbaa64305"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-MONTHLY-JOB286007-20170326101838144-00018.warc.gz"],
+        "crawl": 286007,
+        "account": 925,
+        "size": 1000007081,
+        "crawl_start": "2017-03-23T18:19:38Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-MONTHLY-JOB286007-20170326101838144-00018.warc.gz",
+        "checksum": "sha1:34f92a57575ede8dd06e1bf76b73d68ed20b600e; md5:9f8abd079c4d655e2c5a71e3ae73f92a"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-MONTHLY-JOB286007-20170326061148478-00017.warc.gz"],
+        "crawl": 286007,
+        "account": 925,
+        "size": 1000055145,
+        "crawl_start": "2017-03-23T18:19:38Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-MONTHLY-JOB286007-20170326061148478-00017.warc.gz",
+        "checksum": "sha1:16f3e3e88b5751b381e2f183611b8d8a3b184f1d; md5:ee79b1ce7239a3c9073a09699dfa2e05"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-MONTHLY-JOB286007-20170326015352362-00016.warc.gz"],
+        "crawl": 286007,
+        "account": 925,
+        "size": 1000004911,
+        "crawl_start": "2017-03-23T18:19:38Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-MONTHLY-JOB286007-20170326015352362-00016.warc.gz",
+        "checksum": "sha1:3426a6edc02b4de6a3feb833771d50c5c593512a; md5:51e3de51394aabf9b3135560caf34b5a"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-MONTHLY-JOB286007-20170325220849132-00015.warc.gz"],
+        "crawl": 286007,
+        "account": 925,
+        "size": 1000017166,
+        "crawl_start": "2017-03-23T18:19:38Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-MONTHLY-JOB286007-20170325220849132-00015.warc.gz",
+        "checksum": "sha1:be009be10b31257716fa47b053786e0b9e2f0f64; md5:500d87fc7314173086802fd3daafe143"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-MONTHLY-JOB286007-20170325191711501-00014.warc.gz"],
+        "crawl": 286007,
+        "account": 925,
+        "size": 1000000884,
+        "crawl_start": "2017-03-23T18:19:38Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-MONTHLY-JOB286007-20170325191711501-00014.warc.gz",
+        "checksum": "sha1:2754448d48f6cd6acb5d98dfe032b367529329f6; md5:fb0a98444e37b9d9f74fdf27fd6f5322"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-MONTHLY-JOB286007-20170325175108213-00013.warc.gz"],
+        "crawl": 286007,
+        "account": 925,
+        "size": 1000005868,
+        "crawl_start": "2017-03-23T18:19:38Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-MONTHLY-JOB286007-20170325175108213-00013.warc.gz",
+        "checksum": "sha1:318e246c93c09b0439052fb651cb00915994b446; md5:37116b51bfccb1cb5e12a40f3ae82d13"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-MONTHLY-JOB286007-20170325144217606-00012.warc.gz"],
+        "crawl": 286007,
+        "account": 925,
+        "size": 1000139997,
+        "crawl_start": "2017-03-23T18:19:38Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-MONTHLY-JOB286007-20170325144217606-00012.warc.gz",
+        "checksum": "sha1:fd4c6c3e8c4124c9ad4880030c6f5847a208e6c1; md5:990308cf4bcf077769197737a962579b"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-MONTHLY-JOB286007-20170325115846094-00011.warc.gz"],
+        "crawl": 286007,
+        "account": 925,
+        "size": 1000003800,
+        "crawl_start": "2017-03-23T18:19:38Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-MONTHLY-JOB286007-20170325115846094-00011.warc.gz",
+        "checksum": "sha1:43bfe23fd442992523eb2ca2d240838a96e7e417; md5:9c9c2128c9a4ee294e749265c88a379e"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-MONTHLY-JOB286007-20170325111140562-00010.warc.gz"],
+        "crawl": 286007,
+        "account": 925,
+        "size": 1000016860,
+        "crawl_start": "2017-03-23T18:19:38Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-MONTHLY-JOB286007-20170325111140562-00010.warc.gz",
+        "checksum": "sha1:406fb12b7a6faeda27b261b7ec7cc069ccd95cc5; md5:e1ad99416979dd8387e23d17d6093d9f"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-MONTHLY-JOB286007-20170325082953982-00009.warc.gz"],
+        "crawl": 286007,
+        "account": 925,
+        "size": 1000005787,
+        "crawl_start": "2017-03-23T18:19:38Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-MONTHLY-JOB286007-20170325082953982-00009.warc.gz",
+        "checksum": "sha1:af422260413a858d095e59daa26fd3af14e66b57; md5:ccc02dfecc03b2f6df8a9c8287dee0a7"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-MONTHLY-JOB286007-20170325033059951-00008.warc.gz"],
+        "crawl": 286007,
+        "account": 925,
+        "size": 1000008382,
+        "crawl_start": "2017-03-23T18:19:38Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-MONTHLY-JOB286007-20170325033059951-00008.warc.gz",
+        "checksum": "sha1:dfb18765612aee0079e62bb86b10989752228d70; md5:db7ba7148e2ad5c9e3fc6cd76c2bc6f2"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-MONTHLY-JOB286007-20170325010932686-00007.warc.gz"],
+        "crawl": 286007,
+        "account": 925,
+        "size": 1002599987,
+        "crawl_start": "2017-03-23T18:19:38Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-MONTHLY-JOB286007-20170325010932686-00007.warc.gz",
+        "checksum": "sha1:c2249d64523d19e346660ec9300b94ad96b12f1c; md5:e9e0af4faede27524f4160621cc68880"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-MONTHLY-JOB286007-20170325002917452-00006.warc.gz"],
+        "crawl": 286007,
+        "account": 925,
+        "size": 1000074516,
+        "crawl_start": "2017-03-23T18:19:38Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-MONTHLY-JOB286007-20170325002917452-00006.warc.gz",
+        "checksum": "sha1:d75db6774ab4bbe46a68701dacc5e3f6a9ff3c63; md5:9f65ffcf091754662500886cd71898c6"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-MONTHLY-JOB286007-20170324220900594-00005.warc.gz"],
+        "crawl": 286007,
+        "account": 925,
+        "size": 1000842603,
+        "crawl_start": "2017-03-23T18:19:38Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-MONTHLY-JOB286007-20170324220900594-00005.warc.gz",
+        "checksum": "sha1:9cc5cfd6dfc98f30887c6ad7cf43e9ad37367eda; md5:07fb774e317313f40b5534bbb4f4d82f"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-MONTHLY-JOB286007-20170324181442175-00004.warc.gz"],
+        "crawl": 286007,
+        "account": 925,
+        "size": 1000841542,
+        "crawl_start": "2017-03-23T18:19:38Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-MONTHLY-JOB286007-20170324181442175-00004.warc.gz",
+        "checksum": "sha1:957f25156731a1a026bab8413dfdd214485d7e9b; md5:dd92d5975d0e295dc15cb3fc959b7761"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-MONTHLY-JOB286007-20170324052707871-00003.warc.gz"],
+        "crawl": 286007,
+        "account": 925,
+        "size": 1000015528,
+        "crawl_start": "2017-03-23T18:19:38Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-MONTHLY-JOB286007-20170324052707871-00003.warc.gz",
+        "checksum": "sha1:d53691a48d418de73cd25154e472b1936dad50c4; md5:67c1ce8f9a3acd40640f211ea1d4de47"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-MONTHLY-JOB286007-20170323231411744-00002.warc.gz"],
+        "crawl": 286007,
+        "account": 925,
+        "size": 1201722943,
+        "crawl_start": "2017-03-23T18:19:38Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-MONTHLY-JOB286007-20170323231411744-00002.warc.gz",
+        "checksum": "sha1:c0a8ee4cb9752fb4e36439796cc73c29c08d4176; md5:a28e0c6676b450d1b0c350cd43fe0843"
+    }, {
+        "filetype": "warc",
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-CRAWL_SELECTED_SEEDS-JOB286011-SEED1352848-20170323182723579-00000-5hcbt739.warc.gz"],
+        "crawl": 286011,
+        "account": 925,
+        "size": 2762911,
+        "crawl_start": "2017-03-23T18:24:45Z",
+        "collection": 5425,
+        "filename": "ARCHIVEIT-5425-CRAWL_SELECTED_SEEDS-JOB286011-SEED1352848-20170323182723579-00000-5hcbt739.warc.gz",
+        "checksum": "sha1:4d86b73bcdc9192b3e07d639e0adc40058ecfe5a; md5:21797da422d185acdefccc1fb893714e"
+    }]
+}

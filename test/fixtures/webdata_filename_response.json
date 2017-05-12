@@ -1,0 +1,17 @@
+{
+    "previous": null,
+    "includes-extra": false,
+    "count": 1,
+    "next": null,
+    "files": [{
+        "locations": ["https:\/\/partner.archive-it.org\/webdatafile\/ARCHIVEIT-5425-CRAWL_SELECTED_SEEDS-JOB299019-20170504225811451-00000.warc.gz"],
+        "crawl": 299019,
+        "size": 231145356,
+        "account": 925,
+        "filetype": "warc",
+        "collection": 5425,
+        "crawl_start": "2017-05-04T22:58:04Z",
+        "filename": "ARCHIVEIT-5425-CRAWL_SELECTED_SEEDS-JOB299019-20170504225811451-00000.warc.gz",
+        "checksum": "sha1:24cf2dd655cda1000349282dd0193a32642cb751; md5:70c9a0ae2d7b90a64bd7fc000fae5277"
+    }]
+}

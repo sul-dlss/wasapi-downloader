@@ -24,6 +24,9 @@ dependencies {
     //For basic command line parsing and option definitions.
     compile 'commons-cli:commons-cli:1.4'
 
+    //Json processing
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.8.6'
+
     //Unit testing framework.
     testCompile 'junit:junit:4.12'
 
@@ -67,4 +70,4 @@ jar {
     manifest {
         attributes(jarAttributes)
     }
-} 
+}
