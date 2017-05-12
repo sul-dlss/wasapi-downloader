@@ -5,8 +5,6 @@ import java.io.IOException;
 import static org.junit.Assert.*;
 import org.junit.*;
 
-import edu.stanford.dlss.was.WasapiDownloader;
-
 public class TestWasapiDownloader {
 
     @Before

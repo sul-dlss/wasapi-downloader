@@ -8,9 +8,6 @@ import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 import org.junit.*;
 
-import edu.stanford.dlss.was.WasapiDownloader;
-import edu.stanford.dlss.was.WasapiDownloaderSettings;
-
 public class TestWasapiDownloaderSettings {
 
     @Before
