@@ -21,7 +21,7 @@ public class TestWasapiResponseParser {
     assertFalse(response.isIncludesExtra());
     WasapiFile file = response.getFiles()[0];
     assertNotNull(file.getAccountId());
-    assertNotNull(file.getChecksumsStr());
+    assertNotNull(file.getChecksums());
     assertNotNull(file.getCollectionId());
     assertNotNull(file.getCrawlId());
     assertNotNull(file.getCrawlStartDateStr());
@@ -42,7 +42,7 @@ public class TestWasapiResponseParser {
     assertFalse(response.isIncludesExtra());
     WasapiFile file = response.getFiles()[0];
     assertNotNull(file.getAccountId());
-    assertNotNull(file.getChecksumsStr());
+    assertNotNull(file.getChecksums());
     assertNotNull(file.getCollectionId());
     assertNotNull(file.getCrawlId());
     assertNotNull(file.getCrawlStartDateStr());
@@ -61,10 +61,11 @@ public class TestWasapiResponseParser {
     assertNotNull(response.getCount());
     assertNotNull(response.getFiles());
     assertFalse(response.isIncludesExtra());
+    assertNotNull(response.getPrevious());
     assertNotNull(response.getNext());
     WasapiFile file = response.getFiles()[0];
     assertNotNull(file.getAccountId());
-    assertNotNull(file.getChecksumsStr());
+    assertNotNull(file.getChecksums());
     assertNotNull(file.getCollectionId());
     assertNotNull(file.getCrawlId());
     assertNotNull(file.getCrawlStartDateStr());
