@@ -24,14 +24,14 @@ public class TestWasapiDownloaderSettings {
       String[] args = { "-h", "--collectionId", "123", "--jobId=456", "--crawlStartAfter", "2014-03-14", "--crawlStartBefore=2017-03-14" };
       WasapiDownloaderSettings settings = new WasapiDownloaderSettings(WasapiDownloader.SETTINGS_FILE_LOCATION, args);
 
-      assertEquals("incorrect default settings.properties baseurl value", settings.baseUrlString(), "http://example.org");
-      assertEquals("incorrect default settings.properties username value", settings.username(), "user");
-      assertEquals("incorrect default settings.properties password value", settings.password(), "pass");
-      assertEquals("incorrect value for collectionId", settings.collectionId(), "123");
-      assertEquals("incorrect value for jobId", settings.jobId(), "456");
-      assertEquals("incorrect value for crawlStartAfter", settings.crawlStartAfter(), "2014-03-14");
-      assertEquals("incorrect value for crawlStartBefore", settings.crawlStartBefore(), "2017-03-14");
-      assertTrue("incorrect value for shouldDisplayHelp", settings.shouldDisplayHelp());
+      assertEquals("baseurl value should come from settings file", settings.baseUrlString(), "http://example.org");
+      assertEquals("username value should come from settings file", settings.username(), "user");
+      assertEquals("password value should come from settings file", settings.password(), "pass");
+      assertEquals("collectionId value should come from args", settings.collectionId(), "123");
+      assertEquals("jobId value should come from args", settings.jobId(), "456");
+      assertEquals("crawlStartAfter value should come from args", settings.crawlStartAfter(), "2014-03-14");
+      assertEquals("crawlStartBefore value should come from args", settings.crawlStartBefore(), "2017-03-14");
+      assertTrue("shouldDisplayHelp value should come from args", settings.shouldDisplayHelp());
     }
 
     @Test
