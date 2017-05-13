@@ -78,6 +78,10 @@ public class WasapiDownloaderSettings {
     return settings.getProperty(BASE_URL_PARAM_NAME);
   }
 
+  public String authUrlString() {
+      return settings.getProperty("authurl");
+  }
+
   public String username() {
     return settings.getProperty(USERNAME_PARAM_NAME);
   }
