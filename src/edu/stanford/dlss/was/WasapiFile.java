@@ -1,5 +1,7 @@
 package edu.stanford.dlss.was;
 
+import java.util.Map;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -11,8 +13,7 @@ public class WasapiFile {
   @JsonProperty("account")
   private int accountId;
 
-  @JsonProperty("checksum")
-  private String checksumsStr;
+  private Map<String, String> checksums;
 
   @JsonProperty("collection")
   private int collectionId;
@@ -20,7 +21,7 @@ public class WasapiFile {
   @JsonProperty("crawl")
   private int crawlId;
 
-  @JsonProperty("crawl_start")
+  @JsonProperty("crawl-start")
   private String crawlStartDateStr;
 
   private String filename;
@@ -41,13 +42,13 @@ public class WasapiFile {
     this.accountId = accountId;
   }
 
-  public String getChecksumsStr()
+  public Map<String, String> getChecksums()
   {
-    return checksumsStr;
+    return checksums;
   }
-  public void setChecksumsStr(String checksumsStr)
+  public void setChecksums(Map<String, String> checksums)
   {
-    this.checksumsStr = checksumsStr;
+    this.checksums = checksums;
   }
 
   public int getCollectionId()
@@ -118,13 +119,16 @@ public class WasapiFile {
     StringBuilder sb = new StringBuilder();
     sb.append("***** Wasapi File Details *****\n");
     sb.append("filename: " + getFilename() + "\n");
-    sb.append("checksum: " + getChecksumsStr() + "\n");
     sb.append("filetype: " + getFiletype() + "\n");
+    sb.append("size: " + Integer.toString(getSize()) + "\n");
     sb.append("locations:\n");
     for (int i = 0; i < getLocations().length; i++) {
       sb.append("  location " + Integer.toString(i) + ": " + locations[i].toString() + "\n");
     }
-    sb.append("size: " + Integer.toString(getSize()) + "\n");
+    sb.append("checksums:\n");
+    for (String key : checksums.keySet()) {
+      sb.append("  " + key + " checksum: " + checksums.get(key) + "\n");
+    }
     sb.append("account: " + Integer.toString(getAccountId()) + "\n");
     sb.append("collection: " + Integer.toString(getCollectionId()) + "\n");
     sb.append("crawl: " + Integer.toString(getCrawlId()) + "\n");
