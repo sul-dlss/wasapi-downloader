@@ -10,6 +10,7 @@ GEM
       sshkit (>= 1.9.0)
     capistrano-one_time_key (0.0.1)
       capistrano (~> 3.0)
+    capistrano-shared_configs (0.1.2)
     i18n (0.8.1)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
@@ -25,6 +26,7 @@ PLATFORMS
 DEPENDENCIES
   capistrano
   capistrano-one_time_key
+  capistrano-shared_configs
 
 BUNDLED WITH
    1.14.6

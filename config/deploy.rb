@@ -33,8 +33,8 @@ set :linked_dirs, %w{build .gradle}
 # Default value for keep_releases is 5
 # set :keep_releases, 5
 
-# update shared_configs before restarting app
-# before 'deploy:restart', 'shared_configs:update'
+# update shared_configs
+before 'deploy:finished', 'shared_configs:update'
 
 namespace :gradle do
   desc 'Assemble a jar archive containing the main classes.'
