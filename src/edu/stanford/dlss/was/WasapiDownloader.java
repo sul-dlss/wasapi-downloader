@@ -12,7 +12,7 @@ import javax.xml.bind.DatatypeConverter;
 public class WasapiDownloader {
   public static final String SETTINGS_FILE_LOCATION = "config/settings.properties";
 
-  public WasapiDownloaderSettings settings = null;
+  public WasapiDownloaderSettings settings;
 
 
   public WasapiDownloader(String settingsFileLocation, String[] args) throws SettingsLoadException {
