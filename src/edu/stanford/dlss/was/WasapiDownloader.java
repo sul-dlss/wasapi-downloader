@@ -52,8 +52,9 @@ public class WasapiDownloader {
   }
 
   /**
-   * @param algorithm - checksum algorithm to use, per https://docs.oracle.com/javase/7/docs/technotes/guides/security/StandardNames.html#MessageDigest
-    */
+   * @param algorithm - checksum algorithm to use, per
+        https://docs.oracle.com/javase/7/docs/technotes/guides/security/StandardNames.html#MessageDigest
+   */
   public static boolean validateChecksum(String algorithm, String expectedChecksum, String filePath)
       throws NoSuchAlgorithmException, IOException {
     Path path = Paths.get(filePath);
