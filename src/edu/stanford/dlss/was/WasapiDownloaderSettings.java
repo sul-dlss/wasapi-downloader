@@ -99,7 +99,8 @@ public class WasapiDownloaderSettings {
     int width = HelpFormatter.DEFAULT_WIDTH;
     int leftPad = HelpFormatter.DEFAULT_LEFT_PAD;
     int descPad = HelpFormatter.DEFAULT_DESC_PAD;
-    helpFormatter.printHelp(pw, width, "bin/wasapi-downloader", "=====\npossible arguments\n---", wdsOpts, leftPad, descPad, "=====", true);
+    String helpMsgHeader = "=====\nallowed arguments\n(may also also be specified in config/settings.properties, sans leading hyphens)\n---";
+    helpFormatter.printHelp(pw, width, "bin/wasapi-downloader", helpMsgHeader, wdsOpts, leftPad, descPad, "=====", true);
     pw.flush();
     sw.flush();
     return sw.getBuffer();
@@ -108,7 +109,7 @@ public class WasapiDownloaderSettings {
   private CharSequence getSettingsSummaryCharSeq() {
     StringBuilder buf = new StringBuilder();
     buf.append("=====\n");
-    buf.append("current settings\n");
+    buf.append("current settings (arg values override settings.properties values)\n");
     buf.append("---\n");
     for (String settingName : settings.stringPropertyNames()) {
       if (!settingName.equals(PASSWORD_PARAM_NAME)) {
@@ -133,6 +134,9 @@ public class WasapiDownloaderSettings {
   @SuppressWarnings("checkstyle:linelength")
   private void setupArgOptions() {
     Option helpOpt = Option.builder("h").longOpt(HELP_PARAM_NAME).desc("print this message (which describes expected arguments and dumps current config)").build();
+    Option baseUrlOpt = buildArgOption(BASE_URL_PARAM_NAME, "the base URL of the WASAPI server from which to pull WARC files");
+    Option usernameOpt = buildArgOption(USERNAME_PARAM_NAME, "the username for WASAPI server login");
+    Option passwordOpt = buildArgOption(PASSWORD_PARAM_NAME, "the password for WASAPI server login");
     Option collectionIdOpt = buildArgOption(COLLECTION_ID_PARAM_NAME, "a collection from which to download crawl files");
     Option jobIdOpt = buildArgOption(JOB_ID_PARAM_NAME, "a job from which to download crawl files");
     Option crawlStartAfterOpt = buildArgOption(CRAWL_START_AFTER_PARAM_NAME, "only download crawl files created after this date");
@@ -140,6 +144,9 @@ public class WasapiDownloaderSettings {
 
     wdsOpts = new Options();
     wdsOpts.addOption(helpOpt);
+    wdsOpts.addOption(baseUrlOpt);
+    wdsOpts.addOption(usernameOpt);
+    wdsOpts.addOption(passwordOpt);
     wdsOpts.addOption(collectionIdOpt);
     wdsOpts.addOption(jobIdOpt);
     wdsOpts.addOption(crawlStartAfterOpt);
