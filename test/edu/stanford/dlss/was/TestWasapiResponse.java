@@ -16,7 +16,7 @@ public class TestWasapiResponse {
   @Test
   public void toStringImplemented() throws IOException {
     FileInputStream fis = new FileInputStream("test" + SEP + "fixtures" + SEP + "webdata_filename_response.json");
-    WasapiResponse myResponse =  new WasapiResponseParser().parse(fis);
+    WasapiResponse myResponse = new WasapiResponseParser().parse(fis);
     String responseAsString = myResponse.toString();
     assertThat(responseAsString, containsString("count: 1"));
     assertThat(responseAsString, containsString("previous: null"));
