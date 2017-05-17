@@ -18,6 +18,9 @@ public class WasapiResponse {
   private String previous;
   private WasapiFile[] files;
 
+  public WasapiResponse() {
+  }
+
   public int getCount() {
     return count;
   }
