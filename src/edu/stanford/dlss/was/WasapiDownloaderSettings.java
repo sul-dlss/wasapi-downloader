@@ -25,10 +25,10 @@ public class WasapiDownloaderSettings {
   public static final String CRAWL_START_AFTER_PARAM_NAME = "crawlStartAfter";
   public static final String CRAWL_START_BEFORE_PARAM_NAME = "crawlStartBefore";
 
-  private HelpFormatter helpFormatter = null;
-  private Options wdsOpts = null;
-  private Properties settings = null;
-  private String helpAndSettingsMessage = null;
+  private HelpFormatter helpFormatter;
+  private Options wdsOpts;
+  private Properties settings;
+  private String helpAndSettingsMessage;
 
   public WasapiDownloaderSettings(String settingsFileLocation, String[] args) throws SettingsLoadException {
     try {
