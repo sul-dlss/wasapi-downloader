@@ -25,6 +25,7 @@ public class WasapiDownloaderSettings {
   public static final String JOB_ID_PARAM_NAME = "jobId";
   public static final String CRAWL_START_AFTER_PARAM_NAME = "crawlStartAfter";
   public static final String CRAWL_START_BEFORE_PARAM_NAME = "crawlStartBefore";
+  public static final String OUTPUT_DIR_PARAM_NAME = "outputDir";
 
   private HelpFormatter helpFormatter;
   private Options wdsOpts;
@@ -78,6 +79,10 @@ public class WasapiDownloaderSettings {
   // e.g. 2014-01-01, see https://github.com/WASAPI-Community/data-transfer-apis/tree/master/ait-reference-specification#paths--examples
   public String crawlStartBefore() {
     return settings.getProperty(CRAWL_START_BEFORE_PARAM_NAME);
+  }
+
+  public String outputDir() {
+    return settings.getProperty(OUTPUT_DIR_PARAM_NAME);
   }
 
   public String getHelpAndSettingsMessage() {
@@ -141,6 +146,7 @@ public class WasapiDownloaderSettings {
     Option jobIdOpt = buildArgOption(JOB_ID_PARAM_NAME, "a job from which to download crawl files");
     Option crawlStartAfterOpt = buildArgOption(CRAWL_START_AFTER_PARAM_NAME, "only download crawl files created after this date");
     Option crawlStartBeforeOpt = buildArgOption(CRAWL_START_BEFORE_PARAM_NAME, "only download crawl files created before this date");
+    Option outputDirOpt = buildArgOption(OUTPUT_DIR_PARAM_NAME, "destination directory for downloaded WARC files");
 
     wdsOpts = new Options();
     wdsOpts.addOption(helpOpt);
@@ -151,6 +157,7 @@ public class WasapiDownloaderSettings {
     wdsOpts.addOption(jobIdOpt);
     wdsOpts.addOption(crawlStartAfterOpt);
     wdsOpts.addOption(crawlStartBeforeOpt);
+    wdsOpts.addOption(outputDirOpt);
   }
 
   private void addParsedArgsToSettings(CommandLine parsedArgs) {

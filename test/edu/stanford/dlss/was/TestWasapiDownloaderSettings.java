@@ -24,6 +24,7 @@ public class TestWasapiDownloaderSettings {
     assertEquals("baseurl value should have come from settings file", settings.baseUrlString(), "http://example.org");
     assertEquals("username value should have come from settings file", settings.username(), "user");
     assertEquals("password value should have come from settings file", settings.password(), "pass");
+    assertEquals("outputDir value should have come from settings file", settings.outputDir(), "/var/downloadedWarcFiles");
     assertEquals("collectionId value should have come from args", settings.collectionId(), "123");
     assertEquals("jobId value should have come from args", settings.jobId(), "456");
     assertEquals("crawlStartAfter value should have come from args", settings.crawlStartAfter(), "2014-03-14");
@@ -61,9 +62,10 @@ public class TestWasapiDownloaderSettings {
 
   @Test
   public void argsOverrideSettings() throws SettingsLoadException {
-    String[] args = { "--username=user2" };
+    String[] args = { "--username=user2", "--outputDir=/tmp/warcDownloads" };
     WasapiDownloaderSettings settings = new WasapiDownloaderSettings(WasapiDownloader.SETTINGS_FILE_LOCATION, args);
     assertEquals("the username from the .properties file should get overridden by the command-line arg", settings.username(), "user2");
+    assertEquals("the outputDir from the .properties file should get overridden by the command-line arg", settings.outputDir(), "/tmp/warcDownloads");
   }
 
   @Test
