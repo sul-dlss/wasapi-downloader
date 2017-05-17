@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * Class corresponding to JSON returned by WASAPI that represents WebdataFile
  * @see https://github.com/WASAPI-Community/data-transfer-apis/blob/master/ait-implementation/wasapi/implemented-swagger.yaml#L132-L183
  */
+@SuppressWarnings("checkstyle:HiddenField")
 public class WasapiFile {
 
   @JsonProperty("account")
