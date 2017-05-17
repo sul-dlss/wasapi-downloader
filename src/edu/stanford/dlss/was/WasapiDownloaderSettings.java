@@ -37,9 +37,9 @@ public class WasapiDownloaderSettings {
       parseArgsIntoSettings(args);
 
       //TODO: validate settings state.  see https://github.com/sul-dlss/wasapi-downloader/issues/42
-    } catch(IOException e) {
+    } catch (IOException e) {
       throw new SettingsLoadException("Error reading properties file: " + e.getMessage(), e);
-    } catch(ParseException e) {
+    } catch (ParseException e) {
       throw new SettingsLoadException("Error parsing command line arguments: " + e.getMessage(), e);
     }
   }
@@ -132,6 +132,7 @@ public class WasapiDownloaderSettings {
     return Option.builder().hasArg().longOpt(optionName).desc(description).build();
   }
 
+  @SuppressWarnings("checkstyle:linelength")
   private void setupArgOptions() {
     Option helpOpt = Option.builder("h").longOpt(HELP_PARAM_NAME).desc("print this message (which describes expected arguments and dumps current config)").build();
     Option collectionIdOpt = buildArgOption(COLLECTION_ID_PARAM_NAME, "a collection from which to download crawl files");
