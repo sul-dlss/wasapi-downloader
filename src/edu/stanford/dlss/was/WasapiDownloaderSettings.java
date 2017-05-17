@@ -46,10 +46,7 @@ public class WasapiDownloaderSettings {
 
 
   public boolean shouldDisplayHelp() {
-    if (settings.getProperty(HELP_PARAM_NAME) != null)
-      return true;
-    else
-      return false;
+    return settings.getProperty(HELP_PARAM_NAME) != null;
   }
 
   public String baseUrlString() {
