@@ -54,6 +54,7 @@ public class TestWasapiResponseParser {
   }
 
   @Test
+  @SuppressWarnings("checkstyle:MethodLength")
   public void parsesFirstPageOfMultPageFixture() throws IOException {
     FileInputStream fis = new FileInputStream("test" + SEP + "fixtures" + SEP + "webdata_response.json");
     WasapiResponseParser responseParser = new WasapiResponseParser();
