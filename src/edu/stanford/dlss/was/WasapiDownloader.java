@@ -38,6 +38,7 @@ public class WasapiDownloader {
     //TODO: useful work
   }
 
+  @SuppressWarnings("checkstyle:UncommentedMain")
   public static void main(String[] args) throws SettingsLoadException {
     WasapiDownloader downloader = new WasapiDownloader(SETTINGS_FILE_LOCATION, args);
     downloader.executeFromCmdLine();
