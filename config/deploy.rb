@@ -22,10 +22,10 @@ set :deploy_to, "/opt/app/#{fetch(:user)}/#{fetch(:application)}"
 # set :pty, true
 
 # Default value for :linked_files is []
-# append :linked_files, 'config/settings.yml'
+append :linked_files, 'config/settings.properties'
 
 # Default value for linked_dirs is []
-set :linked_dirs, %w{build .gradle}
+set :linked_dirs, %w{build config .gradle}
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
