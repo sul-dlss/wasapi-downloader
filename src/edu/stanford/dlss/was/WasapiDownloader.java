@@ -61,10 +61,7 @@ public class WasapiDownloader {
     MessageDigest digest = MessageDigest.getInstance(algorithm);
     byte[] computedChecksumBytes = digest.digest(Files.readAllBytes(path));
     String computedChecksumString = bytesToHex(computedChecksumBytes);
-    if (expectedChecksum.toLowerCase().compareTo(computedChecksumString) == 0)
-      return true;
-    else
-      return false;
+    return expectedChecksum.toLowerCase().compareTo(computedChecksumString) == 0;
   }
 
 }
