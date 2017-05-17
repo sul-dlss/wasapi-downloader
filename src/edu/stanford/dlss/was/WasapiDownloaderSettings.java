@@ -15,6 +15,7 @@ import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 
+@SuppressWarnings("checkstyle:ClassDataAbstractionCoupling")
 public class WasapiDownloaderSettings {
   public static final String BASE_URL_PARAM_NAME = "baseurl";
   public static final String USERNAME_PARAM_NAME = "username";
