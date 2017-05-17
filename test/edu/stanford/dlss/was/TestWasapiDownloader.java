@@ -21,6 +21,7 @@ public class TestWasapiDownloader {
   }
 
   @Test
+  @SuppressWarnings("checkstyle:NoWhitespaceAfter")
   public void main_withHelp_canExecuteWithoutCrashing() throws SettingsLoadException {
     String[] args = { "-h" };
     WasapiDownloader.main(args);
