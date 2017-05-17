@@ -10,10 +10,6 @@ import org.junit.*;
 
 public class TestWasapiDownloaderSettings {
 
-  @Before
-  public void setUp() {
-  }
-
   @Test
   public void constructor_readsPropertiesFileAndArgs() throws SettingsLoadException {
     // args is a String array, in the style of the `String[] args` param taken by the main method of a Java class.

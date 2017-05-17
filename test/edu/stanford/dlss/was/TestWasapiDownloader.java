@@ -7,10 +7,6 @@ import org.junit.*;
 
 public class TestWasapiDownloader {
 
-  @Before
-  public void setUp() {
-  }
-
   @Test
   public void constructor_loadsSettings() throws SettingsLoadException {
     WasapiDownloader myInstance = new WasapiDownloader(WasapiDownloader.SETTINGS_FILE_LOCATION, null);
