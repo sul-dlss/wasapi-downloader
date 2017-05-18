@@ -5,7 +5,6 @@ import java.io.InputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.lang.CharSequence;
 import java.util.Properties;
 
 import org.apache.commons.cli.CommandLine;
@@ -16,6 +15,7 @@ import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 
+@SuppressWarnings("checkstyle:ClassDataAbstractionCoupling")
 public class WasapiDownloaderSettings {
   public static final String BASE_URL_PARAM_NAME = "baseurl";
   public static final String USERNAME_PARAM_NAME = "username";
@@ -26,10 +26,10 @@ public class WasapiDownloaderSettings {
   public static final String CRAWL_START_AFTER_PARAM_NAME = "crawlStartAfter";
   public static final String CRAWL_START_BEFORE_PARAM_NAME = "crawlStartBefore";
 
-  private HelpFormatter helpFormatter = null;
-  private Options wdsOpts = null;
-  private Properties settings = null;
-  private String helpAndSettingsMessage = null;
+  private HelpFormatter helpFormatter;
+  private Options wdsOpts;
+  private Properties settings;
+  private String helpAndSettingsMessage;
 
   public WasapiDownloaderSettings(String settingsFileLocation, String[] args) throws SettingsLoadException {
     try {
@@ -38,19 +38,16 @@ public class WasapiDownloaderSettings {
       parseArgsIntoSettings(args);
 
       //TODO: validate settings state.  see https://github.com/sul-dlss/wasapi-downloader/issues/42
-    } catch(IOException e) {
+    } catch (IOException e) {
       throw new SettingsLoadException("Error reading properties file: " + e.getMessage(), e);
-    } catch(ParseException e) {
+    } catch (ParseException e) {
       throw new SettingsLoadException("Error parsing command line arguments: " + e.getMessage(), e);
     }
   }
 
 
   public boolean shouldDisplayHelp() {
-    if (settings.getProperty(HELP_PARAM_NAME) != null)
-      return true;
-    else
-      return false;
+    return settings.getProperty(HELP_PARAM_NAME) != null;
   }
 
   public String baseUrlString() {
@@ -133,6 +130,7 @@ public class WasapiDownloaderSettings {
     return Option.builder().hasArg().longOpt(optionName).desc(description).build();
   }
 
+  @SuppressWarnings("checkstyle:linelength")
   private void setupArgOptions() {
     Option helpOpt = Option.builder("h").longOpt(HELP_PARAM_NAME).desc("print this message (which describes expected arguments and dumps current config)").build();
     Option collectionIdOpt = buildArgOption(COLLECTION_ID_PARAM_NAME, "a collection from which to download crawl files");

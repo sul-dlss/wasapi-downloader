@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * Class corresponding to JSON received after making WASAPI request ("FileSet")
  * @see https://github.com/WASAPI-Community/data-transfer-apis/blob/master/ait-implementation/wasapi/implemented-swagger.yaml#L184-L213
  */
+@SuppressWarnings("checkstyle:HiddenField")
 public class WasapiResponse {
 
   private int count;
@@ -16,6 +17,9 @@ public class WasapiResponse {
   private String next;
   private String previous;
   private WasapiFile[] files;
+
+  public WasapiResponse() {
+  }
 
   public int getCount() {
     return count;

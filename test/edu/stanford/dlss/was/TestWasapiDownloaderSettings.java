@@ -11,6 +11,7 @@ import org.junit.*;
 public class TestWasapiDownloaderSettings {
 
   @Test
+  @SuppressWarnings("checkstyle:NoWhitespaceAfter")
   public void constructor_readsPropertiesFileAndArgs() throws SettingsLoadException {
     // args is a String array, in the style of the `String[] args` param taken by the main method of a Java class.
     // JVM splits the whole command line argument string on whitespace, and passes the resultant String array into main, so
@@ -31,6 +32,7 @@ public class TestWasapiDownloaderSettings {
   }
 
   @Test
+  @SuppressWarnings("checkstyle:NoWhitespaceAfter")
   public void getHelpAndSettingsMessage_containsUsageAndSettingsInfo() throws SettingsLoadException {
     String[] args = { "-h", "--collectionId", "123", "--jobId=456", "--crawlStartAfter", "2014-03-14", "--crawlStartBefore=2017-03-14" };
     WasapiDownloaderSettings settings = new WasapiDownloaderSettings(WasapiDownloader.SETTINGS_FILE_LOCATION, args);
@@ -52,6 +54,7 @@ public class TestWasapiDownloaderSettings {
   }
 
   @Test
+  @SuppressWarnings("checkstyle:NoWhitespaceAfter")
   public void toString_aliasesGetHelpAndSettingsMessage() throws SettingsLoadException {
     String[] args = { "-h", "--collectionId", "123", "--jobId=456", "--crawlStartAfter", "2014-03-14", "--crawlStartBefore=2017-03-14" };
     WasapiDownloaderSettings settings = new WasapiDownloaderSettings(WasapiDownloader.SETTINGS_FILE_LOCATION, args);
@@ -72,6 +75,7 @@ public class TestWasapiDownloaderSettings {
   }
 
   @Test
+  @SuppressWarnings("checkstyle:NoWhitespaceAfter")
   public void constructor_throwsSettingsLoadExceptionOnBadArgs() {
     boolean hasThrownException = false;
     try {

@@ -21,6 +21,7 @@ public class TestWasapiDownloader {
   }
 
   @Test
+  @SuppressWarnings("checkstyle:NoWhitespaceAfter")
   public void main_withHelp_canExecuteWithoutCrashing() throws SettingsLoadException {
     String[] args = { "-h" };
     WasapiDownloader.main(args);
@@ -49,7 +50,8 @@ public class TestWasapiDownloader {
 
   @Test
   public void validateSha1Checksum_withInvalidChecksum() throws NoSuchAlgorithmException, IOException {
-    assertFalse("sha1 checksum NOT expected to validate for small-file.warc.gz", WasapiDownloader.validateSha1(FIXTURE_SHA1 + "9", FIXTURE_WARC_PATH));
-    assertFalse("sha1 checksum NOT expected to validate for small-file.warc.gz", WasapiDownloader.validateSha1(FIXTURE_MD5, FIXTURE_WARC_PATH));
+    String expectationErrorMsg = "sha1 checksum NOT expected to validate for small-file.warc.gz";
+    assertFalse(expectationErrorMsg, WasapiDownloader.validateSha1(FIXTURE_SHA1 + "9", FIXTURE_WARC_PATH));
+    assertFalse(expectationErrorMsg, WasapiDownloader.validateSha1(FIXTURE_MD5, FIXTURE_WARC_PATH));
   }
 }

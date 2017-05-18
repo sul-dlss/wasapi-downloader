@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * Class corresponding to JSON returned by WASAPI that represents WebdataFile
  * @see https://github.com/WASAPI-Community/data-transfer-apis/blob/master/ait-implementation/wasapi/implemented-swagger.yaml#L132-L183
  */
+@SuppressWarnings("checkstyle:HiddenField")
 public class WasapiFile {
 
   @JsonProperty("account")
@@ -33,84 +34,66 @@ public class WasapiFile {
   public WasapiFile() {
   }
 
-  public int getAccountId()
-  {
+  public int getAccountId() {
     return accountId;
   }
-  public void setAccountId(int accountId)
-  {
+  public void setAccountId(int accountId) {
     this.accountId = accountId;
   }
 
-  public Map<String, String> getChecksums()
-  {
+  public Map<String, String> getChecksums() {
     return checksums;
   }
-  public void setChecksums(Map<String, String> checksums)
-  {
+  public void setChecksums(Map<String, String> checksums) {
     this.checksums = checksums;
   }
 
-  public int getCollectionId()
-  {
+  public int getCollectionId() {
     return collectionId;
   }
-  public void setCollectionId(int collectionId)
-  {
+  public void setCollectionId(int collectionId) {
     this.collectionId = collectionId;
   }
 
-  public int getCrawlId()
-  {
+  public int getCrawlId() {
     return crawlId;
   }
-  public void setCrawlId(int crawlId)
-  {
+  public void setCrawlId(int crawlId) {
     this.crawlId = crawlId;
   }
 
-  public String getCrawlStartDateStr()
-  {
+  public String getCrawlStartDateStr() {
     return crawlStartDateStr;
   }
-  public void setCrawlStartDateStr(String crawlStartDateStr)
-  {
+  public void setCrawlStartDateStr(String crawlStartDateStr) {
     this.crawlStartDateStr = crawlStartDateStr;
   }
 
-  public String getFilename()
-  {
+  public String getFilename() {
     return filename;
   }
-  public void setFilename(String filename)
-  {
+  public void setFilename(String filename) {
     this.filename = filename;
   }
 
-  public String getFiletype()
-  {
+  public String getFiletype() {
     return filetype;
   }
-  public void setFiletype(String filetype)
-  {
+  public void setFiletype(String filetype) {
     this.filetype = filetype;
   }
 
-  public String[] getLocations()
-  {
+  public String[] getLocations() {
     return locations;
   }
-  public void setLocations(String[] locations)
-  {
+  public void setLocations(String[] locations) {
     this.locations = locations;
   }
 
-  public int getSize()
-  {
+  public int getSize() {
     return size;
   }
-  public void setSize(int size)
-  {
+  public void setSize(int size) {
     this.size = size;
   }
 

@@ -12,7 +12,7 @@ import javax.xml.bind.DatatypeConverter;
 public class WasapiDownloader {
   public static final String SETTINGS_FILE_LOCATION = "config/settings.properties";
 
-  public WasapiDownloaderSettings settings = null;
+  public WasapiDownloaderSettings settings;
 
 
   public WasapiDownloader(String settingsFileLocation, String[] args) throws SettingsLoadException {
@@ -38,6 +38,7 @@ public class WasapiDownloader {
     //TODO: useful work
   }
 
+  @SuppressWarnings("checkstyle:UncommentedMain")
   public static void main(String[] args) throws SettingsLoadException {
     WasapiDownloader downloader = new WasapiDownloader(SETTINGS_FILE_LOCATION, args);
     downloader.executeFromCmdLine();
@@ -47,23 +48,21 @@ public class WasapiDownloader {
   /**
    * convert byte array to a hexadecimal string. Note that this generates hexadecimal in lower case.
    */
-   private static String bytesToHex(byte[] byteArray) {
-     return DatatypeConverter.printHexBinary(byteArray).toLowerCase();
-   }
+  private static String bytesToHex(byte[] byteArray) {
+    return DatatypeConverter.printHexBinary(byteArray).toLowerCase();
+  }
 
-   /**
-    * @param algorithm - checksum algorithm to use, per https://docs.oracle.com/javase/7/docs/technotes/guides/security/StandardNames.html#MessageDigest
-    */
-   public static boolean validateChecksum(String algorithm, String expectedChecksum, String filePath)
-       throws NoSuchAlgorithmException, IOException {
-     Path path = Paths.get(filePath);
-     MessageDigest digest = MessageDigest.getInstance(algorithm);
-     byte[] computedChecksumBytes = digest.digest(Files.readAllBytes(path));
-     String computedChecksumString = bytesToHex(computedChecksumBytes);
-     if (expectedChecksum.toLowerCase().compareTo(computedChecksumString) == 0)
-       return true;
-     else
-       return false;
-   }
+  /**
+   * @param algorithm - checksum algorithm to use, per
+        https://docs.oracle.com/javase/7/docs/technotes/guides/security/StandardNames.html#MessageDigest
+   */
+  public static boolean validateChecksum(String algorithm, String expectedChecksum, String filePath)
+      throws NoSuchAlgorithmException, IOException {
+    Path path = Paths.get(filePath);
+    MessageDigest digest = MessageDigest.getInstance(algorithm);
+    byte[] computedChecksumBytes = digest.digest(Files.readAllBytes(path));
+    String computedChecksumString = bytesToHex(computedChecksumBytes);
+    return expectedChecksum.toLowerCase().compareTo(computedChecksumString) == 0;
+  }
 
 }
