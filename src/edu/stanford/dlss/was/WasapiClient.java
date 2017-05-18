@@ -27,7 +27,7 @@ public class WasapiClient {
 
   public WasapiClient(WasapiDownloaderSettings settings) throws IOException, UnsupportedEncodingException {
     this.settings = settings;
-    initializeClient();
+    wasapiClient = initializeClient();
   }
 
   public void login() throws IOException {
