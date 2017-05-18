@@ -23,6 +23,7 @@ public class WasapiDownloaderSettings {
   // * add an accessor method (preferably with a name corresponding to the setting name)
   // * add to the tests to make sure it shows up in the usage info and settings dump
   public static final String BASE_URL_PARAM_NAME = "baseurl";
+  public static final String AUTH_URL_PARAM_NAME = "authurl";
   public static final String USERNAME_PARAM_NAME = "username";
   public static final String PASSWORD_PARAM_NAME = "password";
   public static final String HELP_PARAM_NAME = "help";
@@ -40,6 +41,7 @@ public class WasapiDownloaderSettings {
   private static Option[] optList = {
     Option.builder("h").longOpt(HELP_PARAM_NAME).desc("print this message (which describes expected arguments and dumps current config)").build(),
     buildArgOption(BASE_URL_PARAM_NAME, "the base URL of the WASAPI server from which to pull WARC files"),
+    buildArgOption(AUTH_URL_PARAM_NAME, "the WASAPI server URL at which login credentials are passed"),
     buildArgOption(USERNAME_PARAM_NAME, "the username for WASAPI server login"),
     buildArgOption(PASSWORD_PARAM_NAME, "the password for WASAPI server login"),
     buildArgOption(COLLECTION_ID_PARAM_NAME, "a collection from which to download crawl files"),
@@ -76,6 +78,10 @@ public class WasapiDownloaderSettings {
 
   public String baseUrlString() {
     return settings.getProperty(BASE_URL_PARAM_NAME);
+  }
+
+  public String authUrlString() {
+    return settings.getProperty(AUTH_URL_PARAM_NAME);
   }
 
   public String username() {
