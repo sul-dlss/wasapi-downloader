@@ -50,12 +50,10 @@
         <module name="EqualsHashCode"/>
         <module name="ExplicitInitialization"/> <!-- May as well let Java do what its going to do -->
         <module name="FallThrough"/>
-        <module name="HiddenField"/>
         <module name="IllegalCatch"/>
         <module name="IllegalThrows"/>
         <module name="InnerAssignment"/> <!-- Too suprising -->
         <module name="MagicNumber"/>
-        <module name="MissingCtor"/>
         <module name="MissingSwitchDefault"/>  <!-- Just comment that its a noop if its a noop -->
         <module name="ModifiedControlVariable"/>
         <module name="MultipleStringLiterals">
@@ -95,7 +93,9 @@
         <module name="LeftCurly">
             <property name="maxLineLength" value="120"/>
         </module>
-        <module name="RightCurly"/>
+        <module name="RightCurly">
+            <property name="tokens" value="LITERAL_TRY, LITERAL_CATCH, LITERAL_FINALLY, LITERAL_ELSE"/>
+        </module>
 
         <!-- Naming conventions -->
         <module name="AbbreviationAsWordInName"/>
@@ -126,13 +126,7 @@
         <module name="SingleSpaceSeparator"/>
         <module name="TypecastParenPad"/>
         <module name="WhitespaceAfter">
-            <property name="tokens" value="COMMA, SEMI"/> <!-- not typecasts -->
-        </module>
-        <module name="WhitespaceAround">
-            <property name="allowEmptyConstructors" value="true"/>
-            <property name="allowEmptyMethods" value="true"/>
-            <property name="allowEmptyTypes" value="true"/>
-            <property name="allowEmptyLoops" value="true"/>
+            <property name="tokens" value="COMMA, SEMI"/>
         </module>
         <!-- Formatting from miscellaneous checks -->
         <module name="ArrayTypeStyle"/>
@@ -143,9 +137,7 @@
         </module>
 
         <!-- Import conventions -->
-        <module name="AvoidStarImport">
-           <property name="excludes" value="org.hamcrest.CoreMatchers,org.junit.Assert,org.junit"/>
-        </module>
+        <module name="AvoidStarImport"/>
         <module name="IllegalImport"/>
         <module name="RedundantImport"/>
         <module name="UnusedImports"/>
