@@ -17,6 +17,11 @@ import org.apache.commons.cli.ParseException;
 
 @SuppressWarnings("checkstyle:ClassDataAbstractionCoupling")
 public class WasapiDownloaderSettings {
+  // to add a new setting:
+  // * add a String constant for the setting/arg name
+  // * add a corresponding Option entry in optList
+  // * add an accessor method (preferably with a name corresponding to the setting name)
+  // * add to the tests to make sure it shows up in the usage info and settings dump
   public static final String BASE_URL_PARAM_NAME = "baseurl";
   public static final String USERNAME_PARAM_NAME = "username";
   public static final String PASSWORD_PARAM_NAME = "password";
@@ -25,16 +30,35 @@ public class WasapiDownloaderSettings {
   public static final String JOB_ID_PARAM_NAME = "jobId";
   public static final String CRAWL_START_AFTER_PARAM_NAME = "crawlStartAfter";
   public static final String CRAWL_START_BEFORE_PARAM_NAME = "crawlStartBefore";
+  public static final String OUTPUT_BASE_DIR_PARAM_NAME = "outputBaseDir";
 
   private HelpFormatter helpFormatter;
-  private Options wdsOpts;
+  private static Options wdsOpts;
   private Properties settings;
   private String helpAndSettingsMessage;
+
+  private static Option[] optList = {
+    Option.builder("h").longOpt(HELP_PARAM_NAME).desc("print this message (which describes expected arguments and dumps current config)").build(),
+    buildArgOption(BASE_URL_PARAM_NAME, "the base URL of the WASAPI server from which to pull WARC files"),
+    buildArgOption(USERNAME_PARAM_NAME, "the username for WASAPI server login"),
+    buildArgOption(PASSWORD_PARAM_NAME, "the password for WASAPI server login"),
+    buildArgOption(COLLECTION_ID_PARAM_NAME, "a collection from which to download crawl files"),
+    buildArgOption(JOB_ID_PARAM_NAME, "a job from which to download crawl files"),
+    buildArgOption(CRAWL_START_AFTER_PARAM_NAME, "only download crawl files created after this date"),
+    buildArgOption(CRAWL_START_BEFORE_PARAM_NAME, "only download crawl files created before this date"),
+    buildArgOption(OUTPUT_BASE_DIR_PARAM_NAME, "destination directory for downloaded WARC files")
+  };
+
+  static {
+    wdsOpts = new Options();
+    for (Option opt : optList) {
+      wdsOpts.addOption(opt);
+    }
+  }
 
   public WasapiDownloaderSettings(String settingsFileLocation, String[] args) throws SettingsLoadException {
     try {
       loadPropertiesFile(settingsFileLocation);
-      setupArgOptions();
       parseArgsIntoSettings(args);
 
       //TODO: validate settings state.  see https://github.com/sul-dlss/wasapi-downloader/issues/42
@@ -80,6 +104,10 @@ public class WasapiDownloaderSettings {
     return settings.getProperty(CRAWL_START_BEFORE_PARAM_NAME);
   }
 
+  public String outputBaseDir() {
+    return settings.getProperty(OUTPUT_BASE_DIR_PARAM_NAME);
+  }
+
   public String getHelpAndSettingsMessage() {
     if (helpAndSettingsMessage == null)
       helpAndSettingsMessage = new StringBuilder(getCliHelpMessageCharSeq()).append(getSettingsSummaryCharSeq()).toString();
@@ -99,7 +127,8 @@ public class WasapiDownloaderSettings {
     int width = HelpFormatter.DEFAULT_WIDTH;
     int leftPad = HelpFormatter.DEFAULT_LEFT_PAD;
     int descPad = HelpFormatter.DEFAULT_DESC_PAD;
-    helpFormatter.printHelp(pw, width, "bin/wasapi-downloader", "=====\npossible arguments\n---", wdsOpts, leftPad, descPad, "=====", true);
+    String helpMsgHeader = "=====\nallowed arguments\n(may also also be specified in config/settings.properties, sans leading hyphens)\n---";
+    helpFormatter.printHelp(pw, width, "bin/wasapi-downloader", helpMsgHeader, wdsOpts, leftPad, descPad, "=====", true);
     pw.flush();
     sw.flush();
     return sw.getBuffer();
@@ -108,7 +137,7 @@ public class WasapiDownloaderSettings {
   private CharSequence getSettingsSummaryCharSeq() {
     StringBuilder buf = new StringBuilder();
     buf.append("=====\n");
-    buf.append("current settings\n");
+    buf.append("current settings (arg values override settings.properties values)\n");
     buf.append("---\n");
     for (String settingName : settings.stringPropertyNames()) {
       if (!settingName.equals(PASSWORD_PARAM_NAME)) {
@@ -128,22 +157,6 @@ public class WasapiDownloaderSettings {
 
   private static Option buildArgOption(String optionName, String description) {
     return Option.builder().hasArg().longOpt(optionName).desc(description).build();
-  }
-
-  @SuppressWarnings("checkstyle:linelength")
-  private void setupArgOptions() {
-    Option helpOpt = Option.builder("h").longOpt(HELP_PARAM_NAME).desc("print this message (which describes expected arguments and dumps current config)").build();
-    Option collectionIdOpt = buildArgOption(COLLECTION_ID_PARAM_NAME, "a collection from which to download crawl files");
-    Option jobIdOpt = buildArgOption(JOB_ID_PARAM_NAME, "a job from which to download crawl files");
-    Option crawlStartAfterOpt = buildArgOption(CRAWL_START_AFTER_PARAM_NAME, "only download crawl files created after this date");
-    Option crawlStartBeforeOpt = buildArgOption(CRAWL_START_BEFORE_PARAM_NAME, "only download crawl files created before this date");
-
-    wdsOpts = new Options();
-    wdsOpts.addOption(helpOpt);
-    wdsOpts.addOption(collectionIdOpt);
-    wdsOpts.addOption(jobIdOpt);
-    wdsOpts.addOption(crawlStartAfterOpt);
-    wdsOpts.addOption(crawlStartBeforeOpt);
   }
 
   private void addParsedArgsToSettings(CommandLine parsedArgs) {
