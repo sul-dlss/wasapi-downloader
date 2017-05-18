@@ -21,14 +21,15 @@ import org.mockito.Matchers.*;
 public class TestJsonResponseHandler {
 
   private static final char SEP = File.separatorChar;
-  private static final StatusLine validStatusLine = new BasicStatusLine(new ProtocolVersion("HTTP 1/1", 1, 1), 200, "OK");
+  private static final StatusLine VALID_STATUS_LINE = new BasicStatusLine(new ProtocolVersion("HTTP 1/1", 1, 1), 200, "OK");
+  private static final String FIXTURE_FILE = new String("test" + SEP + "fixtures" + SEP + "webdata_crawl_mult_files_response.json");
 
-  @Test(expected=ClientProtocolException.class)
+  @Test(expected = ClientProtocolException.class)
   public void nullEntityThrowsException() throws ClientProtocolException, HttpResponseException, IOException {
     JsonResponseHandler handler = new JsonResponseHandler();
     HttpResponse mockResponse = Mockito.mock(HttpResponse.class);
     Mockito.when(mockResponse.getEntity()).thenReturn(null);
-    Mockito.when(mockResponse.getStatusLine()).thenReturn(validStatusLine);
+    Mockito.when(mockResponse.getStatusLine()).thenReturn(VALID_STATUS_LINE);
 
     handler.handleResponse(mockResponse);
   }
@@ -40,8 +41,8 @@ public class TestJsonResponseHandler {
     HttpResponse mockResponse = Mockito.mock(HttpResponse.class);
     HttpEntity mockEntity = Mockito.mock(HttpEntity.class);
     Mockito.when(mockResponse.getEntity()).thenReturn(mockEntity);
-    Mockito.when(mockResponse.getStatusLine()).thenReturn(validStatusLine);
-    Mockito.when(mockEntity.getContent()).thenReturn(new FileInputStream(new File("test" + SEP + "fixtures" + SEP + "webdata_crawl_mult_files_response.json")));
+    Mockito.when(mockResponse.getStatusLine()).thenReturn(VALID_STATUS_LINE);
+    Mockito.when(mockEntity.getContent()).thenReturn(new FileInputStream(new File(FIXTURE_FILE)));
 
     WasapiResponse parsedResponse = handler.handleResponse(mockResponse);
     assertEquals(parsedResponse.getCount(), 5);

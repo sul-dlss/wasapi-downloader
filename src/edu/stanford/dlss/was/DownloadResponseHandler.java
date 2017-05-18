@@ -12,15 +12,16 @@ import org.apache.http.client.ResponseHandler;
 public class DownloadResponseHandler implements ResponseHandler<Boolean> {
   private String outputPath;
 
-  public DownloadResponseHandler(String outputPath) {
-    this.outputPath = outputPath;
+  public DownloadResponseHandler(String outPath) {
+    this.outputPath = outPath;
   }
 
   @Override
   public Boolean handleResponse(final HttpResponse response) throws ClientProtocolException, HttpResponseException, IOException {
     HttpEntity entity = response.getEntity();
 
-    if(WasapiResponseValidator.validateResponse(response.getStatusLine(), (entity == null))) {
+
+    if (WasapiResponseValidator.validateResponse(response.getStatusLine(), entity == null)) {
       FileOutputStream fouts = new FileOutputStream(outputPath);
       entity.writeTo(fouts);
       fouts.close();

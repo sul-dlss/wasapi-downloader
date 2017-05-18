@@ -2,7 +2,6 @@ package edu.stanford.dlss.was;
 
 import java.io.IOException;
 
-import org.apache.http.StatusLine;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpResponseException;
 import org.apache.http.client.methods.HttpGet;

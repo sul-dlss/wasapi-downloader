@@ -79,7 +79,7 @@ public class WasapiDownloaderSettings {
   }
 
   public String authUrlString() {
-      return settings.getProperty("authurl");
+    return settings.getProperty("authurl");
   }
 
   public String username() {

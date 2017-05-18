@@ -11,21 +11,21 @@ import static org.junit.Assert.*;
 
 public class TestWasapiResponseValidator {
 
-    private StatusLine validStatusLine = new BasicStatusLine(new ProtocolVersion("HTTP 1/1", 1, 1), 200, "OK");
-    private StatusLine invalidStatusLine = new BasicStatusLine(new ProtocolVersion("HTTP 1/1", 1, 1), 300, "Not Defined");
+  private StatusLine validStatusLine = new BasicStatusLine(new ProtocolVersion("HTTP 1/1", 1, 1), 200, "OK");
+  private StatusLine invalidStatusLine = new BasicStatusLine(new ProtocolVersion("HTTP 1/1", 1, 1), 300, "Not Defined");
 
-    @Test(expected=ClientProtocolException.class)
-    public void testNullEntity() throws ClientProtocolException, HttpResponseException {
-        WasapiResponseValidator.validateResponse(validStatusLine, true);
-    }
+  @Test(expected = ClientProtocolException.class)
+  public void testNullEntity() throws ClientProtocolException, HttpResponseException {
+    WasapiResponseValidator.validateResponse(validStatusLine, true);
+  }
 
-    @Test(expected=HttpResponseException.class)
-    public void testWrongResponseCode() throws ClientProtocolException, HttpResponseException {
-        WasapiResponseValidator.validateResponse(invalidStatusLine, false);
-    }
+  @Test(expected = HttpResponseException.class)
+  public void testWrongResponseCode() throws ClientProtocolException, HttpResponseException {
+    WasapiResponseValidator.validateResponse(invalidStatusLine, false);
+  }
 
-    @Test
-    public void testValidResponse() throws ClientProtocolException, HttpResponseException {
-        assertTrue(WasapiResponseValidator.validateResponse(validStatusLine, false));
-    }
+  @Test
+  public void testValidResponse() throws ClientProtocolException, HttpResponseException {
+    assertTrue(WasapiResponseValidator.validateResponse(validStatusLine, false));
+  }
 }
