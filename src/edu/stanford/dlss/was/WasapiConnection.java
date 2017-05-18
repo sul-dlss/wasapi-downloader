@@ -7,31 +7,23 @@ import org.apache.http.client.HttpResponseException;
 import org.apache.http.client.methods.HttpGet;
 
 public class WasapiConnection {
-
   private WasapiClient wasapiClient;
-  private JsonResponseHandler jsonResponseHandler;
-  private DownloadResponseHandler downloadResponseHandler;
 
-
-  public WasapiConnection(WasapiClient wasapiClient,
-                          JsonResponseHandler jsonHandler,
-                          DownloadResponseHandler downloadHandler) throws IOException {
+  public WasapiConnection(WasapiClient wasapiClient) throws IOException {
     this.wasapiClient = wasapiClient;
-    this.jsonResponseHandler = jsonHandler;
-    this.downloadResponseHandler = downloadHandler;
     this.wasapiClient.login();
   }
 
 
   public WasapiResponse jsonQuery(String requestURL) throws IOException {
     HttpGet jsonRequest = new HttpGet(requestURL);
-    return wasapiClient.execute(jsonRequest, jsonResponseHandler);
+    return wasapiClient.execute(jsonRequest, new JsonResponseHandler());
   }
 
 
   public Boolean downloadQuery(String downloadURL, final String outputPath) throws ClientProtocolException, HttpResponseException, IOException {
     HttpGet fileRequest = new HttpGet(downloadURL);
-    return wasapiClient.execute(fileRequest, downloadResponseHandler);
+    return wasapiClient.execute(fileRequest, new DownloadResponseHandler(outputPath));
   }
 
 
@@ -39,3 +31,4 @@ public class WasapiConnection {
     wasapiClient.close();
   }
 }
+
