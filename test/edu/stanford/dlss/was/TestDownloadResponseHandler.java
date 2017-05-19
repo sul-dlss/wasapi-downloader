@@ -16,7 +16,6 @@ import org.junit.*;
 import static org.junit.Assert.*;
 import org.mockito.*;
 import org.mockito.Mockito.*;
-import org.mockito.Matchers.*;
 import org.mockito.invocation.*;
 import org.mockito.stubbing.*;
 
@@ -71,7 +70,7 @@ public class TestDownloadResponseHandler {
         new File(OUTPUT_FILE_PATH).createNewFile();
         return null;
       }
-    }).when(mockEntity).writeTo(Matchers.<FileOutputStream>any());
+    }).when(mockEntity).writeTo(ArgumentMatchers.<FileOutputStream>any(FileOutputStream.class));
 
     boolean returnValue = handler.handleResponse(mockResponse);
     assertEquals(returnValue, true);
