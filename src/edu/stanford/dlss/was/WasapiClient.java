@@ -25,7 +25,7 @@ public class WasapiClient {
   protected BasicCookieStore cookieStore;
   protected WasapiDownloaderSettings settings;
 
-  public WasapiClient(WasapiDownloaderSettings settings) throws IOException, UnsupportedEncodingException {
+  public WasapiClient(WasapiDownloaderSettings settings) throws IOException {
     this.settings = settings;
     wasapiClient = initializeClient();
   }
