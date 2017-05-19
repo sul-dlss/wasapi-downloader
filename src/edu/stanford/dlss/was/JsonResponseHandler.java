@@ -13,7 +13,7 @@ public class JsonResponseHandler implements ResponseHandler<WasapiResponse> {
   @Override
   public WasapiResponse handleResponse(final HttpResponse response) throws ClientProtocolException, HttpResponseException, IOException {
     HttpEntity entity = response.getEntity();
-    if (WasapiResponseValidator.validateResponse(response.getStatusLine(), entity == null))
+    if (WasapiValidator.validateResponse(response.getStatusLine(), entity == null))
       return new WasapiResponseParser().parse(entity.getContent());
     else return null;
   }
