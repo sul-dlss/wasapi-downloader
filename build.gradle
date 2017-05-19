@@ -105,3 +105,11 @@ jar {
         attributes(jarAttributes)
     }
 }
+
+compileJava {
+    options.compilerArgs += ["-Xlint:unchecked", "-Xlint:deprecation"]
+}
+
+compileTestJava {
+    options.compilerArgs += ["-Xlint:unchecked", "-Xlint:deprecation"]
+}
