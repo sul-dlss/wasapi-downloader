@@ -21,7 +21,7 @@ public class DownloadResponseHandler implements ResponseHandler<Boolean> {
     HttpEntity entity = response.getEntity();
 
 
-    if (WasapiResponseValidator.validateResponse(response.getStatusLine(), entity == null)) {
+    if (WasapiValidator.validateResponse(response.getStatusLine(), entity == null)) {
       FileOutputStream fouts = new FileOutputStream(outputPath);
       entity.writeTo(fouts);
       fouts.close();

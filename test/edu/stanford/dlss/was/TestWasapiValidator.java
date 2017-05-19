@@ -13,24 +13,24 @@ import java.io.File;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 
-public class TestWasapiResponseValidator {
+public class TestWasapiValidator {
 
   private StatusLine validStatusLine = new BasicStatusLine(new ProtocolVersion("HTTP 1/1", 1, 1), 200, "OK");
   private StatusLine invalidStatusLine = new BasicStatusLine(new ProtocolVersion("HTTP 1/1", 1, 1), 300, "Not Defined");
 
   @Test(expected = ClientProtocolException.class)
   public void testNullEntity() throws ClientProtocolException, HttpResponseException {
-    WasapiResponseValidator.validateResponse(validStatusLine, true);
+    WasapiValidator.validateResponse(validStatusLine, true);
   }
 
   @Test(expected = HttpResponseException.class)
   public void testWrongResponseCode() throws ClientProtocolException, HttpResponseException {
-    WasapiResponseValidator.validateResponse(invalidStatusLine, false);
+    WasapiValidator.validateResponse(invalidStatusLine, false);
   }
 
   @Test
   public void testValidResponse() throws ClientProtocolException, HttpResponseException {
-    assertTrue(WasapiResponseValidator.validateResponse(validStatusLine, false));
+    assertTrue(WasapiValidator.validateResponse(validStatusLine, false));
   }
 
   private static final char SEP = File.separatorChar;
@@ -40,25 +40,25 @@ public class TestWasapiResponseValidator {
 
   @Test
   public void validateMd5Checksum_withValidChecksum() throws NoSuchAlgorithmException, IOException {
-    assertTrue("md5 checksum expected to validate for small-file.warc.gz", WasapiResponseValidator.validateMd5(FIXTURE_MD5, FIXTURE_WARC_PATH));
+    assertTrue("md5 checksum expected to validate for small-file.warc.gz", WasapiValidator.validateMd5(FIXTURE_MD5, FIXTURE_WARC_PATH));
   }
 
   @Test
   @SuppressWarnings("checkstyle:LineLength")
   public void validateMd5Checksum_withInvalidChecksum() throws NoSuchAlgorithmException, IOException {
-    assertFalse("md5 checksum NOT expected to validate for small-file.warc.gz", WasapiResponseValidator.validateMd5(FIXTURE_MD5 + "9", FIXTURE_WARC_PATH));
-    assertFalse("md5 checksum NOT expected to validate for small-file.warc.gz", WasapiResponseValidator.validateMd5(FIXTURE_SHA1, FIXTURE_WARC_PATH));
+    assertFalse("md5 checksum NOT expected to validate for small-file.warc.gz", WasapiValidator.validateMd5(FIXTURE_MD5 + "9", FIXTURE_WARC_PATH));
+    assertFalse("md5 checksum NOT expected to validate for small-file.warc.gz", WasapiValidator.validateMd5(FIXTURE_SHA1, FIXTURE_WARC_PATH));
   }
 
   @Test
   public void validateSha1Checksum_withValidChecksum() throws NoSuchAlgorithmException, IOException {
-    assertTrue("sha1 checksum expected to validate for small-file.warc.gz", WasapiResponseValidator.validateSha1(FIXTURE_SHA1, FIXTURE_WARC_PATH));
+    assertTrue("sha1 checksum expected to validate for small-file.warc.gz", WasapiValidator.validateSha1(FIXTURE_SHA1, FIXTURE_WARC_PATH));
   }
 
   @Test
   public void validateSha1Checksum_withInvalidChecksum() throws NoSuchAlgorithmException, IOException {
     String expectationErrorMsg = "sha1 checksum NOT expected to validate for small-file.warc.gz";
-    assertFalse(expectationErrorMsg, WasapiResponseValidator.validateSha1(FIXTURE_SHA1 + "9", FIXTURE_WARC_PATH));
-    assertFalse(expectationErrorMsg, WasapiResponseValidator.validateSha1(FIXTURE_MD5, FIXTURE_WARC_PATH));
+    assertFalse(expectationErrorMsg, WasapiValidator.validateSha1(FIXTURE_SHA1 + "9", FIXTURE_WARC_PATH));
+    assertFalse(expectationErrorMsg, WasapiValidator.validateSha1(FIXTURE_MD5, FIXTURE_WARC_PATH));
   }
 }

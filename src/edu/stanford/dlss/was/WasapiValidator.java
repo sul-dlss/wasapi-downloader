@@ -14,7 +14,7 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpResponseException;
 
 @SuppressWarnings("checkstyle:HideUtilityClassConstructor")
-public class WasapiResponseValidator {
+public class WasapiValidator {
 
   private static final int STATUS_CODE_THRESHOLD = 300;
 
