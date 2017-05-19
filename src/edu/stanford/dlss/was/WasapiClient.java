@@ -44,8 +44,8 @@ public class WasapiClient {
   }
 
 
-  public <T> T execute(HttpGet jsonRequest, ResponseHandler<? extends T> rh) throws IOException {
-    return wasapiClient.execute(jsonRequest, rh, wasapiContext);
+  public <T> T execute(HttpGet request, ResponseHandler<? extends T> rh) throws IOException {
+    return wasapiClient.execute(request, rh, wasapiContext);
   }
 
 
