@@ -1,11 +1,15 @@
 package edu.stanford.dlss.was;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.List;
+import java.util.LinkedList;
 import java.util.Properties;
+import javax.xml.bind.DatatypeConverter;
 
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
@@ -14,6 +18,8 @@ import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
+import org.apache.commons.validator.routines.IntegerValidator;
+import org.apache.commons.validator.routines.UrlValidator;
 
 @SuppressWarnings("checkstyle:ClassDataAbstractionCoupling")
 public class WasapiDownloaderSettings {
@@ -62,14 +68,15 @@ public class WasapiDownloaderSettings {
     try {
       loadPropertiesFile(settingsFileLocation);
       parseArgsIntoSettings(args);
-
-      //TODO: validate settings state.  see https://github.com/sul-dlss/wasapi-downloader/issues/42
+      validateSettings();
     } catch (IOException e) {
       throw new SettingsLoadException("Error reading properties file: " + e.getMessage(), e);
     } catch (ParseException e) {
       throw new SettingsLoadException("Error parsing command line arguments: " + e.getMessage(), e);
     }
   }
+
+  protected WasapiDownloaderSettings() { } //for testing
 
 
   public boolean shouldDisplayHelp() {
@@ -125,6 +132,74 @@ public class WasapiDownloaderSettings {
     return getHelpAndSettingsMessage();
   }
 
+
+  protected void validateSettings() throws SettingsLoadException {
+    List<String> errMessages = getSettingsErrorMessages();
+    if (errMessages.size() > 0) {
+      StringBuilder buf = new StringBuilder("Invalid settings state:\n");
+      for (String errMsg : errMessages) {
+        buf.append("  ");
+        buf.append(errMsg);
+        buf.append(".\n");
+      }
+      throw new SettingsLoadException(buf.toString());
+    }
+  }
+
+  @SuppressWarnings({"checkstyle:CyclomaticComplexity", "checkstyle:NPathComplexity", "checkstyle:MethodLength", "checkstyle:MultipleStringLiterals"})
+  protected List<String> getSettingsErrorMessages() {
+    String[] schemes = {"https"};
+    UrlValidator urlValidator = new UrlValidator(schemes);
+    IntegerValidator intValidator = new IntegerValidator();
+    List<String> errMessages = new LinkedList<String>();
+
+    // required
+    if (isNullOrEmpty(baseUrlString()) || !urlValidator.isValid(baseUrlString()))
+      errMessages.add(BASE_URL_PARAM_NAME + " is required, and must be a valid URL");
+    if (isNullOrEmpty(authUrlString()) || !urlValidator.isValid(authUrlString()))
+      errMessages.add(AUTH_URL_PARAM_NAME + " is required, and must be a valid URL");
+    if (isNullOrEmpty(username()))
+      errMessages.add(USERNAME_PARAM_NAME + " is required");
+    if (isNullOrEmpty(password()))
+      errMessages.add(PASSWORD_PARAM_NAME + " is required");
+    if (isNullOrEmpty(outputBaseDir()) || !isDirWritable(outputBaseDir()))
+      errMessages.add(OUTPUT_BASE_DIR_PARAM_NAME + " is required (and must be an extant, writable directory)");
+
+    // optional, validate if specified
+    if (!isNullOrEmpty(collectionId()) && !intValidator.isValid(collectionId()))
+      errMessages.add(COLLECTION_ID_PARAM_NAME + " must be an integer (if specified)");
+    if (!isNullOrEmpty(jobId()) && !intValidator.isValid(jobId()))
+      errMessages.add(JOB_ID_PARAM_NAME + " must be an integer (if specified)");
+    if (!isNullOrEmpty(crawlStartBefore()) && !isValidIso8601String(crawlStartBefore()))
+      errMessages.add(CRAWL_START_BEFORE_PARAM_NAME + " must be a valid ISO 8601 date string (if specified)");
+    if (!isNullOrEmpty(crawlStartAfter()) && !isValidIso8601String(crawlStartAfter()))
+      errMessages.add(CRAWL_START_AFTER_PARAM_NAME + " must be a valid ISO 8601 date string (if specified)");
+
+    return errMessages;
+  }
+
+  protected static boolean isNullOrEmpty(String str) {
+    return str == null || str.isEmpty();
+  }
+
+  protected static boolean isDirWritable(String dirPath) {
+    File outputBaseDirFile = new File(dirPath);
+    return outputBaseDirFile.exists() && outputBaseDirFile.isDirectory() && outputBaseDirFile.canWrite();
+  }
+
+  // neither the java.util. Date and Calendar classes, nor the apache commons
+  // validator classes provide an easy way to parse or validate ISO 8601 date strings.
+  // but javax.xml.bind.DatatypeConverter does it, since xsd:dateTime is ISO 8601.
+  // https://www.w3.org/TR/xmlschema11-2/#dateTime
+  // https://docs.oracle.com/javase/7/docs/api/javax/xml/bind/DatatypeConverter.html
+  private static boolean isValidIso8601String(String dateStr) {
+    try {
+      DatatypeConverter.parseDateTime(dateStr);
+    } catch(java.lang.IllegalArgumentException e) {
+      return false;
+    }
+    return true;
+  }
 
   private CharSequence getCliHelpMessageCharSeq() {
     helpFormatter = new HelpFormatter();

@@ -1,14 +1,18 @@
 package edu.stanford.dlss.was;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.LinkedList;
 
 import org.apache.commons.cli.ParseException;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 import org.junit.*;
 
 public class TestWasapiDownloaderSettings {
+  private static final String EMPTY_SETTINGS_FILE_LOCATION = "test/fixtures/empty-settings.properties";
 
   @Test
   @SuppressWarnings("checkstyle:NoWhitespaceAfter")
@@ -105,5 +109,77 @@ public class TestWasapiDownloaderSettings {
       assertThat("cause should be ParseException", e.getCause(), instanceOf(ParseException.class));
     }
     assertTrue("constructor should throw SettingsLoadException on unrecognized arg", hasThrownException);
+  }
+
+  @Test(expected = SettingsLoadException.class)
+  @SuppressWarnings("checkstyle:NoWhitespaceAfter")
+  public void constructor_throwsSettingsLoadExceptionOnInvalidSettings() throws SettingsLoadException {
+    String[] args = { "--baseurl=ftp://foo.org", "--authurl=http://foo.com/auth" }; // both of these URLs use unsupported protocols
+    WasapiDownloaderSettings settings = new WasapiDownloaderSettings(EMPTY_SETTINGS_FILE_LOCATION, args);
+  }
+
+  @Test
+  @SuppressWarnings({"checkstyle:NoWhitespaceAfter", "checkstyle:LineLength", "checkstyle:MethodLength"})
+  public void getSettingsErrorMessages_listsAllErrors() {
+    // use the no arg constructor, so that validateSettings() doesn't get called, so we can test the method it relies on
+    WasapiDownloaderSettings settings = spy(new WasapiDownloaderSettings());
+
+    doReturn("ftp://foo.org").when(settings).baseUrlString();
+    doReturn("http://foo.com/auth").when(settings).authUrlString();
+    doReturn("").when(settings).username();
+    doReturn("").when(settings).password();
+    doReturn("does/not/exist").when(settings).outputBaseDir();
+    doReturn("a1").when(settings).collectionId();
+    doReturn("b2").when(settings).jobId();
+    doReturn("01/01/2001").when(settings).crawlStartBefore();
+    doReturn("12/31/2010").when(settings).crawlStartAfter();
+
+    List<String> errMsgs = settings.getSettingsErrorMessages();
+    assertThat("error messages has entry for invalid base URL", errMsgs, hasItem("baseurl is required, and must be a valid URL"));
+    assertThat("error messages has entry for invalid auth URL", errMsgs, hasItem("authurl is required, and must be a valid URL"));
+    assertThat("error messages has entry for invalid username", errMsgs, hasItem("username is required"));
+    assertThat("error messages has entry for invalid password", errMsgs, hasItem("password is required"));
+    assertThat("error messages has entry for invalid outputBaseDir", errMsgs, hasItem("outputBaseDir is required (and must be an extant, writable directory)"));
+    assertThat("error messages has entry for invalid collectionId", errMsgs, hasItem("collectionId must be an integer (if specified)"));
+    assertThat("error messages has entry for invalid jobId", errMsgs, hasItem("jobId must be an integer (if specified)"));
+    assertThat("error messages has entry for invalid crawlStartBefore", errMsgs, hasItem("crawlStartBefore must be a valid ISO 8601 date string (if specified)"));
+    assertThat("error messages has entry for invalid crawlStartAfter", errMsgs, hasItem("crawlStartAfter must be a valid ISO 8601 date string (if specified)"));
+  }
+
+  @Test
+  public void isNullOrEmpty_behavesCorrectly() {
+    assertTrue("isNullOrEmpty returns true on null", WasapiDownloaderSettings.isNullOrEmpty(null));
+    assertTrue("isNullOrEmpty returns true on empty string", WasapiDownloaderSettings.isNullOrEmpty(""));
+    assertFalse("isNullOrEmpty returns false on a non-empty string", WasapiDownloaderSettings.isNullOrEmpty("stuff"));
+  }
+
+  @Test
+  public void isDirWritable_behavesCorrectly() {
+    assertFalse("isDirWritable returns false if path doesn't exist", WasapiDownloaderSettings.isDirWritable("does/not/exist"));
+    assertFalse("isDirWritable returns false if path isn't a directory", WasapiDownloaderSettings.isDirWritable(EMPTY_SETTINGS_FILE_LOCATION));
+    assertFalse("isDirWritable returns false if path isn't writable", WasapiDownloaderSettings.isDirWritable("/dev"));
+    assertTrue("isDirWritable returns true if path is an extant, writable directory", WasapiDownloaderSettings.isDirWritable("test/outputBaseDir"));
+  }
+
+  @Test
+  public void validateSettings_throwsSettingsLoadExceptionWithErrorExplanation() {
+    // use the no arg constructor, so that validateSettings() doesn't get called, so we can skip loading real settings and do some mocking
+    WasapiDownloaderSettings settings = spy(new WasapiDownloaderSettings());
+
+    List<String> errMessages = new LinkedList<String>();
+    errMessages.add("err msg 1");
+    errMessages.add("err msg 2");
+    doReturn(errMessages).when(settings).getSettingsErrorMessages();
+
+    boolean hasThrownException = false;
+    try {
+      settings.validateSettings();
+    } catch(SettingsLoadException e) {
+      hasThrownException = true;
+      String expectedExMsg = "Invalid settings state:\n  err msg 1.\n  err msg 2.\n";
+      assertThat("exception message should contain text about settings in error", e.getMessage(), containsString(expectedExMsg));
+      assertNull("exception should not have another root cause", e.getCause());
+    }
+    assertTrue("validateSettings() should throw SettingsLoadException if there are settings errors", hasThrownException);
   }
 }
