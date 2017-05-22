@@ -21,8 +21,8 @@ public class TestWasapiDownloaderSettings {
     String[] args = { "-h", "--collectionId", "123", "--jobId=456", "--crawlStartAfter", "2014-03-14", "--crawlStartBefore=2017-03-14" };
     WasapiDownloaderSettings settings = new WasapiDownloaderSettings(WasapiDownloader.SETTINGS_FILE_LOCATION, args);
 
-    assertEquals("baseurl value should have come from settings file", settings.baseUrlString(), "http://example.org");
-    assertEquals("authurl value should have come from settings file", settings.authUrlString(), "http://example.org/login");
+    assertEquals("baseurl value should have come from settings file", settings.baseUrlString(), "https://example.org");
+    assertEquals("authurl value should have come from settings file", settings.authUrlString(), "https://example.org/login");
     assertEquals("username value should have come from settings file", settings.username(), "user");
     assertEquals("password value should have come from settings file", settings.password(), "pass");
     assertEquals("outputBaseDir value should have come from settings file", settings.outputBaseDir(), "/var/downloadedWarcFiles");
@@ -58,8 +58,8 @@ public class TestWasapiDownloaderSettings {
     assertThat("helpAndSettingsMsg lists help flag value", helpAndSettingsMsg, containsString("help : true"));
     assertThat("helpAndSettingsMsg lists jobId value", helpAndSettingsMsg, containsString("jobId : 456"));
     assertThat("helpAndSettingsMsg lists collectionId value", helpAndSettingsMsg, containsString("collectionId : 123"));
-    assertThat("helpAndSettingsMsg lists baseurl value", helpAndSettingsMsg, containsString("baseurl : http://example.org"));
-    assertThat("helpAndSettingsMsg lists authurl value", helpAndSettingsMsg, containsString("authurl : http://example.org/login"));
+    assertThat("helpAndSettingsMsg lists baseurl value", helpAndSettingsMsg, containsString("baseurl : https://example.org"));
+    assertThat("helpAndSettingsMsg lists authurl value", helpAndSettingsMsg, containsString("authurl : https://example.org/login"));
     assertThat("helpAndSettingsMsg lists username value", helpAndSettingsMsg, containsString("username : user"));
   }
 
