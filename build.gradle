@@ -25,6 +25,9 @@ dependencies {
     //For basic command line parsing and option definitions.
     compile 'commons-cli:commons-cli:1.4'
 
+    //For validating settings values, e.g., URLs
+    compile 'commons-validator:commons-validator:1.6'
+
     //Json processing
     compile 'com.fasterxml.jackson.core:jackson-databind:2.8.6'
 
