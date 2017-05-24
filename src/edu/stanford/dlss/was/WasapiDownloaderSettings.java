@@ -27,16 +27,19 @@ public class WasapiDownloaderSettings {
   // * add a String constant for the setting/arg name
   // * add a corresponding Option entry in optList
   // * add an accessor method (preferably with a name corresponding to the setting name)
-  // * add to the tests to make sure it shows up in the usage info and settings dump
+  // * add the appropriate validation in getSettingsErrorMessages()
+  // * add tests to make sure it: shows up in usage info and settings dump; is checked for validity; has a value in example settings, if applicable
   public static final String BASE_URL_PARAM_NAME = "baseurl";
   public static final String AUTH_URL_PARAM_NAME = "authurl";
   public static final String USERNAME_PARAM_NAME = "username";
   public static final String PASSWORD_PARAM_NAME = "password";
+  public static final String ACCCOUNT_ID_PARAM_NAME = "accountId";
   public static final String HELP_PARAM_NAME = "help";
   public static final String COLLECTION_ID_PARAM_NAME = "collectionId";
   public static final String JOB_ID_PARAM_NAME = "jobId";
   public static final String CRAWL_START_AFTER_PARAM_NAME = "crawlStartAfter";
   public static final String CRAWL_START_BEFORE_PARAM_NAME = "crawlStartBefore";
+  public static final String JOB_ID_LOWER_BOUND_PARAM_NAME = "jobIdLowerBound";
   public static final String OUTPUT_BASE_DIR_PARAM_NAME = "outputBaseDir";
 
   private HelpFormatter helpFormatter;
@@ -50,10 +53,12 @@ public class WasapiDownloaderSettings {
     buildArgOption(AUTH_URL_PARAM_NAME, "the WASAPI server URL at which login credentials are passed"),
     buildArgOption(USERNAME_PARAM_NAME, "the username for WASAPI server login"),
     buildArgOption(PASSWORD_PARAM_NAME, "the password for WASAPI server login"),
+    buildArgOption(ACCCOUNT_ID_PARAM_NAME, "the ID for the account from which WARC files are downloaded"),
     buildArgOption(COLLECTION_ID_PARAM_NAME, "a collection from which to download crawl files"),
     buildArgOption(JOB_ID_PARAM_NAME, "a job from which to download crawl files"),
     buildArgOption(CRAWL_START_AFTER_PARAM_NAME, "only download crawl files created after this date"),
     buildArgOption(CRAWL_START_BEFORE_PARAM_NAME, "only download crawl files created before this date"),
+    buildArgOption(JOB_ID_LOWER_BOUND_PARAM_NAME, "\"last crawl downloaded\": only download crawl files with a higher job ID (not inclusive)"),
     buildArgOption(OUTPUT_BASE_DIR_PARAM_NAME, "destination directory for downloaded WARC files")
   };
 
@@ -99,6 +104,10 @@ public class WasapiDownloaderSettings {
     return settings.getProperty(PASSWORD_PARAM_NAME);
   }
 
+  public String accountId() {
+    return settings.getProperty(ACCCOUNT_ID_PARAM_NAME);
+  }
+
   public String collectionId() {
     return settings.getProperty(COLLECTION_ID_PARAM_NAME);
   }
@@ -115,6 +124,10 @@ public class WasapiDownloaderSettings {
   // e.g. 2014-01-01, see https://github.com/WASAPI-Community/data-transfer-apis/tree/master/ait-reference-specification#paths--examples
   public String crawlStartBefore() {
     return settings.getProperty(CRAWL_START_BEFORE_PARAM_NAME);
+  }
+
+  public String jobIdLowerBound() {
+    return settings.getProperty(JOB_ID_LOWER_BOUND_PARAM_NAME);
   }
 
   public String outputBaseDir() {
@@ -166,6 +179,8 @@ public class WasapiDownloaderSettings {
       errMessages.add(OUTPUT_BASE_DIR_PARAM_NAME + " is required (and must be an extant, writable directory)");
 
     // optional, validate if specified
+    if (!isNullOrEmpty(accountId()) && !intValidator.isValid(accountId()))
+      errMessages.add(ACCCOUNT_ID_PARAM_NAME + " must be an integer (if specified)");
     if (!isNullOrEmpty(collectionId()) && !intValidator.isValid(collectionId()))
       errMessages.add(COLLECTION_ID_PARAM_NAME + " must be an integer (if specified)");
     if (!isNullOrEmpty(jobId()) && !intValidator.isValid(jobId()))
@@ -174,6 +189,8 @@ public class WasapiDownloaderSettings {
       errMessages.add(CRAWL_START_BEFORE_PARAM_NAME + " must be a valid ISO 8601 date string (if specified)");
     if (!isNullOrEmpty(crawlStartAfter()) && !isValidIso8601String(crawlStartAfter()))
       errMessages.add(CRAWL_START_AFTER_PARAM_NAME + " must be a valid ISO 8601 date string (if specified)");
+    if (!isNullOrEmpty(jobIdLowerBound()) && !intValidator.isValid(jobIdLowerBound()))
+      errMessages.add(JOB_ID_LOWER_BOUND_PARAM_NAME + " must be an integer (if specified)");
 
     return errMessages;
   }
