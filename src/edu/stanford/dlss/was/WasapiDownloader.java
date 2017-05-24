@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.validator.routines.IntegerValidator;
+
 public class WasapiDownloader {
   public static final String SETTINGS_FILE_LOCATION = "config/settings.properties";
 
@@ -22,19 +24,48 @@ public class WasapiDownloader {
       return;
     }
 
-    // System.out.println("DEBUG: about to request " + getFileListRequestUrl());
-    WasapiResponse wasapiResp = getWasapiConn().jsonQuery(getFileListRequestUrl());
-    // System.out.println(wasapiResp.toString());
-
-    // TODO:
-    // use WasapiCrawlSelector to select crawls with files
-    // download files for each selected crawl
+    downloadSelectedWarcs();
   }
 
+  // package level method for testing
   WasapiConnection getWasapiConn() throws IOException {
     if (wasapiConn == null)
       wasapiConn = new WasapiConnection(new WasapiClient(settings));
     return wasapiConn;
+  }
+
+  // package level method for testing
+  void downloadSelectedWarcs() throws IOException {
+    // System.out.println("DEBUG: about to request " + getFileListRequestUrl());
+    WasapiResponse wasapiResp = getWasapiConn().jsonQuery(getFileListRequestUrl());
+    // System.out.println(wasapiResp.toString());
+
+    if (wasapiResp != null) {
+      WasapiCrawlSelector crawlSelector = new WasapiCrawlSelector(wasapiResp.getFiles());
+      for (Integer crawlId : desiredCrawlIds(crawlSelector)) {
+        for (WasapiFile file : crawlSelector.getFilesForCrawl(crawlId)) {
+          // TODO:  make a separate method for downloading individual file?
+          System.out.println("We will eventually download " + file.toString());
+        }
+      }
+    }
+  }
+
+  private List<Integer> desiredCrawlIds(WasapiCrawlSelector crawlSelector) {
+    String crawlsAfter = settings.crawlStartAfter();
+    if (!WasapiDownloaderSettings.isNullOrEmpty(crawlsAfter)) {
+      // TODO:  be sure date format will work:  web-archiving#49
+      return crawlSelector.getSelectedCrawlIds(crawlsAfter);
+    }
+    else {
+      // TODO: want cleaner grab of int from settings: wasapi-downloader#83
+      Integer myInteger = IntegerValidator.getInstance().validate(settings.jobIdLowerBound());
+      if (myInteger != null) {
+        int jobsAfter = myInteger.intValue();
+        return crawlSelector.getSelectedCrawlIds(jobsAfter);
+      }
+    }
+    return crawlSelector.getSelectedCrawlIds(0); // all crawl ids
   }
 
   private String getFileListRequestUrl() {
