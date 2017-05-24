@@ -36,6 +36,9 @@ public class WasapiCrawlSelector {
     return selectedCrawlIds;
   }
 
+  public List<WasapiFile> getFilesForCrawl(Integer crawlId) {
+    return crawlIdToFiles.get(crawlId);
+  }
 
   private void setCrawlIdToFiles(WasapiFile[] candidateFiles) {
     if (crawlIdToFiles == null) {

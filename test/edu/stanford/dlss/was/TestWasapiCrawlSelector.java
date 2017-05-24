@@ -71,4 +71,24 @@ public class TestWasapiCrawlSelector {
     assertFalse("selectedIds should not contain 222 when crawlStartAfterStr is 2016-12-31T23:59:59Z", selectedIds.contains(222));
     assertFalse("selectedIds should not contain 111 when crawlStartAfterStr is 2016-12-31T23:59:59Z", selectedIds.contains(111));  // for good measure
   }
+
+  @Test
+  public void getFilesForCrawl() {
+    file2.setCrawlId(file1.getCrawlId());
+    file2.setCrawlStartDateStr(file1.getCrawlStartDateStr());
+    WasapiCrawlSelector selector = new WasapiCrawlSelector(candidateFiles);
+    List<WasapiFile> files = selector.getFilesForCrawl(file1.getCrawlId());
+    assertThat("files should contain file1 and file2", files, hasItems(file1, file2));
+    assertThat("files should not contain file3", files, not(hasItem(file3)));
+    files = selector.getFilesForCrawl(file3.getCrawlId());
+    assertThat("files should contain file3", files, hasItem(file3));
+    assertThat("files should not contain file2", files, not(hasItems(file1, file2)));
+  }
+
+  @Test
+  public void getFilesForCrawl_crawlIdDoesNotExist() {
+    WasapiCrawlSelector selector = new WasapiCrawlSelector(candidateFiles);
+    List<WasapiFile> files = selector.getFilesForCrawl(0);
+    assertNull("list should be null for non-existent crawl", files);
+  }
 }
