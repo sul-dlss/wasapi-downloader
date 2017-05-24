@@ -10,6 +10,7 @@ import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 import org.junit.*;
+import org.powermock.api.mockito.PowerMockito;
 
 public class TestWasapiDownloaderSettings {
   private static final String EMPTY_SETTINGS_FILE_LOCATION = "test/fixtures/empty-settings.properties";
@@ -164,12 +165,12 @@ public class TestWasapiDownloaderSettings {
   @Test
   public void validateSettings_throwsSettingsLoadExceptionWithErrorExplanation() {
     // use the no arg constructor, so that validateSettings() doesn't get called, so we can skip loading real settings and do some mocking
-    WasapiDownloaderSettings settings = spy(new WasapiDownloaderSettings());
+    WasapiDownloaderSettings settings = PowerMockito.spy(new WasapiDownloaderSettings());
 
     List<String> errMessages = new LinkedList<String>();
     errMessages.add("err msg 1");
     errMessages.add("err msg 2");
-    doReturn(errMessages).when(settings).getSettingsErrorMessages();
+    PowerMockito.doReturn(errMessages).when(settings).getSettingsErrorMessages();
 
     boolean hasThrownException = false;
     try {
