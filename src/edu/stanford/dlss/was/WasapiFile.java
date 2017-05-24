@@ -27,7 +27,7 @@ public class WasapiFile {
   private String filename;
   private String filetype;
   private String[] locations;
-  private int size;
+  private long size;
 
   public int getAccountId() {
     return accountId;
@@ -85,10 +85,10 @@ public class WasapiFile {
     this.locations = locations;
   }
 
-  public int getSize() {
+  public long getSize() {
     return size;
   }
-  public void setSize(int size) {
+  public void setSize(long size) {
     this.size = size;
   }
 
@@ -98,7 +98,7 @@ public class WasapiFile {
     sb.append("***** Wasapi File Details *****\n");
     sb.append("filename: " + getFilename() + "\n");
     sb.append("filetype: " + getFiletype() + "\n");
-    sb.append("size: " + Integer.toString(getSize()) + "\n");
+    sb.append("size: " + Long.toString(getSize()) + "\n");
     sb.append("locations:\n");
     for (int i = 0; i < getLocations().length; i++) {
       sb.append("  location " + Integer.toString(i) + ": " + locations[i].toString() + "\n");
