@@ -42,7 +42,10 @@ public class TestWasapiDownloaderSettings {
   @Test
   @SuppressWarnings({"checkstyle:NoWhitespaceAfter", "checkstyle:MethodLength"})
   public void getHelpAndSettingsMessage_containsUsageAndSettingsInfo() throws SettingsLoadException {
-    String[] args = { "-h", "--collectionId", "123", "--jobId=456", "--crawlStartAfter", "2014-03-14", "--crawlStartBefore=2017-03-14" };
+    //TODO: if settings validation flags possibly nonsensical/redundant combos like jobId
+    // and jobIdLowerBound, this test might have to be broken up a bit.
+    String[] args = { "-h", "--collectionId", "123", "--jobId=456", "--jobIdLowerBound=400",
+        "--crawlStartAfter", "2014-03-14", "--crawlStartBefore=2017-03-14" };
     WasapiDownloaderSettings settings = new WasapiDownloaderSettings(WasapiDownloader.SETTINGS_FILE_LOCATION, args);
 
     String helpAndSettingsMsg = settings.getHelpAndSettingsMessage();
@@ -58,10 +61,12 @@ public class TestWasapiDownloaderSettings {
     assertThat("helpAndSettingsMsg lists crawlStartBefore arg", helpAndSettingsMsg, containsString("--crawlStartBefore <arg>"));
     assertThat("helpAndSettingsMsg lists help flag", helpAndSettingsMsg, containsString("-h,--help"));
     assertThat("helpAndSettingsMsg lists jobId arg", helpAndSettingsMsg, containsString("--jobId <arg>"));
+    assertThat("helpAndSettingsMsg lists jobIdLowerBound arg", helpAndSettingsMsg, containsString("--jobIdLowerBound <arg>"));
 
     assertThat("helpAndSettingsMsg hides password value", helpAndSettingsMsg, containsString("password : [password hidden]"));
     assertThat("helpAndSettingsMsg lists crawlStartAfter value", helpAndSettingsMsg, containsString("crawlStartAfter : 2014-03-14"));
     assertThat("helpAndSettingsMsg lists crawlStartBefore value", helpAndSettingsMsg, containsString("crawlStartBefore : 2017-03-14"));
+    assertThat("helpAndSettingsMsg lists jobIdLowerBound value", helpAndSettingsMsg, containsString("jobIdLowerBound : 400"));
     assertThat("helpAndSettingsMsg lists help flag value", helpAndSettingsMsg, containsString("help : true"));
     assertThat("helpAndSettingsMsg lists jobId value", helpAndSettingsMsg, containsString("jobId : 456"));
     assertThat("helpAndSettingsMsg lists collectionId value", helpAndSettingsMsg, containsString("collectionId : 123"));
@@ -136,6 +141,7 @@ public class TestWasapiDownloaderSettings {
     doReturn("does/not/exist").when(settings).outputBaseDir();
     doReturn("a1").when(settings).collectionId();
     doReturn("b2").when(settings).jobId();
+    doReturn("c3").when(settings).jobIdLowerBound();
     doReturn("01/01/2001").when(settings).crawlStartBefore();
     doReturn("12/31/2010").when(settings).crawlStartAfter();
 
@@ -150,6 +156,7 @@ public class TestWasapiDownloaderSettings {
     assertThat("error messages has entry for invalid jobId", errMsgs, hasItem("jobId must be an integer (if specified)"));
     assertThat("error messages has entry for invalid crawlStartBefore", errMsgs, hasItem("crawlStartBefore must be a valid ISO 8601 date string (if specified)"));
     assertThat("error messages has entry for invalid crawlStartAfter", errMsgs, hasItem("crawlStartAfter must be a valid ISO 8601 date string (if specified)"));
+    assertThat("error messages has entry for invalid jobIdLowerBound", errMsgs, hasItem("jobIdLowerBound must be an integer (if specified)"));
   }
 
   @Test

@@ -39,6 +39,7 @@ public class WasapiDownloaderSettings {
   public static final String JOB_ID_PARAM_NAME = "jobId";
   public static final String CRAWL_START_AFTER_PARAM_NAME = "crawlStartAfter";
   public static final String CRAWL_START_BEFORE_PARAM_NAME = "crawlStartBefore";
+  public static final String JOB_ID_LOWER_BOUND_PARAM_NAME = "jobIdLowerBound";
   public static final String OUTPUT_BASE_DIR_PARAM_NAME = "outputBaseDir";
 
   private HelpFormatter helpFormatter;
@@ -57,6 +58,7 @@ public class WasapiDownloaderSettings {
     buildArgOption(JOB_ID_PARAM_NAME, "a job from which to download crawl files"),
     buildArgOption(CRAWL_START_AFTER_PARAM_NAME, "only download crawl files created after this date"),
     buildArgOption(CRAWL_START_BEFORE_PARAM_NAME, "only download crawl files created before this date"),
+    buildArgOption(JOB_ID_LOWER_BOUND_PARAM_NAME, "\"last crawl downloaded\": only download crawl files with a higher job ID (not inclusive)"),
     buildArgOption(OUTPUT_BASE_DIR_PARAM_NAME, "destination directory for downloaded WARC files")
   };
 
@@ -124,6 +126,10 @@ public class WasapiDownloaderSettings {
     return settings.getProperty(CRAWL_START_BEFORE_PARAM_NAME);
   }
 
+  public String jobIdLowerBound() {
+    return settings.getProperty(JOB_ID_LOWER_BOUND_PARAM_NAME);
+  }
+
   public String outputBaseDir() {
     return settings.getProperty(OUTPUT_BASE_DIR_PARAM_NAME);
   }
@@ -183,6 +189,8 @@ public class WasapiDownloaderSettings {
       errMessages.add(CRAWL_START_BEFORE_PARAM_NAME + " must be a valid ISO 8601 date string (if specified)");
     if (!isNullOrEmpty(crawlStartAfter()) && !isValidIso8601String(crawlStartAfter()))
       errMessages.add(CRAWL_START_AFTER_PARAM_NAME + " must be a valid ISO 8601 date string (if specified)");
+    if (!isNullOrEmpty(jobIdLowerBound()) && !intValidator.isValid(jobIdLowerBound()))
+      errMessages.add(JOB_ID_LOWER_BOUND_PARAM_NAME + " must be an integer (if specified)");
 
     return errMessages;
   }
