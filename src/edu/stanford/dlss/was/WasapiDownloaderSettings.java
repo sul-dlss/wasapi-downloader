@@ -27,7 +27,8 @@ public class WasapiDownloaderSettings {
   // * add a String constant for the setting/arg name
   // * add a corresponding Option entry in optList
   // * add an accessor method (preferably with a name corresponding to the setting name)
-  // * add to the tests to make sure it shows up in the usage info and settings dump
+  // * add the appropriate validation in getSettingsErrorMessages()
+  // * add tests to make sure it: shows up in usage info and settings dump; is checked for validity; has a value in example settings, if applicable
   public static final String BASE_URL_PARAM_NAME = "baseurl";
   public static final String AUTH_URL_PARAM_NAME = "authurl";
   public static final String USERNAME_PARAM_NAME = "username";
