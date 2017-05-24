@@ -33,6 +33,7 @@ public class WasapiDownloaderSettings {
   public static final String AUTH_URL_PARAM_NAME = "authurl";
   public static final String USERNAME_PARAM_NAME = "username";
   public static final String PASSWORD_PARAM_NAME = "password";
+  public static final String ACCCOUNT_ID_PARAM_NAME = "accountId";
   public static final String HELP_PARAM_NAME = "help";
   public static final String COLLECTION_ID_PARAM_NAME = "collectionId";
   public static final String JOB_ID_PARAM_NAME = "jobId";
@@ -51,6 +52,7 @@ public class WasapiDownloaderSettings {
     buildArgOption(AUTH_URL_PARAM_NAME, "the WASAPI server URL at which login credentials are passed"),
     buildArgOption(USERNAME_PARAM_NAME, "the username for WASAPI server login"),
     buildArgOption(PASSWORD_PARAM_NAME, "the password for WASAPI server login"),
+    buildArgOption(ACCCOUNT_ID_PARAM_NAME, "the ID for the account from which WARC files are downloaded"),
     buildArgOption(COLLECTION_ID_PARAM_NAME, "a collection from which to download crawl files"),
     buildArgOption(JOB_ID_PARAM_NAME, "a job from which to download crawl files"),
     buildArgOption(CRAWL_START_AFTER_PARAM_NAME, "only download crawl files created after this date"),
@@ -98,6 +100,10 @@ public class WasapiDownloaderSettings {
 
   public String password() {
     return settings.getProperty(PASSWORD_PARAM_NAME);
+  }
+
+  public String accountId() {
+    return settings.getProperty(ACCCOUNT_ID_PARAM_NAME);
   }
 
   public String collectionId() {
@@ -167,6 +173,8 @@ public class WasapiDownloaderSettings {
       errMessages.add(OUTPUT_BASE_DIR_PARAM_NAME + " is required (and must be an extant, writable directory)");
 
     // optional, validate if specified
+    if (!isNullOrEmpty(accountId()) && !intValidator.isValid(accountId()))
+      errMessages.add(ACCCOUNT_ID_PARAM_NAME + " must be an integer (if specified)");
     if (!isNullOrEmpty(collectionId()) && !intValidator.isValid(collectionId()))
       errMessages.add(COLLECTION_ID_PARAM_NAME + " must be an integer (if specified)");
     if (!isNullOrEmpty(jobId()) && !intValidator.isValid(jobId()))
