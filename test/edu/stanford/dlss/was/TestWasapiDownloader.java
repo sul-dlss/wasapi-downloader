@@ -43,7 +43,7 @@ public class TestWasapiDownloader {
   }
 
   @Test
-  public void main_executesFileListRequest_usesAllAppropArgsSettings() throws Exception {
+  public void main_executesFileSetRequest_usesAllAppropArgsSettings() throws Exception {
     String[] args = {"--collectionId", "123", "--jobId=456", "--crawlStartAfter", "2014-03-14", "--crawlStartBefore=2017-03-14", "--username=Fred" };
     WasapiConnection mockConn = Mockito.mock(WasapiConnection.class);
     Mockito.when(mockConn.jsonQuery(anyString())).thenReturn(null);
@@ -63,7 +63,7 @@ public class TestWasapiDownloader {
   }
 
   @Test
-  public void main_executesFileListRequest_onlyUsesArgsSettings() throws Exception {
+  public void main_executesFileSetRequest_onlyUsesArgsSettings() throws Exception {
     String[] args = {"--collectionId", "123" };
     WasapiConnection mockConn = Mockito.mock(WasapiConnection.class);
     Mockito.when(mockConn.jsonQuery(anyString())).thenReturn(null);
@@ -79,7 +79,7 @@ public class TestWasapiDownloader {
   }
 
   @Test
-  public void downloadSelectedWarcs_requestsFileListResponse() throws Exception {
+  public void downloadSelectedWarcs_requestsFileSetResponse() throws Exception {
     WasapiConnection mockConn = Mockito.mock(WasapiConnection.class);
     Mockito.when(mockConn.jsonQuery(anyString())).thenReturn(null);
     WasapiDownloader downloaderSpy = Mockito.spy(new WasapiDownloader(WasapiDownloader.SETTINGS_FILE_LOCATION, null));

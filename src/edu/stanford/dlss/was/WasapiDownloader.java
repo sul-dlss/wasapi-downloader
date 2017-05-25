@@ -36,8 +36,8 @@ public class WasapiDownloader {
 
   // package level method for testing
   void downloadSelectedWarcs() throws IOException {
-    // System.out.println("DEBUG: about to request " + getFileListRequestUrl());
-    WasapiResponse wasapiResp = getWasapiConn().jsonQuery(getFileListRequestUrl());
+    // System.out.println("DEBUG: about to request " + getFileSetRequestUrl());
+    WasapiResponse wasapiResp = getWasapiConn().jsonQuery(getFileSetRequestUrl());
     // System.out.println(wasapiResp.toString());
 
     if (wasapiResp != null) {
@@ -59,10 +59,10 @@ public class WasapiDownloader {
       return crawlSelector.getSelectedCrawlIds(jobsAfter);
     }
     else
-      return crawlSelector.getSelectedCrawlIds(0); // all crawl ids
+      return crawlSelector.getSelectedCrawlIds(0); // all returns all crawl ids from FileSet
   }
 
-  private String getFileListRequestUrl() {
+  private String getFileSetRequestUrl() {
     StringBuilder sb = new StringBuilder(settings.baseUrlString() + "webdata?");
     List<String> params = requestParams();
     if (!params.isEmpty()) {
