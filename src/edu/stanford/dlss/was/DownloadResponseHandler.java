@@ -20,9 +20,8 @@ public class DownloadResponseHandler implements ResponseHandler<Boolean> {
   public Boolean handleResponse(final HttpResponse response) throws ClientProtocolException, HttpResponseException, IOException {
     HttpEntity entity = response.getEntity();
 
-
     if (WasapiValidator.validateResponse(response.getStatusLine(), entity == null)) {
-      FileOutputStream fouts = new FileOutputStream(outputPath);
+      FileOutputStream fouts = new FileOutputStream(outputPath, false);
       entity.writeTo(fouts);
       fouts.close();
       return true;
