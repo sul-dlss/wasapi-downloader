@@ -5,6 +5,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.ArgumentMatchers.*;
 
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,7 +38,7 @@ public class TestWasapiDownloader {
 
   @Test
   @SuppressWarnings("checkstyle:NoWhitespaceAfter")
-  public void main_withHelp_canExecuteWithoutCrashing() throws SettingsLoadException, IOException {
+  public void main_withHelp_canExecuteWithoutCrashing() throws SettingsLoadException, IOException, NoSuchAlgorithmException {
     String[] args = { "-h" };
     WasapiDownloader.main(args);
   }
