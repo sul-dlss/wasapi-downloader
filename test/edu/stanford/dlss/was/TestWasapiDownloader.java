@@ -105,26 +105,8 @@ public class TestWasapiDownloader {
     Mockito.doReturn(mockConn).when(downloaderSpy).getWasapiConn();
 
     downloaderSpy.downloadSelectedWarcs();
-    verify(mockCrawlSelector).getSelectedCrawlIds(0); // no args means it gets all crawl ids like this
+    verify(mockCrawlSelector).getSelectedCrawlIds(0); // no command line args means it gets all crawl ids like this
     verify(mockCrawlSelector).getFilesForCrawl(anyInt());
-  }
-
-  @Test
-  @SuppressWarnings("checkstyle:NoWhitespaceAfter")
-  public void downloadSelectedWarcs_byWebCrawlAfter() throws Exception {
-    String argValue = "2017-03-14";
-    String[] args = { "--crawlStartAfter=" + argValue };
-
-    WasapiCrawlSelector mockCrawlSelector = PowerMockito.mock(WasapiCrawlSelector.class);
-    PowerMockito.whenNew(WasapiCrawlSelector.class).withAnyArguments().thenReturn(mockCrawlSelector);
-
-    WasapiConnection mockConn = Mockito.mock(WasapiConnection.class);
-    Mockito.when(mockConn.jsonQuery(anyString())).thenReturn(new WasapiResponse());
-    WasapiDownloader downloaderSpy = Mockito.spy(new WasapiDownloader(WasapiDownloader.SETTINGS_FILE_LOCATION, args));
-    Mockito.doReturn(mockConn).when(downloaderSpy).getWasapiConn();
-
-    downloaderSpy.downloadSelectedWarcs();
-    verify(mockCrawlSelector).getSelectedCrawlIds(argValue);
   }
 
   @Test
@@ -143,24 +125,6 @@ public class TestWasapiDownloader {
 
     downloaderSpy.downloadSelectedWarcs();
     verify(mockCrawlSelector).getSelectedCrawlIds(Integer.valueOf(argValue));
-  }
-
-  @Test
-  @SuppressWarnings("checkstyle:NoWhitespaceAfter")
-  public void downloadSelectedWarcs_usesDateWhenConflictingArgs() throws Exception {
-    String argValue = "2017-03-14";
-    String[] args = { "--jobIdLowerBound=666", "--crawlStartAfter=" + argValue };
-
-    WasapiCrawlSelector mockCrawlSelector = PowerMockito.mock(WasapiCrawlSelector.class);
-    PowerMockito.whenNew(WasapiCrawlSelector.class).withAnyArguments().thenReturn(mockCrawlSelector);
-
-    WasapiConnection mockConn = Mockito.mock(WasapiConnection.class);
-    Mockito.when(mockConn.jsonQuery(anyString())).thenReturn(new WasapiResponse());
-    WasapiDownloader downloaderSpy = Mockito.spy(new WasapiDownloader(WasapiDownloader.SETTINGS_FILE_LOCATION, args));
-    Mockito.doReturn(mockConn).when(downloaderSpy).getWasapiConn();
-
-    downloaderSpy.downloadSelectedWarcs();
-    verify(mockCrawlSelector).getSelectedCrawlIds(argValue);
   }
 
 }

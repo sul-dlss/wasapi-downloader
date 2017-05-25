@@ -39,7 +39,7 @@ public class TestWasapiCrawlSelector {
   }
 
   @Test
-  public void getSelectedCrawlIdsInt_onlyReturnsIdsLargerThanArg() {
+  public void getSelectedCrawlIds_onlyReturnsIdsLargerThanArg() {
     WasapiCrawlSelector selector = new WasapiCrawlSelector(candidateFiles);
     List<Integer> selectedIds = selector.getSelectedCrawlIds(127);
     assertThat("selectedIds should contain 222 and 333 when last known crawl is 127", selectedIds, hasItems(222, 333));
@@ -47,29 +47,12 @@ public class TestWasapiCrawlSelector {
   }
 
   @Test
-  public void getSelectedCrawlIdsInt_doesNotReturnIdEqualToArg() {
+  public void getSelectedCrawlIds_doesNotReturnIdEqualToArg() {
     WasapiCrawlSelector selector = new WasapiCrawlSelector(candidateFiles);
     List<Integer> selectedIds = selector.getSelectedCrawlIds(222);
     assertThat("selectedIds should contain 333 when last known crawl is 222", selectedIds, hasItem(333));
     assertFalse("selectedIds should not contain 222 when last known crawl is 222", selectedIds.contains(222));
     assertFalse("selectedIds should not contain 111 when last known crawl is 222", selectedIds.contains(111));  // for good measure
-  }
-
-  @Test
-  public void getSelectedCrawlIdsStr_onlyReturnsIdsLargerThanArg() {
-    WasapiCrawlSelector selector = new WasapiCrawlSelector(candidateFiles);
-    List<Integer> selectedIds = selector.getSelectedCrawlIds("2016-01-01T00:00:01Z");
-    assertThat("selectedIds should contain 222 and 333 when crawlStartAfterStr is 2016-01-01T00:00:01Z", selectedIds, hasItems(222, 333));
-    assertFalse("selectedIds should not contain 111 when crawlStartAfterStr is 2016-01-01T00:00:01Z", selectedIds.contains(111));
-  }
-
-  @Test
-  public void getSelectedCrawlIdsStr_doesNotReturnIdEqualToArg() {
-    WasapiCrawlSelector selector = new WasapiCrawlSelector(candidateFiles);
-    List<Integer> selectedIds = selector.getSelectedCrawlIds("2016-12-31T23:59:59Z");
-    assertThat("selectedIds should contain 333 when crawlStartAfterStr is 2016-12-31T23:59:59Z", selectedIds, hasItem(333));
-    assertFalse("selectedIds should not contain 222 when crawlStartAfterStr is 2016-12-31T23:59:59Z", selectedIds.contains(222));
-    assertFalse("selectedIds should not contain 111 when crawlStartAfterStr is 2016-12-31T23:59:59Z", selectedIds.contains(111));  // for good measure
   }
 
   @Test

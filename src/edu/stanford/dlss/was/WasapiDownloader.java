@@ -52,20 +52,14 @@ public class WasapiDownloader {
   }
 
   private List<Integer> desiredCrawlIds(WasapiCrawlSelector crawlSelector) {
-    String crawlsAfter = settings.crawlStartAfter();
-    if (!WasapiDownloaderSettings.isNullOrEmpty(crawlsAfter)) {
-      // TODO:  be sure date format will work:  web-archiving#49
-      return crawlSelector.getSelectedCrawlIds(crawlsAfter);
+    // TODO: want cleaner grab of int from settings: wasapi-downloader#83
+    Integer myInteger = IntegerValidator.getInstance().validate(settings.jobIdLowerBound());
+    if (myInteger != null) {
+      int jobsAfter = myInteger.intValue();
+      return crawlSelector.getSelectedCrawlIds(jobsAfter);
     }
-    else {
-      // TODO: want cleaner grab of int from settings: wasapi-downloader#83
-      Integer myInteger = IntegerValidator.getInstance().validate(settings.jobIdLowerBound());
-      if (myInteger != null) {
-        int jobsAfter = myInteger.intValue();
-        return crawlSelector.getSelectedCrawlIds(jobsAfter);
-      }
-    }
-    return crawlSelector.getSelectedCrawlIds(0); // all crawl ids
+    else
+      return crawlSelector.getSelectedCrawlIds(0); // all crawl ids
   }
 
   private String getFileListRequestUrl() {

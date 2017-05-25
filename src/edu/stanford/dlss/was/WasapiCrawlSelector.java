@@ -13,25 +13,16 @@ public class WasapiCrawlSelector {
     setCrawlIdToFiles(candidateFiles);
   }
 
-  // expects lastKnownCrawlId to be validated before it gets here: expects positive int)
+  /**
+   * expects lastKnownCrawlId to be validated before it gets here: expects positive int
+   * if arg is 0, it will return all WARCs in the candidate files
+   */
   public List<Integer> getSelectedCrawlIds(int lastKnownCrawlId) {
     List<Integer> selectedCrawlIds = new ArrayList<Integer>();
     for (Integer crawlId : crawlIdToFiles.keySet()) {
       if (crawlId > lastKnownCrawlId) {
         selectedCrawlIds.add(crawlId);
       }
-    }
-    return selectedCrawlIds;
-  }
-
-  // expects crawlsStartAfterStr to be validated before it gets here: expects ISO8601 UTC, e.g. "2017-04-26T17:53:16Z"
-  public List<Integer> getSelectedCrawlIds(String crawlsStartAfterStr) {
-    List<Integer> selectedCrawlIds = new ArrayList<Integer>();
-    for (Integer crawlId : crawlIdToFiles.keySet()) {
-      WasapiFile file = crawlIdToFiles.get(crawlId).get(0);
-      String crawlStartDateStr = file.getCrawlStartDateStr();
-      if (crawlStartDateStr.compareTo(crawlsStartAfterStr) > 0)
-        selectedCrawlIds.add(crawlId);
     }
     return selectedCrawlIds;
   }
