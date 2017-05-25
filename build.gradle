@@ -40,6 +40,7 @@ dependencies {
 
     //For creating mock objects in unit tests
     testCompile "org.mockito:mockito-core:2.+"
+
     // need PowerMock for mocking constructors (local objects within methods)
     testCompile "org.powermock:powermock-module-junit4:1.7+"
     testCompile "org.powermock:powermock-api-mockito2:1.7+"
@@ -118,4 +119,11 @@ compileJava {
 
 compileTestJava {
     options.compilerArgs += ["-Xlint:unchecked", "-Xlint:deprecation"]
+}
+
+startScripts {
+    doLast {
+        unixScript.text = unixScript.text
+            .replace('DEFAULT_JVM_OPTS=\"\"', 'DEFAULT_JVM_OPTS=\"-Xmx10g\"')
+    }
 }

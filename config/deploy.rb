@@ -37,11 +37,10 @@ set :linked_dirs, %w{build config .gradle}
 before 'deploy:finished', 'shared_configs:update'
 
 namespace :gradle do
-  desc 'Assemble a jar archive containing the main classes.'
-  task :jar do
+  task :install_dist do
     on roles(:app) do
-      execute "cd #{current_path} && ./gradlew jar"
+      execute "cd #{current_path} && ./gradlew installDist"
     end
   end
 end
-after 'deploy:finished', 'gradle:jar'
+after 'deploy:finished', 'gradle:install_dist'
