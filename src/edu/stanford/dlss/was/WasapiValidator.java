@@ -9,6 +9,7 @@ import java.security.NoSuchAlgorithmException;
 
 import javax.xml.bind.DatatypeConverter;
 
+import org.apache.http.HttpStatus;
 import org.apache.http.StatusLine;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpResponseException;
@@ -16,10 +17,8 @@ import org.apache.http.client.HttpResponseException;
 @SuppressWarnings("checkstyle:HideUtilityClassConstructor")
 public class WasapiValidator {
 
-  private static final int STATUS_CODE_THRESHOLD = 300;
-
   public static boolean validateResponse(StatusLine statusLine, boolean entityIsNull) throws ClientProtocolException, HttpResponseException {
-    if(statusLine.getStatusCode() >= STATUS_CODE_THRESHOLD) {
+    if(statusLine.getStatusCode() != HttpStatus.SC_OK) {
       throw new HttpResponseException(statusLine.getStatusCode(), statusLine.getReasonPhrase());
     }
     if (entityIsNull) {
