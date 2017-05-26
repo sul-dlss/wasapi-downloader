@@ -17,19 +17,28 @@ public class TestWasapiValidator {
 
   private StatusLine validStatusLine = new BasicStatusLine(new ProtocolVersion("HTTP 1/1", 1, 1), 200, "OK");
   private StatusLine invalidStatusLine = new BasicStatusLine(new ProtocolVersion("HTTP 1/1", 1, 1), 300, "Not Defined");
+  private StatusLine invalidStatusLine2 = new BasicStatusLine(new ProtocolVersion("HTTP 1/1", 1, 1), 201, "Whatever");
 
   @Test(expected = ClientProtocolException.class)
   public void testNullEntity() throws ClientProtocolException, HttpResponseException {
+    // testing that exception is thrown
     WasapiValidator.validateResponse(validStatusLine, true);
   }
 
   @Test(expected = HttpResponseException.class)
-  public void testWrongResponseCode() throws ClientProtocolException, HttpResponseException {
+  public void test300ResponseCode() throws ClientProtocolException, HttpResponseException {
+    // testing that exception is thrown
     WasapiValidator.validateResponse(invalidStatusLine, false);
   }
 
+  @Test(expected = HttpResponseException.class)
+  public void test201ResponseCode() throws ClientProtocolException, HttpResponseException {
+    // testing that exception is thrown
+    WasapiValidator.validateResponse(invalidStatusLine2, false);
+  }
+
   @Test
-  public void testValidResponse() throws ClientProtocolException, HttpResponseException {
+  public void testValidResponseCode() throws ClientProtocolException, HttpResponseException {
     assertTrue(WasapiValidator.validateResponse(validStatusLine, false));
   }
 

@@ -26,12 +26,12 @@ public class TestWasapiDownloaderSettings {
     String[] args = { "-h", "--collectionId", "123", "--jobId=456", "--crawlStartAfter", "2014-03-14", "--crawlStartBefore=2017-03-14" };
     WasapiDownloaderSettings settings = new WasapiDownloaderSettings(WasapiDownloader.SETTINGS_FILE_LOCATION, args);
 
-    assertEquals("baseurl value should have come from settings file", settings.baseUrlString(), "https://example.org");
+    assertEquals("baseurl value should have come from settings file", settings.baseUrlString(), "https://example.org/");
     assertEquals("authurl value should have come from settings file", settings.authUrlString(), "https://example.org/login");
     assertEquals("username value should have come from settings file", settings.username(), "user");
     assertEquals("password value should have come from settings file", settings.password(), "pass");
     assertEquals("accountId value should have come from settings file", settings.accountId(), "1");
-    assertEquals("outputBaseDir value should have come from settings file", settings.outputBaseDir(), "test/outputBaseDir");
+    assertEquals("outputBaseDir value should have come from settings file", settings.outputBaseDir(), "test/outputBaseDir/");
     assertEquals("collectionId value should have come from args", settings.collectionId(), "123");
     assertEquals("jobId value should have come from args", settings.jobId(), "456");
     assertEquals("crawlStartAfter value should have come from args", settings.crawlStartAfter(), "2014-03-14");
