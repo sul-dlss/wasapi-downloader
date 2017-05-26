@@ -13,3 +13,4 @@ bin/
 build.xml
 
 eclipse-bin/
+test/outputBaseDir/
