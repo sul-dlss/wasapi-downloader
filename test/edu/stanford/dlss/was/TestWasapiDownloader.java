@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.verify;
 import static org.mockito.ArgumentMatchers.*;
 
+import java.io.File;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
@@ -178,4 +179,51 @@ public class TestWasapiDownloader {
     verify(mockCrawlSelector).getSelectedCrawlIds(Integer.valueOf(argValue));
   }
 
+  @Test
+  public void prepareOutputLocation_correctLocation() throws SettingsLoadException {
+    WasapiDownloader wd = new WasapiDownloader(WasapiDownloader.SETTINGS_FILE_LOCATION, null);
+    WasapiFile wfile = new WasapiFile();
+    String collId = "123";
+    wfile.setCollectionId(Integer.parseInt(collId));
+    String crawlStartTime = "2017-01-01T00:00:00Z";
+    wfile.setCrawlStartDateStr(crawlStartTime);
+    String filename = "i_is_a_warc_file";
+    wfile.setFilename(filename);
+    String crawlId = "666";
+    wfile.setCrawlId(Integer.parseInt(crawlId));
+    WasapiDownloaderSettings mySettings = new WasapiDownloaderSettings(WasapiDownloader.SETTINGS_FILE_LOCATION, null);
+
+    String result = wd.prepareOutputLocation(wfile);
+    String expected = mySettings.outputBaseDir() + "AIT_" + collId + "/" + crawlId + "/" + crawlStartTime + "/" + filename;
+    assertEquals("Incorrect output location", expected, result);
+  }
+
+  @Test
+  public void prepareOutputLocation_whenMissingJsonValues() throws SettingsLoadException {
+    WasapiDownloader wd = new WasapiDownloader(WasapiDownloader.SETTINGS_FILE_LOCATION, null);
+    String result = wd.prepareOutputLocation(new WasapiFile());
+    assertThat(result, org.hamcrest.CoreMatchers.containsString("/AIT_0/")); // when missing collectionId
+    assertThat(result, org.hamcrest.CoreMatchers.containsString("/0/")); // when missing crawlId
+    assertThat(result, org.hamcrest.CoreMatchers.containsString("/null/")); // when missing crawlStartTime
+    assertThat(result, org.hamcrest.CoreMatchers.endsWith("/null")); // when missing filename - gah!
+  }
+
+  @Test
+  public void prepareOutputLocation_createsDirsAsNecessary() throws SettingsLoadException {
+    WasapiDownloader wd = new WasapiDownloader(WasapiDownloader.SETTINGS_FILE_LOCATION, null);
+    WasapiFile wfile = new WasapiFile();
+    String collId = "111";
+    wfile.setCollectionId(Integer.parseInt(collId));
+    String crawlStartTime = "2017-01-01T00:01:02Z";
+    wfile.setCrawlStartDateStr(crawlStartTime);
+    String crawlId = "888";
+    wfile.setCrawlId(Integer.parseInt(crawlId));
+
+    WasapiDownloaderSettings mySettings = new WasapiDownloaderSettings(WasapiDownloader.SETTINGS_FILE_LOCATION, null);
+    String expected = mySettings.outputBaseDir() + "AIT_" + collId + "/" + crawlId + "/" + crawlStartTime;
+    File expectedDir = new File(expected);
+
+    wd.prepareOutputLocation(wfile);
+    assertTrue("Directory should exist: " + expected, expectedDir.exists());
+  }
 }
