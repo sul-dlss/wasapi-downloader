@@ -3,46 +3,44 @@
 [![GitHub version](https://badge.fury.io/gh/sul-dlss%2Fwasapi-downloader.svg)](https://badge.fury.io/gh/sul-dlss%2Fwasapi-downloader)
 
 # wasapi-downloader
-Java application to download crawls from WASAPI
+Java command line application to download crawls from WASAPI.
 
-## Usage
+## Development
 
-Gradle is the build tool.
+You'll need the following prerequisites installed on your local computer:
 
-You can create a build from the current source code by running this command from the project root:
-```
-./gradlew build installDist
-```
+- Java (7)
+- Ruby (we use Capistrano for deployment)
 
-An example invocation of the downloader after building:
+The minimal sequence of steps to verify that you can work with the code is:
+
+1. `git clone https://github.com/sul-dlss/wasapi-downloader.git`
+2. `cd wasapi-downloader`
+3. `./gradlew build installDist`  (compile and test the code and create a script to execute it)
+4. `./build/install/wasapi-downloader/bin/wasapi-downloader --help` (explain usage)
+
+An example invocation of the downloader:
 ```
 ./build/install/wasapi-downloader/bin/wasapi-downloader --collectionId 123 --crawlStartAfter 2014-03-14
 ```
 
-You can print usage info and current config state with the `-h` or `--help` argument:
-```
-./build/install/wasapi-downloader/bin/wasapi-downloader --help
-```
+### Configuration
 
-Since `--help` prints the combined configuration state, including values of the command line args, it can be useful in conjunction with other args if you're unsure whether you're providing the correct settings/arguments.
+This repository contains an example `config/settings.properties` file with dummy values for the required configuration settings. In order to successfully execute the Java application, you will need to override these default settings. The production settings are stored in `shared_configs`.
 
-### Getting started
+### Building
 
-1. `git clone https://github.com/sul-dlss/wasapi-downloader.git`
-2. `cd wasapi-downloader`
-3. `./gradlew jar`  (compile the code)
+wasapi-downloader is built using [Gradle](https://gradle.org/docs). To compile the code into a jar file:
 
-### One Time Setup
+`./gradlew jar`
 
-Dependencies:
+Build from scratch (cleaning first):
 
-- java (7)
+`./gradlew clean build installDist`
 
-## Development
+List all available build tasks:
 
-Gradle, with wrapper, is the build tool.  To compile and run the tests:
-
-    `./gradlew check`
+`./gradlew tasks`
 
 ## Deployment
 
@@ -56,6 +54,27 @@ Capistrano is used for deployment.
 
 2. Deploy code to remote VM:
 
-    `cap dev deploy`
+    `cap <environment> deploy`
 
-  This will also build and package the code on the remote VM with Gradle wrapper.
+   `<environment>` is either `dev`, `stage` or `prod`, as specified in `config/deploy/`.
+
+## Production Use
+
+The deployment command shown above creates an executable Java application. After logging onto the production server you may run wasapi-downloader by following these steps:
+```cd wasapi-downloader/current/
+./build/install/wasapi-downloader/bin/wasapi-downloader <args>
+```
+
+The `--help` option will display a message listing all of the arguments:
+
+`./build/install/wasapi-downloader/bin/wasapi-downloader --help`
+
+Some of the arguments have a default value in `config/settings.properties`. `--help` will display the current configuration.
+
+Download all crawl files created after 2014:
+
+`./build/install/wasapi-downloader/bin/wasapi-downloader --crawlStartAfter 2014-01-01`
+
+Download crawl files created before 2012, into /tmp/:
+
+`./build/install/wasapi-downloader/bin/wasapi-downloader --crawlStartBefore 2012-01-01 --outputBaseDir /tmp/`
