@@ -7,10 +7,10 @@ import java.util.Map;
 
 public class WasapiCrawlSelector {
 
-  public Map<Integer, List<WasapiFile>> crawlIdToFiles;
+  public Map<Integer, List<WasapiFile>> crawlIdToFiles = new HashMap<Integer, List<WasapiFile>>();
 
   public WasapiCrawlSelector(WasapiFile[] candidateFiles) {
-    setCrawlIdToFiles(candidateFiles);
+    addCandidateFiles(candidateFiles);
   }
 
   /**
@@ -31,19 +31,16 @@ public class WasapiCrawlSelector {
     return crawlIdToFiles.get(crawlId);
   }
 
-  private void setCrawlIdToFiles(WasapiFile[] candidateFiles) {
-    if (crawlIdToFiles == null) {
-      crawlIdToFiles = new HashMap<Integer, List<WasapiFile>>();
-      for (WasapiFile file : candidateFiles) {
-        Integer crawlIdInteger = Integer.valueOf(file.getCrawlId());
-        List<WasapiFile> files;
-        if (crawlIdToFiles.isEmpty() || crawlIdToFiles.get(crawlIdInteger) == null)
-          files = new ArrayList<WasapiFile>();
-        else
-          files = crawlIdToFiles.get(crawlIdInteger);
-        files.add(file);
-        crawlIdToFiles.put(crawlIdInteger, files);
-      }
+  private void addCandidateFiles(WasapiFile[] candidateFiles) {
+    for (WasapiFile file : candidateFiles) {
+      Integer crawlIdInteger = Integer.valueOf(file.getCrawlId());
+      List<WasapiFile> files;
+      if (crawlIdToFiles.isEmpty() || crawlIdToFiles.get(crawlIdInteger) == null)
+        files = new ArrayList<WasapiFile>();
+      else
+        files = crawlIdToFiles.get(crawlIdInteger);
+      files.add(file);
+      crawlIdToFiles.put(crawlIdInteger, files);
     }
   }
 }

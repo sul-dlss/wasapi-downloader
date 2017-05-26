@@ -31,7 +31,7 @@ public class TestWasapiCrawlSelector {
   }
 
   @Test
-  public void setCrawlIdToFiles_worksWithMultipleFilesPerCrawl() {
+  public void addCandidateFiles_worksWithMultipleFilesPerCrawl() {
     file2.setCrawlId(file1.getCrawlId());
     file2.setCrawlStartDateStr(file1.getCrawlStartDateStr());
     WasapiCrawlSelector selector = new WasapiCrawlSelector(candidateFiles);
