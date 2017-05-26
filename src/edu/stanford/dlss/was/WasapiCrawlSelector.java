@@ -13,6 +13,11 @@ public class WasapiCrawlSelector {
     addCandidateFiles(candidateFiles);
   }
 
+  public WasapiCrawlSelector(List<WasapiResponse> respList) {
+    for (WasapiResponse resp : respList)
+      addCandidateFiles(resp.getFiles());
+  }
+
   /**
    * expects lastKnownCrawlId to be validated before it gets here: expects positive int
    * if arg is 0, it will return all WARCs in the candidate files
