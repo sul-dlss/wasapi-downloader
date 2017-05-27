@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class WasapiCrawlSelector {
 
-  public Map<Integer, List<WasapiFile>> crawlIdToFiles = new HashMap<Integer, List<WasapiFile>>();
+  protected Map<Integer, List<WasapiFile>> crawlIdToFiles = new HashMap<Integer, List<WasapiFile>>();
 
   public WasapiCrawlSelector(WasapiFile[] candidateFiles) {
     addCandidateFiles(candidateFiles);
