@@ -79,6 +79,23 @@ public class TestWasapiDownloader {
   }
 
   @Test
+  public void main_singleFileDownload_onlyUsesFilename() throws Exception {
+    String[] args = {"--collectionId", "123", "--filename", "ARCHIVEIT-5425-MONTHLY-JOB302671-20170526114117181-00049.warc.gz" };
+    WasapiConnection mockConn = Mockito.mock(WasapiConnection.class);
+    Mockito.when(mockConn.jsonQuery(anyString())).thenReturn(null);
+    WasapiDownloader downloaderSpy = PowerMockito.spy(new WasapiDownloader(WasapiDownloader.SETTINGS_FILE_LOCATION, args));
+    PowerMockito.doReturn(mockConn).when(downloaderSpy).getWasapiConn();
+    PowerMockito.whenNew(WasapiDownloader.class).withAnyArguments().thenReturn(downloaderSpy);
+
+    WasapiDownloader.main(args);
+    verify(mockConn).jsonQuery(ArgumentMatchers.contains("filename=ARCHIVEIT-5425-MONTHLY-JOB302671-20170526114117181-00049.warc.gz"));
+    verify(mockConn, Mockito.never()).jsonQuery(ArgumentMatchers.contains("crawl="));
+    verify(mockConn, Mockito.never()).jsonQuery(ArgumentMatchers.contains("crawl-start-after="));
+    verify(mockConn, Mockito.never()).jsonQuery(ArgumentMatchers.contains("crawl-start-before="));
+    verify(mockConn, Mockito.never()).jsonQuery(ArgumentMatchers.contains("collection="));
+  }
+
+  @Test
   public void downloadSelectedWarcs_requestsFileSetResponse() throws Exception {
     WasapiConnection mockConn = Mockito.mock(WasapiConnection.class);
     Mockito.when(mockConn.jsonQuery(anyString())).thenReturn(null);

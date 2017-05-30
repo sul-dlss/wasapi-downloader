@@ -76,6 +76,13 @@ public class WasapiDownloader {
 
   private List<String> requestParams() {
     List<String> params = new ArrayList<String>();
+
+    // If a filename is provided, other arguments are ignored
+    if (settings.filename() != null) {
+      params.add("filename=" + settings.filename());
+      return params;
+    }
+
     if (settings.collectionId() != null)
       params.add("collection=" + settings.collectionId());
     if (settings.crawlStartAfter() != null)
