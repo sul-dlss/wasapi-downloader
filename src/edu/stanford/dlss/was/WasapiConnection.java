@@ -15,7 +15,13 @@ public class WasapiConnection {
   }
 
 
+  /**
+   * @return null when requestURL is null (for callers that just page through responses' "next" links)
+   */
   public WasapiResponse jsonQuery(String requestURL) throws IOException {
+    if (requestURL == null)
+      return null;
+
     HttpGet jsonRequest = new HttpGet(requestURL);
     return wasapiClient.execute(jsonRequest, new JsonResponseHandler());
   }
@@ -31,4 +37,3 @@ public class WasapiConnection {
     wasapiClient.close();
   }
 }
-

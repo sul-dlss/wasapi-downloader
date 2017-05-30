@@ -5,6 +5,7 @@ import java.io.IOException;
 import org.apache.http.client.methods.HttpGet;
 
 import org.junit.*;
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 import org.mockito.ArgumentMatchers;
 
@@ -30,6 +31,13 @@ public class TestWasapiConnection {
 
     verify(mockClient, times(1)).execute(ArgumentMatchers.<HttpGet>any(HttpGet.class),
                                          ArgumentMatchers.<JsonResponseHandler>any(JsonResponseHandler.class));
+  }
+
+  @Test
+  public void jsonQuery_handlesNullRequestUrl() throws IOException {
+    WasapiClient mockClient = mock(WasapiClient.class);
+    WasapiConnection testConnection = new WasapiConnection(mockClient);
+    assertNull("jsonQuery should just return a null response if requestURL is null", testConnection.jsonQuery(null));
   }
 
   @Test
