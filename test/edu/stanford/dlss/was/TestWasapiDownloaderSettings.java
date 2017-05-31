@@ -45,7 +45,7 @@ public class TestWasapiDownloaderSettings {
     //TODO: if settings validation flags possibly nonsensical/redundant combos like jobId
     // and jobIdLowerBound, this test might have to be broken up a bit.
     String[] args = { "-h", "--collectionId", "123", "--jobId=456", "--jobIdLowerBound=400",
-        "--crawlStartAfter", "2014-03-14", "--crawlStartBefore=2017-03-14" };
+        "--crawlStartAfter", "2014-03-14", "--crawlStartBefore=2017-03-14", "--filename=filename.warc.gz" };
     WasapiDownloaderSettings settings = new WasapiDownloaderSettings(WasapiDownloader.SETTINGS_FILE_LOCATION, args);
 
     String helpAndSettingsMsg = settings.getHelpAndSettingsMessage();
@@ -62,6 +62,7 @@ public class TestWasapiDownloaderSettings {
     assertThat("helpAndSettingsMsg lists help flag", helpAndSettingsMsg, containsString("-h,--help"));
     assertThat("helpAndSettingsMsg lists jobId arg", helpAndSettingsMsg, containsString("--jobId <arg>"));
     assertThat("helpAndSettingsMsg lists jobIdLowerBound arg", helpAndSettingsMsg, containsString("--jobIdLowerBound <arg>"));
+    assertThat("helpAndSettingsMsg lists filename arg", helpAndSettingsMsg, containsString("--filename <arg>"));
 
     assertThat("helpAndSettingsMsg hides password value", helpAndSettingsMsg, containsString("password : [password hidden]"));
     assertThat("helpAndSettingsMsg lists crawlStartAfter value", helpAndSettingsMsg, containsString("crawlStartAfter : 2014-03-14"));
@@ -74,6 +75,7 @@ public class TestWasapiDownloaderSettings {
     assertThat("helpAndSettingsMsg lists authurl value", helpAndSettingsMsg, containsString("authurl : https://example.org/login"));
     assertThat("helpAndSettingsMsg lists username value", helpAndSettingsMsg, containsString("username : user"));
     assertThat("helpAndSettingsMsg lists accountId value", helpAndSettingsMsg, containsString("accountId : 1"));
+    assertThat("helpAndSettingsMsg lists filename value", helpAndSettingsMsg, containsString("filename : filename.warc.gz"));
   }
 
   @Test
