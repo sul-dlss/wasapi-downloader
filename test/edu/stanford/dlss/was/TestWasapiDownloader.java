@@ -139,6 +139,7 @@ public class TestWasapiDownloader {
   }
 
   @Test
+  @SuppressWarnings("checkstyle:MethodLength")
   public void downloadSelectedWarcs_callsDownloadAndValidateFile() throws Exception {
     WasapiConnection mockConn = Mockito.mock(WasapiConnection.class);
     Mockito.when(mockConn.jsonQuery(anyString())).thenReturn(new WasapiResponse());

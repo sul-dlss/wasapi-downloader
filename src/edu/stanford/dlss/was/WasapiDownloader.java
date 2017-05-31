@@ -63,37 +63,37 @@ public class WasapiDownloader {
   @SuppressWarnings("checkstyle:MethodLength")
   void downloadAndValidateFile(WasapiFile file) throws NoSuchAlgorithmException {
     String fullFilePath = prepareOutputLocation(file);
+    if (fullFilePath == null) {
+      // should never get here, except in testing
+      System.err.println("fullFilePath is null - can't retrieve file");
+      return;
+    }
     int attempts = 0;
-    boolean notValidated = true;
+    boolean checksumValidated = false;
     do {
       attempts++;
       try {
-        // System.out.println("DEBUG: trying to get " + file.getLocations()[0]);
         boolean downloadSuccess = getWasapiConn().downloadQuery(file.getLocations()[0], fullFilePath);
         if (downloadSuccess && checksumValidate("md5", file, fullFilePath)) {
           System.out.println("file retrieved successfully: " + file.getLocations()[0]);
-          notValidated = false; // break out of loop
+          checksumValidated = true; // break out of loop
         }
       } catch (HttpResponseException e) {
-        System.err.println("ERROR: HttpResponseException downloading file (will not retry) " + fullFilePath);
-        System.err.println(" HTTP ResponseCode is " + e.getStatusCode());
-        e.printStackTrace(System.err);
+        System.err.println("ERROR: HttpResponseException (" + e.getMessage() + ") downloading file (will not retry): " + file.getLocations()[0]);
+        System.err.println(" HTTP ResponseCode was " + e.getStatusCode());
         attempts = NUM_RETRIES + 1;  // no more attempts
       } catch (ClientProtocolException e) {
-        System.err.println("ERROR: ClientProtocolException downloading file (will not retry) " + fullFilePath);
-        e.printStackTrace(System.err);
+        System.err.println("ERROR: ClientProtocolException (" + e.getMessage() + ") downloading file (will not retry): " + file.getLocations()[0]);
         attempts = NUM_RETRIES + 1;  // no more attempts
       } catch (IOException e) {
         // swallow exception and try again - it may be a network issue
-        System.err.println("WARNING: exception downloading file (will retry) " + fullFilePath);
+        System.err.println("WARNING: exception downloading file (will retry): " + file.getLocations()[0]);
         e.printStackTrace(System.err);
       }
-    } while (attempts <= NUM_RETRIES && notValidated);
+    } while (attempts <= NUM_RETRIES && !checksumValidated);
 
-    if (attempts == NUM_RETRIES)
-      System.err.println("file not retrieved: " + file.getLocations()[0]);
-    else if (notValidated)
-      System.err.println("file has invalid checksum: " + file.getLocations()[0]);
+    if (attempts == NUM_RETRIES + 1) // RE-tries, not number of attempts
+      System.err.println("file not retrieved or unable to validate checksum: " + file.getLocations()[0]);
   }
 
   // package level method for testing
