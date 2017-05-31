@@ -135,6 +135,31 @@ public class TestWasapiDownloader {
   }
 
   @Test
+  public void downloadSelectedWarcs_callsDownloadAndValidateFile() throws Exception {
+    WasapiConnection mockConn = Mockito.mock(WasapiConnection.class);
+    Mockito.when(mockConn.jsonQuery(anyString())).thenReturn(new WasapiResponse());
+
+    WasapiCrawlSelector mockCrawlSelector = PowerMockito.mock(WasapiCrawlSelector.class);
+    List<Integer> desiredCrawlIds = new ArrayList<Integer>();
+    desiredCrawlIds.add(Integer.valueOf("666"));
+    PowerMockito.when(mockCrawlSelector.getSelectedCrawlIds(0)).thenReturn(desiredCrawlIds);
+    List<WasapiFile> filesForCrawl = new ArrayList<WasapiFile>();
+    WasapiFile wfile = new WasapiFile();
+    String filename = "i_is_a_warc_file";
+    wfile.setFilename(filename);
+    filesForCrawl.add(wfile);
+    PowerMockito.when(mockCrawlSelector.getFilesForCrawl(666)).thenReturn(filesForCrawl);
+    PowerMockito.whenNew(WasapiCrawlSelector.class).withAnyArguments().thenReturn(mockCrawlSelector);
+
+    WasapiDownloader downloaderSpy = Mockito.spy(new WasapiDownloader(WasapiDownloader.SETTINGS_FILE_LOCATION, null));
+    Mockito.doReturn(mockConn).when(downloaderSpy).getWasapiConn();
+    Mockito.doNothing().when(downloaderSpy).downloadAndValidateFile(wfile);
+
+    downloaderSpy.downloadSelectedWarcs();
+    verify(downloaderSpy).downloadAndValidateFile(wfile);
+  }
+
+  @Test
   @SuppressWarnings("checkstyle:NoWhitespaceAfter")
   public void downloadSelectedWarcs_byJobIdLowerBound() throws Exception {
     String argValue = "666";
