@@ -103,11 +103,12 @@ public class WasapiDownloader {
     return outputPath + SEP + file.getFilename();
   }
 
-  private boolean checksumValidate(String algorithm, WasapiFile file, String fullFilePath) throws NoSuchAlgorithmException, IOException {
+  // package level method for testing
+  boolean checksumValidate(String algorithm, WasapiFile file, String fullFilePath) throws NoSuchAlgorithmException, IOException {
     // TODO:  use setting to decide md5 vs sha1 (see wasapi-downloader#92 in github)
     String checksum = file.getChecksums().get(algorithm);
     if (checksum == null) {
-      System.err.println("No checksum of type: " + algorithm + " available.  Options are " + file.getChecksums().keySet().toString());
+      System.err.println("No checksum of type: " + algorithm + " available: " + file.getChecksums().toString());
       return false;
     }
 
@@ -115,7 +116,10 @@ public class WasapiDownloader {
       return WasapiValidator.validateMd5(checksum, fullFilePath);
     else if ("sha1".equals(algorithm))
       return WasapiValidator.validateSha1(checksum, fullFilePath);
-    return false;
+    else {
+      System.err.println("Unsupported checksum algorithm: " + algorithm + ".  Options are 'md5' or 'sha1'");
+      return false;
+    }
   }
 
   private List<Integer> desiredCrawlIds(WasapiCrawlSelector crawlSelector) {
