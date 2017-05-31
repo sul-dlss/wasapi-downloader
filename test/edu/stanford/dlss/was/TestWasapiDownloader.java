@@ -46,77 +46,84 @@ public class TestWasapiDownloader {
   public void main_executesFileSetRequest_usesAllAppropArgsSettings() throws Exception {
     String[] args = {"--collectionId", "123", "--jobId=456", "--crawlStartAfter", "2014-03-14", "--crawlStartBefore=2017-03-14", "--username=Fred" };
     WasapiConnection mockConn = Mockito.mock(WasapiConnection.class);
-    Mockito.when(mockConn.jsonQuery(anyString())).thenReturn(null);
+    Mockito.when(mockConn.pagedJsonQuery(anyString())).thenReturn(null);
     WasapiDownloader downloaderSpy = PowerMockito.spy(new WasapiDownloader(WasapiDownloader.SETTINGS_FILE_LOCATION, args));
     PowerMockito.doReturn(mockConn).when(downloaderSpy).getWasapiConn();
     PowerMockito.whenNew(WasapiDownloader.class).withAnyArguments().thenReturn(downloaderSpy);
 
     WasapiDownloader.main(args);
-    verify(mockConn).jsonQuery(ArgumentMatchers.contains("collection=123"));
-    verify(mockConn).jsonQuery(ArgumentMatchers.contains("crawl=456"));
-    verify(mockConn).jsonQuery(ArgumentMatchers.contains("crawl-start-after=2014-03-14"));
-    verify(mockConn).jsonQuery(ArgumentMatchers.contains("crawl-start-before=2017-03-14"));
+    verify(mockConn).pagedJsonQuery(ArgumentMatchers.contains("collection=123"));
+    verify(mockConn).pagedJsonQuery(ArgumentMatchers.contains("crawl=456"));
+    verify(mockConn).pagedJsonQuery(ArgumentMatchers.contains("crawl-start-after=2014-03-14"));
+    verify(mockConn).pagedJsonQuery(ArgumentMatchers.contains("crawl-start-before=2017-03-14"));
     // username is used in login request
-    verify(mockConn, Mockito.never()).jsonQuery(ArgumentMatchers.contains("username=Fred"));
+    verify(mockConn, Mockito.never()).pagedJsonQuery(ArgumentMatchers.contains("username=Fred"));
     // output directory is not part of wasapi request
-    verify(mockConn, Mockito.never()).jsonQuery(ArgumentMatchers.contains(WasapiDownloaderSettings.OUTPUT_BASE_DIR_PARAM_NAME));
+    verify(mockConn, Mockito.never()).pagedJsonQuery(ArgumentMatchers.contains(WasapiDownloaderSettings.OUTPUT_BASE_DIR_PARAM_NAME));
   }
 
   @Test
   public void main_executesFileSetRequest_onlyUsesArgsSettings() throws Exception {
     String[] args = {"--collectionId", "123" };
     WasapiConnection mockConn = Mockito.mock(WasapiConnection.class);
-    Mockito.when(mockConn.jsonQuery(anyString())).thenReturn(null);
+    Mockito.when(mockConn.pagedJsonQuery(anyString())).thenReturn(null);
     WasapiDownloader downloaderSpy = PowerMockito.spy(new WasapiDownloader(WasapiDownloader.SETTINGS_FILE_LOCATION, args));
     PowerMockito.doReturn(mockConn).when(downloaderSpy).getWasapiConn();
     PowerMockito.whenNew(WasapiDownloader.class).withAnyArguments().thenReturn(downloaderSpy);
 
     WasapiDownloader.main(args);
-    verify(mockConn).jsonQuery(ArgumentMatchers.contains("collection=123"));
-    verify(mockConn, Mockito.never()).jsonQuery(ArgumentMatchers.contains("crawl="));
-    verify(mockConn, Mockito.never()).jsonQuery(ArgumentMatchers.contains("crawl-start-after="));
-    verify(mockConn, Mockito.never()).jsonQuery(ArgumentMatchers.contains("crawl-start-before="));
+    verify(mockConn).pagedJsonQuery(ArgumentMatchers.contains("collection=123"));
+    verify(mockConn, Mockito.never()).pagedJsonQuery(ArgumentMatchers.contains("crawl="));
+    verify(mockConn, Mockito.never()).pagedJsonQuery(ArgumentMatchers.contains("crawl-start-after="));
+    verify(mockConn, Mockito.never()).pagedJsonQuery(ArgumentMatchers.contains("crawl-start-before="));
   }
 
   @Test
   public void main_singleFileDownload_onlyUsesFilename() throws Exception {
     String[] args = {"--collectionId", "123", "--filename", "ARCHIVEIT-5425-MONTHLY-JOB302671-20170526114117181-00049.warc.gz" };
     WasapiConnection mockConn = Mockito.mock(WasapiConnection.class);
-    Mockito.when(mockConn.jsonQuery(anyString())).thenReturn(null);
+    Mockito.when(mockConn.pagedJsonQuery(anyString())).thenReturn(null);
     WasapiDownloader downloaderSpy = PowerMockito.spy(new WasapiDownloader(WasapiDownloader.SETTINGS_FILE_LOCATION, args));
     PowerMockito.doReturn(mockConn).when(downloaderSpy).getWasapiConn();
     PowerMockito.whenNew(WasapiDownloader.class).withAnyArguments().thenReturn(downloaderSpy);
 
     WasapiDownloader.main(args);
-    verify(mockConn).jsonQuery(ArgumentMatchers.contains("filename=ARCHIVEIT-5425-MONTHLY-JOB302671-20170526114117181-00049.warc.gz"));
-    verify(mockConn, Mockito.never()).jsonQuery(ArgumentMatchers.contains("crawl="));
-    verify(mockConn, Mockito.never()).jsonQuery(ArgumentMatchers.contains("crawl-start-after="));
-    verify(mockConn, Mockito.never()).jsonQuery(ArgumentMatchers.contains("crawl-start-before="));
-    verify(mockConn, Mockito.never()).jsonQuery(ArgumentMatchers.contains("collection="));
+    verify(mockConn).pagedJsonQuery(ArgumentMatchers.contains("filename=ARCHIVEIT-5425-MONTHLY-JOB302671-20170526114117181-00049.warc.gz"));
+    verify(mockConn, Mockito.never()).pagedJsonQuery(ArgumentMatchers.contains("crawl="));
+    verify(mockConn, Mockito.never()).pagedJsonQuery(ArgumentMatchers.contains("crawl-start-after="));
+    verify(mockConn, Mockito.never()).pagedJsonQuery(ArgumentMatchers.contains("crawl-start-before="));
+    verify(mockConn, Mockito.never()).pagedJsonQuery(ArgumentMatchers.contains("collection="));
   }
 
   @Test
   public void downloadSelectedWarcs_requestsFileSetResponse() throws Exception {
     WasapiConnection mockConn = Mockito.mock(WasapiConnection.class);
-    Mockito.when(mockConn.jsonQuery(anyString())).thenReturn(null);
+    Mockito.when(mockConn.pagedJsonQuery(anyString())).thenReturn(null);
     WasapiDownloader downloaderSpy = Mockito.spy(new WasapiDownloader(WasapiDownloader.SETTINGS_FILE_LOCATION, null));
     Mockito.doReturn(mockConn).when(downloaderSpy).getWasapiConn();
 
     downloaderSpy.downloadSelectedWarcs();
     WasapiDownloaderSettings mySettings = new WasapiDownloaderSettings(WasapiDownloader.SETTINGS_FILE_LOCATION, null);
-    verify(mockConn).jsonQuery(ArgumentMatchers.startsWith(mySettings.baseUrlString()));
+    verify(mockConn).pagedJsonQuery(ArgumentMatchers.startsWith(mySettings.baseUrlString()));
+  }
+
+  private List<WasapiResponse> getWasapiRespList() {
+    List<WasapiResponse> wasapiRespList = new ArrayList<WasapiResponse>();
+    wasapiRespList.add(new WasapiResponse());
+    return wasapiRespList;
   }
 
   @Test
   public void downloadSelectedWarcs_usesCrawlSelector() throws Exception {
     WasapiConnection mockConn = Mockito.mock(WasapiConnection.class);
-    Mockito.when(mockConn.jsonQuery(anyString())).thenReturn(new WasapiResponse());
+    List<WasapiResponse> wasapiRespList = getWasapiRespList();
+    Mockito.when(mockConn.pagedJsonQuery(anyString())).thenReturn(wasapiRespList);
 
     WasapiCrawlSelector mockCrawlSelector = PowerMockito.mock(WasapiCrawlSelector.class);
     List<Integer> desiredCrawlIds = new ArrayList<Integer>();
     desiredCrawlIds.add(Integer.valueOf("666"));
     PowerMockito.when(mockCrawlSelector.getSelectedCrawlIds(0)).thenReturn(desiredCrawlIds);
-    PowerMockito.whenNew(WasapiCrawlSelector.class).withAnyArguments().thenReturn(mockCrawlSelector);
+    PowerMockito.whenNew(WasapiCrawlSelector.class).withArguments(wasapiRespList).thenReturn(mockCrawlSelector);
 
     WasapiDownloader downloaderSpy = Mockito.spy(new WasapiDownloader(WasapiDownloader.SETTINGS_FILE_LOCATION, null));
     Mockito.doReturn(mockConn).when(downloaderSpy).getWasapiConn();
@@ -133,10 +140,11 @@ public class TestWasapiDownloader {
     String[] args = { "--jobIdLowerBound=" + argValue };
 
     WasapiCrawlSelector mockCrawlSelector = PowerMockito.mock(WasapiCrawlSelector.class);
-    PowerMockito.whenNew(WasapiCrawlSelector.class).withAnyArguments().thenReturn(mockCrawlSelector);
+    List<WasapiResponse> wasapiRespList = getWasapiRespList();
+    PowerMockito.whenNew(WasapiCrawlSelector.class).withArguments(wasapiRespList).thenReturn(mockCrawlSelector);
 
     WasapiConnection mockConn = Mockito.mock(WasapiConnection.class);
-    Mockito.when(mockConn.jsonQuery(anyString())).thenReturn(new WasapiResponse());
+    Mockito.when(mockConn.pagedJsonQuery(anyString())).thenReturn(wasapiRespList);
     WasapiDownloader downloaderSpy = Mockito.spy(new WasapiDownloader(WasapiDownloader.SETTINGS_FILE_LOCATION, args));
     Mockito.doReturn(mockConn).when(downloaderSpy).getWasapiConn();
 

@@ -37,11 +37,11 @@ public class WasapiDownloader {
   // package level method for testing
   void downloadSelectedWarcs() throws IOException {
     // System.out.println("DEBUG: about to request " + getFileSetRequestUrl());
-    WasapiResponse wasapiResp = getWasapiConn().jsonQuery(getFileSetRequestUrl());
+    List<WasapiResponse> wasapiRespList = getWasapiConn().pagedJsonQuery(getFileSetRequestUrl());
     // System.out.println(wasapiResp.toString());
 
-    if (wasapiResp != null) {
-      WasapiCrawlSelector crawlSelector = new WasapiCrawlSelector(wasapiResp.getFiles());
+    if (wasapiRespList != null && wasapiRespList.get(0) != null) {
+      WasapiCrawlSelector crawlSelector = new WasapiCrawlSelector(wasapiRespList);
       for (Integer crawlId : desiredCrawlIds(crawlSelector)) {
         for (WasapiFile file : crawlSelector.getFilesForCrawl(crawlId)) {
           // TODO:  make a separate method for downloading individual file?
