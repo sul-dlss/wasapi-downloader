@@ -78,3 +78,9 @@ Download all crawl files created after 2014:
 Download crawl files created before 2012, into /tmp/:
 
 `./build/install/wasapi-downloader/bin/wasapi-downloader --crawlStartBefore 2012-01-01 --outputBaseDir /tmp/`
+
+Download a single file:
+
+`./build/install/wasapi-downloader/bin/wasapi-downloader --filename ARCHIVEIT-5425-MONTHLY-JOB302671-20170526114117181-00049.warc.gz`
+
+**Note:** When a `--filename` argument is present, all other request parameters (crawl start/end, collection ID, job ID) are ignored.

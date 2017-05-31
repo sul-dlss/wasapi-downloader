@@ -41,6 +41,7 @@ public class WasapiDownloaderSettings {
   public static final String CRAWL_START_BEFORE_PARAM_NAME = "crawlStartBefore";
   public static final String JOB_ID_LOWER_BOUND_PARAM_NAME = "jobIdLowerBound";
   public static final String OUTPUT_BASE_DIR_PARAM_NAME = "outputBaseDir";
+  public static final String FILENAME_PARAM_NAME = "filename";
 
   private HelpFormatter helpFormatter;
   private static Options wdsOpts;
@@ -59,7 +60,8 @@ public class WasapiDownloaderSettings {
     buildArgOption(CRAWL_START_AFTER_PARAM_NAME, "only download crawl files created after this date"),
     buildArgOption(CRAWL_START_BEFORE_PARAM_NAME, "only download crawl files created before this date"),
     buildArgOption(JOB_ID_LOWER_BOUND_PARAM_NAME, "\"last crawl downloaded\": only download crawl files with a higher job ID (not inclusive)"),
-    buildArgOption(OUTPUT_BASE_DIR_PARAM_NAME, "destination directory for downloaded WARC files")
+    buildArgOption(OUTPUT_BASE_DIR_PARAM_NAME, "destination directory for downloaded WARC files"),
+    buildArgOption(FILENAME_PARAM_NAME, "single filename to download")
   };
 
   static {
@@ -132,6 +134,10 @@ public class WasapiDownloaderSettings {
 
   public String outputBaseDir() {
     return settings.getProperty(OUTPUT_BASE_DIR_PARAM_NAME);
+  }
+
+  public String filename() {
+    return settings.getProperty(FILENAME_PARAM_NAME);
   }
 
   public String getHelpAndSettingsMessage() {
