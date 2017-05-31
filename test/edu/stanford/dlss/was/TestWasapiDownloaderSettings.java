@@ -3,6 +3,7 @@ package edu.stanford.dlss.was;
 import java.io.IOException;
 import java.util.List;
 import java.util.LinkedList;
+import java.util.Properties;
 
 import org.apache.commons.cli.ParseException;
 
@@ -133,21 +134,23 @@ public class TestWasapiDownloaderSettings {
   @SuppressWarnings({"checkstyle:NoWhitespaceAfter", "checkstyle:LineLength", "checkstyle:MethodLength"})
   public void getSettingsErrorMessages_listsAllErrors() {
     // use the no arg constructor, so that validateSettings() doesn't get called, so we can test the method it relies on
-    WasapiDownloaderSettings settings = spy(new WasapiDownloaderSettings());
+    WasapiDownloaderSettings wdSettings = new WasapiDownloaderSettings();
 
-    doReturn("ftp://foo.org").when(settings).baseUrlString();
-    doReturn("http://foo.com/auth").when(settings).authUrlString();
-    doReturn("").when(settings).username();
-    doReturn("").when(settings).password();
-    doReturn("z26").when(settings).accountId();
-    doReturn("does/not/exist").when(settings).outputBaseDir();
-    doReturn("a1").when(settings).collectionId();
-    doReturn("b2").when(settings).jobId();
-    doReturn("c3").when(settings).jobIdLowerBound();
-    doReturn("01/01/2001").when(settings).crawlStartBefore();
-    doReturn("12/31/2010").when(settings).crawlStartAfter();
+    Properties internalSettings = new Properties();
+    wdSettings.settings = internalSettings;
+    internalSettings.setProperty(WasapiDownloaderSettings.BASE_URL_PARAM_NAME, "ftp://foo.org");
+    internalSettings.setProperty(WasapiDownloaderSettings.AUTH_URL_PARAM_NAME, "http://foo.com/auth");
+    internalSettings.setProperty(WasapiDownloaderSettings.USERNAME_PARAM_NAME, "");
+    internalSettings.setProperty(WasapiDownloaderSettings.PASSWORD_PARAM_NAME, "");
+    internalSettings.setProperty(WasapiDownloaderSettings.ACCCOUNT_ID_PARAM_NAME, "z26");
+    internalSettings.setProperty(WasapiDownloaderSettings.OUTPUT_BASE_DIR_PARAM_NAME, "does/not/exist");
+    internalSettings.setProperty(WasapiDownloaderSettings.COLLECTION_ID_PARAM_NAME, "a1");
+    internalSettings.setProperty(WasapiDownloaderSettings.JOB_ID_PARAM_NAME, "b2");
+    internalSettings.setProperty(WasapiDownloaderSettings.JOB_ID_LOWER_BOUND_PARAM_NAME, "c3");
+    internalSettings.setProperty(WasapiDownloaderSettings.CRAWL_START_BEFORE_PARAM_NAME, "01/01/2001");
+    internalSettings.setProperty(WasapiDownloaderSettings.CRAWL_START_AFTER_PARAM_NAME, "12/31/2010");
 
-    List<String> errMsgs = settings.getSettingsErrorMessages();
+    List<String> errMsgs = wdSettings.getSettingsErrorMessages();
     assertThat("error messages has entry for invalid base URL", errMsgs, hasItem("baseurl is required, and must be a valid URL"));
     assertThat("error messages has entry for invalid auth URL", errMsgs, hasItem("authurl is required, and must be a valid URL"));
     assertThat("error messages has entry for invalid username", errMsgs, hasItem("username is required"));

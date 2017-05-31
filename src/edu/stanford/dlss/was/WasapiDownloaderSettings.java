@@ -43,9 +43,10 @@ public class WasapiDownloaderSettings {
   public static final String OUTPUT_BASE_DIR_PARAM_NAME = "outputBaseDir";
   public static final String FILENAME_PARAM_NAME = "filename";
 
+  protected Properties settings;
+
   private HelpFormatter helpFormatter;
   private static Options wdsOpts;
-  private Properties settings;
   private String helpAndSettingsMessage;
 
   private static Option[] optList = {
@@ -218,7 +219,7 @@ public class WasapiDownloaderSettings {
   private static boolean isValidIso8601String(String dateStr) {
     try {
       DatatypeConverter.parseDateTime(dateStr);
-    } catch(java.lang.IllegalArgumentException e) {
+    } catch(IllegalArgumentException e) {
       return false;
     }
     return true;
