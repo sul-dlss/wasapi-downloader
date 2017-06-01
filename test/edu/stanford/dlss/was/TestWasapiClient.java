@@ -5,7 +5,6 @@ import java.io.IOException;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 
-import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 import org.junit.*;
 import static org.mockito.Mockito.*;

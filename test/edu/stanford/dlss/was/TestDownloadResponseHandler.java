@@ -15,11 +15,8 @@ import org.apache.http.message.BasicStatusLine;
 import org.junit.*;
 import static org.junit.Assert.*;
 import org.mockito.*;
-import org.mockito.Mockito.*;
 import org.mockito.invocation.*;
 import org.mockito.stubbing.*;
-
-
 
 public class TestDownloadResponseHandler {
   private static final char SEP = File.separatorChar;
@@ -27,24 +24,16 @@ public class TestDownloadResponseHandler {
   private static final String OUTPUT_FILE_PATH = new String(OUTPUT_DIRECTORY + SEP + "testDownloadResponseHandler.output");
   private static final StatusLine VALID_STATUS_LINE = new BasicStatusLine(new ProtocolVersion("HTTP 1/1", 1, 1), 200, "OK");
 
-  private void writeToFile() throws IOException {
-    new File(OUTPUT_FILE_PATH).createNewFile();
-    return;
-  }
-
-
   @Before
   public void setUp() {
     new File(OUTPUT_DIRECTORY).mkdir();
   }
-
 
   @After
   public void tearDown() {
     new File(OUTPUT_FILE_PATH).delete();
     new File(OUTPUT_DIRECTORY).delete();
   }
-
 
   @Test(expected = ClientProtocolException.class)
   public void nullEntityThrowsException() throws ClientProtocolException, HttpResponseException, IOException {
@@ -56,7 +45,6 @@ public class TestDownloadResponseHandler {
     handler.handleResponse(mockResponse);
   }
 
-
   @Test
   public void validResponseDownloadsFile() throws ClientProtocolException, HttpResponseException, IOException {
     DownloadResponseHandler handler = new DownloadResponseHandler(OUTPUT_FILE_PATH);
@@ -66,6 +54,7 @@ public class TestDownloadResponseHandler {
     Mockito.when(mockResponse.getStatusLine()).thenReturn(VALID_STATUS_LINE);
 
     Mockito.doAnswer(new Answer<Void>() {
+      @Override
       public Void answer(InvocationOnMock invocation) throws IOException {
         new File(OUTPUT_FILE_PATH).createNewFile();
         return null;
