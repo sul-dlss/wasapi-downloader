@@ -1,13 +1,22 @@
 package edu.stanford.dlss.was;
 
+import java.io.File;
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.validator.routines.IntegerValidator;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpResponseException;
 
+@SuppressWarnings("checkstyle:MultipleStringLiterals")
 public class WasapiDownloader {
   public static final String SETTINGS_FILE_LOCATION = "config/settings.properties";
+  private static final char SEP = File.separatorChar;
+
+  // TODO:  use setting (see wasapi-downloader#93 in github)
+  public static final int NUM_RETRIES = 3;
 
   public WasapiDownloaderSettings settings;
 
@@ -18,13 +27,29 @@ public class WasapiDownloader {
     settings = new WasapiDownloaderSettings(settingsFileLocation, args);
   }
 
-  public void executeFromCmdLine() throws IOException {
+  public void executeFromCmdLine() throws IOException, NoSuchAlgorithmException {
     if (settings.shouldDisplayHelp()) {
       System.out.print(settings.getHelpAndSettingsMessage());
       return;
     }
 
     downloadSelectedWarcs();
+  }
+
+  // package level method for testing
+  void downloadSelectedWarcs() throws IOException, NoSuchAlgorithmException {
+    // System.out.println("DEBUG: about to request " + getFileSetRequestUrl());
+    List<WasapiResponse> wasapiRespList = getWasapiConn().pagedJsonQuery(getFileSetRequestUrl());
+    // System.out.println(wasapiResp.toString());
+
+    if (wasapiRespList != null && wasapiRespList.get(0) != null) {
+      WasapiCrawlSelector crawlSelector = new WasapiCrawlSelector(wasapiRespList);
+      for (Integer crawlId : desiredCrawlIds(crawlSelector)) {
+        for (WasapiFile file : crawlSelector.getFilesForCrawl(crawlId)) {
+          downloadAndValidateFile(file);
+        }
+      }
+    }
   }
 
   // package level method for testing
@@ -35,19 +60,65 @@ public class WasapiDownloader {
   }
 
   // package level method for testing
-  void downloadSelectedWarcs() throws IOException {
-    // System.out.println("DEBUG: about to request " + getFileSetRequestUrl());
-    List<WasapiResponse> wasapiRespList = getWasapiConn().pagedJsonQuery(getFileSetRequestUrl());
-    // System.out.println(wasapiResp.toString());
-
-    if (wasapiRespList != null && wasapiRespList.get(0) != null) {
-      WasapiCrawlSelector crawlSelector = new WasapiCrawlSelector(wasapiRespList);
-      for (Integer crawlId : desiredCrawlIds(crawlSelector)) {
-        for (WasapiFile file : crawlSelector.getFilesForCrawl(crawlId)) {
-          // TODO:  make a separate method for downloading individual file?
-          System.out.println("We will eventually download " + file.toString());
+  @SuppressWarnings("checkstyle:MethodLength")
+  void downloadAndValidateFile(WasapiFile file) throws NoSuchAlgorithmException {
+    String fullFilePath = prepareOutputLocation(file);
+    if (fullFilePath == null) {
+      // should never get here, except in testing
+      System.err.println("fullFilePath is null - can't retrieve file");
+      return;
+    }
+    int attempts = 0;
+    boolean checksumValidated = false;
+    do {
+      attempts++;
+      try {
+        boolean downloadSuccess = getWasapiConn().downloadQuery(file.getLocations()[0], fullFilePath);
+        if (downloadSuccess && checksumValidate("md5", file, fullFilePath)) {
+          System.out.println("file retrieved successfully: " + file.getLocations()[0]);
+          checksumValidated = true; // break out of loop
         }
+      } catch (HttpResponseException e) {
+        System.err.println("ERROR: HttpResponseException (" + e.getMessage() + ") downloading file (will not retry): " + file.getLocations()[0]);
+        System.err.println(" HTTP ResponseCode was " + e.getStatusCode());
+        attempts = NUM_RETRIES + 1;  // no more attempts
+      } catch (ClientProtocolException e) {
+        System.err.println("ERROR: ClientProtocolException (" + e.getMessage() + ") downloading file (will not retry): " + file.getLocations()[0]);
+        attempts = NUM_RETRIES + 1;  // no more attempts
+      } catch (IOException e) {
+        // swallow exception and try again - it may be a network issue
+        System.err.println("WARNING: exception downloading file (will retry): " + file.getLocations()[0]);
+        e.printStackTrace(System.err);
       }
+    } while (attempts <= NUM_RETRIES && !checksumValidated);
+
+    if (attempts == NUM_RETRIES + 1) // RE-tries, not number of attempts
+      System.err.println("file not retrieved or unable to validate checksum: " + file.getLocations()[0]);
+  }
+
+  // package level method for testing
+  String prepareOutputLocation(WasapiFile file) {
+    String outputPath = settings.outputBaseDir() + "AIT_" + file.getCollectionId() + SEP + file.getCrawlId() + SEP + file.getCrawlStartDateStr();
+    new File(outputPath).mkdirs();
+    return outputPath + SEP + file.getFilename();
+  }
+
+  // package level method for testing
+  boolean checksumValidate(String algorithm, WasapiFile file, String fullFilePath) throws NoSuchAlgorithmException, IOException {
+    // TODO:  use setting to decide md5 vs sha1 (see wasapi-downloader#92 in github)
+    String checksum = file.getChecksums().get(algorithm);
+    if (checksum == null) {
+      System.err.println("No checksum of type: " + algorithm + " available: " + file.getChecksums().toString());
+      return false;
+    }
+
+    if ("md5".equals(algorithm))
+      return WasapiValidator.validateMd5(checksum, fullFilePath);
+    else if ("sha1".equals(algorithm))
+      return WasapiValidator.validateSha1(checksum, fullFilePath);
+    else {
+      System.err.println("Unsupported checksum algorithm: " + algorithm + ".  Options are 'md5' or 'sha1'");
+      return false;
     }
   }
 
@@ -95,7 +166,7 @@ public class WasapiDownloader {
   }
 
   @SuppressWarnings("checkstyle:UncommentedMain")
-  public static void main(String[] args) throws SettingsLoadException, IOException {
+  public static void main(String[] args) throws SettingsLoadException, IOException, NoSuchAlgorithmException {
     WasapiDownloader downloader = new WasapiDownloader(SETTINGS_FILE_LOCATION, args);
     downloader.executeFromCmdLine();
   }
