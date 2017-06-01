@@ -45,6 +45,7 @@ public class WasapiDownloaderSettings {
   public static final String FILENAME_PARAM_NAME = "filename";
   public static final String OUTPUT_BASE_DIR_PARAM_NAME = "outputBaseDir";
   public static final String PASSWORD_PARAM_NAME = "password";
+  public static final String RETRIES_PARAM_NAME = "retries";
   public static final String USERNAME_PARAM_NAME = "username";
 
   protected PrintStream errStream = System.err;
@@ -68,6 +69,7 @@ public class WasapiDownloaderSettings {
     buildArgOption(FILENAME_PARAM_NAME, "name of single file to download"),
     buildArgOption(OUTPUT_BASE_DIR_PARAM_NAME, "destination directory for downloaded files (expects ending slash)"),
     buildArgOption(PASSWORD_PARAM_NAME, "password for WASAPI server login"),
+    buildArgOption(RETRIES_PARAM_NAME, "how many times to retry a download for each file (retries + 1 = total tries)"),
     buildArgOption(USERNAME_PARAM_NAME, "username for WASAPI server login")
   };
 
@@ -151,6 +153,10 @@ public class WasapiDownloaderSettings {
     return settings.getProperty(PASSWORD_PARAM_NAME);
   }
 
+  public String retries() {
+    return settings.getProperty(RETRIES_PARAM_NAME);
+  }
+
   public String username() {
     return settings.getProperty(USERNAME_PARAM_NAME);
   }
@@ -202,6 +208,8 @@ public class WasapiDownloaderSettings {
       errMessages.add(OUTPUT_BASE_DIR_PARAM_NAME + " is required (and must be an extant, writable directory)");
     if (isNullOrEmpty(checksumAlgorithm()) || !("md5".equals(checksumAlgorithm())) || "sha1".equals(checksumAlgorithm()))
       errMessages.add(CHECKSUM_ALGORITHM_PARAM_NAME + " is required and must be md5 or sha1");
+    if (isNullOrEmpty(retries()) || !intValidator.isValid(retries()) || !intValidator.minValue(Integer.valueOf(retries()), 0))
+      errMessages.add(RETRIES_PARAM_NAME + " is required and must be an integer >= 0");
 
     // optional, validate if specified
     if (!isNullOrEmpty(accountId()) && !intValidator.isValid(accountId()))

@@ -15,9 +15,6 @@ public class WasapiDownloader {
   public static final String SETTINGS_FILE_LOCATION = "config/settings.properties";
   private static final char SEP = File.separatorChar;
 
-  // TODO:  use setting (see wasapi-downloader#93 in github)
-  public static final int NUM_RETRIES = 3;
-
   public WasapiDownloaderSettings settings;
 
   private WasapiConnection wasapiConn;
@@ -68,6 +65,7 @@ public class WasapiDownloader {
       System.err.println("fullFilePath is null - can't retrieve file");
       return;
     }
+    int numRetries = Integer.parseInt(settings.retries());
     int attempts = 0;
     boolean checksumValidated = false;
     do {
@@ -82,19 +80,19 @@ public class WasapiDownloader {
         String prefix = "ERROR: HttpResponseException (" + e.getMessage() + ") downloading file (will not retry): ";
         System.err.println(prefix + file.getLocations()[0]);
         System.err.println(" HTTP ResponseCode was " + e.getStatusCode());
-        attempts = NUM_RETRIES + 1;  // no more attempts
+        attempts = numRetries + 1;  // no more attempts
       } catch (ClientProtocolException e) {
         String prefix = "ERROR: ClientProtocolException (" + e.getMessage() + ") downloading file (will not retry): ";
         System.err.println(prefix + file.getLocations()[0]);
-        attempts = NUM_RETRIES + 1;  // no more attempts
+        attempts = numRetries + 1;  // no more attempts
       } catch (IOException e) {
         // swallow exception and try again - it may be a network issue
         System.err.println("WARNING: exception downloading file (will retry): " + file.getLocations()[0]);
         e.printStackTrace(System.err);
       }
-    } while (attempts <= NUM_RETRIES && !checksumValidated);
+    } while (attempts <= numRetries && !checksumValidated);
 
-    if (attempts == NUM_RETRIES + 1) // RE-tries, not number of attempts
+    if (attempts == numRetries + 1) // RE-tries, not number of attempts
       System.err.println("file not retrieved or unable to validate checksum: " + file.getLocations()[0]);
   }
 

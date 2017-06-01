@@ -36,6 +36,8 @@ public class TestWasapiDownloaderSettings {
     assertEquals("accountId value should have come from settings file", settings.accountId(), "1");
     assertEquals("outputBaseDir value should have come from settings file", settings.outputBaseDir(), "test/outputBaseDir/");
     assertEquals("checksumAlgorithm value should have come from settings file", settings.checksumAlgorithm(), "md5");
+    assertEquals("retries value should have come from settings file", settings.retries(), "3");
+
     assertEquals("collectionId value should have come from args", settings.collectionId(), "123");
     assertEquals("crawlId value should have come from args", settings.crawlId(), "456");
     assertEquals("crawlStartAfter value should have come from args", settings.crawlStartAfter(), "2014-03-14");
@@ -44,7 +46,7 @@ public class TestWasapiDownloaderSettings {
   }
 
   @Test
-  @SuppressWarnings({"checkstyle:NoWhitespaceAfter", "checkstyle:MethodLength"})
+  @SuppressWarnings({"checkstyle:NoWhitespaceAfter", "checkstyle:MethodLength", "checkstyle:ExecutableStatementCount"})
   public void getHelpAndSettingsMessage_containsUsageAndSettingsInfo() throws SettingsLoadException {
     //TODO: if settings validation flags possibly nonsensical/redundant combos like crawlId and crawlIdLowerBound,
     // then this test might have to be broken up a bit.
@@ -69,6 +71,7 @@ public class TestWasapiDownloaderSettings {
     assertThat("helpAndSettingsMsg lists filename arg", helpAndSettingsMsg, containsString("--filename <arg>"));
     assertThat("helpAndSettingsMsg lists help flag", helpAndSettingsMsg, containsString("-h,--help"));
     assertThat("helpAndSettingsMsg lists password arg", helpAndSettingsMsg, containsString("--password <arg>"));
+    assertThat("helpAndSettingsMsg lists retries arg", helpAndSettingsMsg, containsString("--retries <arg>"));
     assertThat("helpAndSettingsMsg lists username arg", helpAndSettingsMsg, containsString("--username <arg>"));
 
     // values
@@ -84,6 +87,7 @@ public class TestWasapiDownloaderSettings {
     assertThat("helpAndSettingsMsg lists filename value", helpAndSettingsMsg, containsString("filename : filename.warc.gz"));
     assertThat("helpAndSettingsMsg lists help flag value", helpAndSettingsMsg, containsString("help : true"));
     assertThat("helpAndSettingsMsg hides password value", helpAndSettingsMsg, containsString("password : [password hidden]"));
+    assertThat("helpAndSettingsMsg lists retries value", helpAndSettingsMsg, containsString("retries : 3"));
     assertThat("helpAndSettingsMsg lists username value", helpAndSettingsMsg, containsString("username : user"));
   }
 
@@ -157,6 +161,7 @@ public class TestWasapiDownloaderSettings {
     internalSettings.setProperty(WasapiDownloaderSettings.CRAWL_START_BEFORE_PARAM_NAME, "01/01/2001");
     internalSettings.setProperty(WasapiDownloaderSettings.OUTPUT_BASE_DIR_PARAM_NAME, "does/not/exist");
     internalSettings.setProperty(WasapiDownloaderSettings.PASSWORD_PARAM_NAME, "");
+    internalSettings.setProperty(WasapiDownloaderSettings.RETRIES_PARAM_NAME, "-1");
     internalSettings.setProperty(WasapiDownloaderSettings.USERNAME_PARAM_NAME, "");
 
     List<String> errMsgs = wdSettings.getSettingsErrorMessages();
@@ -171,6 +176,7 @@ public class TestWasapiDownloaderSettings {
     assertThat("error messages has entry for invalid crawlStartBefore", errMsgs, hasItem("crawlStartBefore must be a valid ISO 8601 date string (if specified)"));
     assertThat("error messages has entry for invalid outputBaseDir", errMsgs, hasItem("outputBaseDir is required (and must be an extant, writable directory)"));
     assertThat("error messages has entry for invalid password", errMsgs, hasItem("password is required"));
+    assertThat("error messages has entry for invalid retries", errMsgs, hasItem("retries is required and must be an integer >= 0"));
     assertThat("error messages has entry for invalid username", errMsgs, hasItem("username is required"));
   }
 

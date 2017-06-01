@@ -128,7 +128,7 @@ public class TestWasapiDownloader_DownloadAndValidateFile {
     Mockito.doReturn(true).when(downloaderSpy).checksumValidate(defaultSettings().checksumAlgorithm(), wfile, fullFilePath);
 
     downloaderSpy.downloadAndValidateFile(wfile);
-    verify(mockConn, times(WasapiDownloader.NUM_RETRIES + 1)).downloadQuery(firstLocation, fullFilePath);
+    verify(mockConn, times(defaultNumRetries() + 1)).downloadQuery(firstLocation, fullFilePath);
     verify(downloaderSpy, times(1)).checksumValidate(defaultSettings().checksumAlgorithm(), wfile, fullFilePath);
   }
 
@@ -149,8 +149,8 @@ public class TestWasapiDownloader_DownloadAndValidateFile {
     Mockito.doReturn(false, false, false, true).when(downloaderSpy).checksumValidate(defaultSettings().checksumAlgorithm(), wfile, fullFilePath);
 
     downloaderSpy.downloadAndValidateFile(wfile);
-    verify(mockConn, times(WasapiDownloader.NUM_RETRIES + 1)).downloadQuery(firstLocation, fullFilePath);
-    verify(downloaderSpy, times(WasapiDownloader.NUM_RETRIES + 1)).checksumValidate(defaultSettings().checksumAlgorithm(), wfile, fullFilePath);
+    verify(mockConn, times(defaultNumRetries() + 1)).downloadQuery(firstLocation, fullFilePath);
+    verify(downloaderSpy, times(defaultNumRetries() + 1)).checksumValidate(defaultSettings().checksumAlgorithm(), wfile, fullFilePath);
   }
 
   @Test
@@ -194,7 +194,7 @@ public class TestWasapiDownloader_DownloadAndValidateFile {
     System.setErr(new PrintStream(errContent));
 
     downloaderSpy.downloadAndValidateFile(wfile);
-    verify(mockConn, times(WasapiDownloader.NUM_RETRIES + 1)).downloadQuery(firstLocation, fullFilePath);
+    verify(mockConn, times(defaultNumRetries() + 1)).downloadQuery(firstLocation, fullFilePath);
     verify(downloaderSpy, never()).checksumValidate(defaultSettings().checksumAlgorithm(), wfile, fullFilePath);
     assertEquals("Wrong SYSERR output", "file not retrieved or unable to validate checksum: " + firstLocation + "\n", errContent.toString());
   }
@@ -219,8 +219,8 @@ public class TestWasapiDownloader_DownloadAndValidateFile {
     System.setErr(new PrintStream(errContent));
 
     downloaderSpy.downloadAndValidateFile(wfile);
-    verify(mockConn, times(WasapiDownloader.NUM_RETRIES + 1)).downloadQuery(firstLocation, fullFilePath);
-    verify(downloaderSpy, times(WasapiDownloader.NUM_RETRIES + 1)).checksumValidate(defaultSettings().checksumAlgorithm(), wfile, fullFilePath);
+    verify(mockConn, times(defaultNumRetries() + 1)).downloadQuery(firstLocation, fullFilePath);
+    verify(downloaderSpy, times(defaultNumRetries() + 1)).checksumValidate(defaultSettings().checksumAlgorithm(), wfile, fullFilePath);
     assertEquals("Wrong SYSERR output", "file not retrieved or unable to validate checksum: " + firstLocation + "\n", errContent.toString());
   }
 
@@ -299,7 +299,7 @@ public class TestWasapiDownloader_DownloadAndValidateFile {
     System.setErr(new PrintStream(errContent));
 
     downloaderSpy.downloadAndValidateFile(wfile);
-    verify(mockConn, times(WasapiDownloader.NUM_RETRIES + 1)).downloadQuery(firstLocation, fullFilePath);
+    verify(mockConn, times(defaultNumRetries() + 1)).downloadQuery(firstLocation, fullFilePath);
     verify(downloaderSpy, never()).checksumValidate(defaultSettings().checksumAlgorithm(), wfile, fullFilePath);
     String expected = "WARNING: exception downloading file (will retry): " + firstLocation;
     assertThat("SYSERR should indicate IOException", errContent.toString(), StringStartsWith.startsWith(expected));
@@ -308,5 +308,9 @@ public class TestWasapiDownloader_DownloadAndValidateFile {
 
   private WasapiDownloaderSettings defaultSettings() throws SettingsLoadException {
     return new WasapiDownloaderSettings(WasapiDownloader.SETTINGS_FILE_LOCATION, null);
+  }
+
+  private int defaultNumRetries() throws NumberFormatException, SettingsLoadException {
+    return Integer.valueOf(defaultSettings().retries());
   }
 }
