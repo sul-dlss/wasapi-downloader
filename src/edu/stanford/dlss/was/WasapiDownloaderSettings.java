@@ -45,6 +45,7 @@ public class WasapiDownloaderSettings {
   public static final String JOB_ID_LOWER_BOUND_PARAM_NAME = "jobIdLowerBound";
   public static final String OUTPUT_BASE_DIR_PARAM_NAME = "outputBaseDir";
   public static final String FILENAME_PARAM_NAME = "filename";
+  public static final String CHECKSUM_ALGORITHM_PARAM_NAME = "checksumAlgorithm";
 
   protected PrintStream errStream = System.err;
   protected Properties settings;
@@ -66,7 +67,8 @@ public class WasapiDownloaderSettings {
     buildArgOption(CRAWL_START_BEFORE_PARAM_NAME, "only download crawl files created before this date"),
     buildArgOption(JOB_ID_LOWER_BOUND_PARAM_NAME, "\"last crawl downloaded\": only download crawl files with a higher job ID (not inclusive)"),
     buildArgOption(OUTPUT_BASE_DIR_PARAM_NAME, "destination directory for downloaded WARC files"),
-    buildArgOption(FILENAME_PARAM_NAME, "single filename to download")
+    buildArgOption(FILENAME_PARAM_NAME, "single filename to download"),
+    buildArgOption(CHECKSUM_ALGORITHM_PARAM_NAME, "checksum algorithm to use (either md5 or sha1")
   };
 
   static {
@@ -149,6 +151,10 @@ public class WasapiDownloaderSettings {
     return settings.getProperty(FILENAME_PARAM_NAME);
   }
 
+  public String checksumAlgorithm() {
+    return settings.getProperty(CHECKSUM_ALGORITHM_PARAM_NAME);
+  }
+
   public String getHelpAndSettingsMessage() {
     if (helpAndSettingsMessage == null)
       helpAndSettingsMessage = new StringBuilder(getCliHelpMessageCharSeq()).append(getSettingsSummaryCharSeq()).toString();
@@ -156,6 +162,7 @@ public class WasapiDownloaderSettings {
     return helpAndSettingsMessage;
   }
 
+  @Override
   public String toString() {
     return getHelpAndSettingsMessage();
   }
@@ -192,6 +199,8 @@ public class WasapiDownloaderSettings {
       errMessages.add(PASSWORD_PARAM_NAME + " is required");
     if (isNullOrEmpty(outputBaseDir()) || !isDirWritable(outputBaseDir()))
       errMessages.add(OUTPUT_BASE_DIR_PARAM_NAME + " is required (and must be an extant, writable directory)");
+    if (isNullOrEmpty(checksumAlgorithm()) || !("md5".equals(checksumAlgorithm())) || "sha1".equals(checksumAlgorithm()))
+      errMessages.add(CHECKSUM_ALGORITHM_PARAM_NAME + " is required and must be md5 or sha1");
 
     // optional, validate if specified
     if (!isNullOrEmpty(accountId()) && !intValidator.isValid(accountId()))

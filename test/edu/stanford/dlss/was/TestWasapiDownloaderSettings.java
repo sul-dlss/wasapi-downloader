@@ -12,7 +12,6 @@ import org.apache.commons.cli.ParseException;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
 import org.junit.*;
 import org.powermock.api.mockito.PowerMockito;
 
@@ -36,6 +35,7 @@ public class TestWasapiDownloaderSettings {
     assertEquals("password value should have come from settings file", settings.password(), "pass");
     assertEquals("accountId value should have come from settings file", settings.accountId(), "1");
     assertEquals("outputBaseDir value should have come from settings file", settings.outputBaseDir(), "test/outputBaseDir/");
+    assertEquals("checksumAlgorithm value should have come from settings file", settings.checksumAlgorithm(), "md5");
     assertEquals("collectionId value should have come from args", settings.collectionId(), "123");
     assertEquals("jobId value should have come from args", settings.jobId(), "456");
     assertEquals("crawlStartAfter value should have come from args", settings.crawlStartAfter(), "2014-03-14");
@@ -67,6 +67,7 @@ public class TestWasapiDownloaderSettings {
     assertThat("helpAndSettingsMsg lists jobId arg", helpAndSettingsMsg, containsString("--jobId <arg>"));
     assertThat("helpAndSettingsMsg lists jobIdLowerBound arg", helpAndSettingsMsg, containsString("--jobIdLowerBound <arg>"));
     assertThat("helpAndSettingsMsg lists filename arg", helpAndSettingsMsg, containsString("--filename <arg>"));
+    assertThat("helpAndSettingsMsg lists checksumAlgorithm arg", helpAndSettingsMsg, containsString("--checksumAlgorithm <arg>"));
 
     assertThat("helpAndSettingsMsg hides password value", helpAndSettingsMsg, containsString("password : [password hidden]"));
     assertThat("helpAndSettingsMsg lists crawlStartAfter value", helpAndSettingsMsg, containsString("crawlStartAfter : 2014-03-14"));
@@ -80,6 +81,7 @@ public class TestWasapiDownloaderSettings {
     assertThat("helpAndSettingsMsg lists username value", helpAndSettingsMsg, containsString("username : user"));
     assertThat("helpAndSettingsMsg lists accountId value", helpAndSettingsMsg, containsString("accountId : 1"));
     assertThat("helpAndSettingsMsg lists filename value", helpAndSettingsMsg, containsString("filename : filename.warc.gz"));
+    assertThat("helpAndSettingsMsg lists checksumAlgorithm value", helpAndSettingsMsg, containsString("checksumAlgorithm : md5"));
   }
 
   @Test
@@ -152,6 +154,7 @@ public class TestWasapiDownloaderSettings {
     internalSettings.setProperty(WasapiDownloaderSettings.JOB_ID_LOWER_BOUND_PARAM_NAME, "c3");
     internalSettings.setProperty(WasapiDownloaderSettings.CRAWL_START_BEFORE_PARAM_NAME, "01/01/2001");
     internalSettings.setProperty(WasapiDownloaderSettings.CRAWL_START_AFTER_PARAM_NAME, "12/31/2010");
+    internalSettings.setProperty(WasapiDownloaderSettings.CHECKSUM_ALGORITHM_PARAM_NAME, "foo");
 
     List<String> errMsgs = wdSettings.getSettingsErrorMessages();
     assertThat("error messages has entry for invalid base URL", errMsgs, hasItem("baseurl is required, and must be a valid URL"));
@@ -165,6 +168,7 @@ public class TestWasapiDownloaderSettings {
     assertThat("error messages has entry for invalid crawlStartBefore", errMsgs, hasItem("crawlStartBefore must be a valid ISO 8601 date string (if specified)"));
     assertThat("error messages has entry for invalid crawlStartAfter", errMsgs, hasItem("crawlStartAfter must be a valid ISO 8601 date string (if specified)"));
     assertThat("error messages has entry for invalid jobIdLowerBound", errMsgs, hasItem("jobIdLowerBound must be an integer (if specified)"));
+    assertThat("error messages has entry for invalid checksumAlgorithm", errMsgs, hasItem("checksumAlgorithm is required and must be md5 or sha1"));
   }
 
   @Test
