@@ -32,20 +32,20 @@ public class WasapiDownloaderSettings {
   // * add an accessor method (preferably with a name corresponding to the setting name)
   // * add the appropriate validation in getSettingsErrorMessages()
   // * add tests to make sure it: shows up in usage info and settings dump; is checked for validity; has a value in example settings, if applicable
-  public static final String BASE_URL_PARAM_NAME = "baseurl";
-  public static final String AUTH_URL_PARAM_NAME = "authurl";
-  public static final String USERNAME_PARAM_NAME = "username";
-  public static final String PASSWORD_PARAM_NAME = "password";
-  public static final String ACCCOUNT_ID_PARAM_NAME = "accountId";
   public static final String HELP_PARAM_NAME = "help";
+  public static final String ACCCOUNT_ID_PARAM_NAME = "accountId";
+  public static final String AUTH_URL_PARAM_NAME = "authurl";
+  public static final String BASE_URL_PARAM_NAME = "baseurl";
+  public static final String CHECKSUM_ALGORITHM_PARAM_NAME = "checksumAlgorithm";
   public static final String COLLECTION_ID_PARAM_NAME = "collectionId";
   public static final String CRAWL_ID_PARAM_NAME = "crawlId";
+  public static final String CRAWL_ID_LOWER_BOUND_PARAM_NAME = "crawlIdLowerBound";
   public static final String CRAWL_START_AFTER_PARAM_NAME = "crawlStartAfter";
   public static final String CRAWL_START_BEFORE_PARAM_NAME = "crawlStartBefore";
-  public static final String CRAWL_ID_LOWER_BOUND_PARAM_NAME = "crawlIdLowerBound";
-  public static final String OUTPUT_BASE_DIR_PARAM_NAME = "outputBaseDir";
   public static final String FILENAME_PARAM_NAME = "filename";
-  public static final String CHECKSUM_ALGORITHM_PARAM_NAME = "checksumAlgorithm";
+  public static final String OUTPUT_BASE_DIR_PARAM_NAME = "outputBaseDir";
+  public static final String PASSWORD_PARAM_NAME = "password";
+  public static final String USERNAME_PARAM_NAME = "username";
 
   protected PrintStream errStream = System.err;
   protected Properties settings;
@@ -55,20 +55,20 @@ public class WasapiDownloaderSettings {
   private String helpAndSettingsMessage;
 
   private static Option[] optList = {
-    Option.builder("h").longOpt(HELP_PARAM_NAME).desc("print this message (which describes expected arguments and dumps current config)").build(),
-    buildArgOption(BASE_URL_PARAM_NAME, "the base URL of the WASAPI server from which to pull WARC files"),
-    buildArgOption(AUTH_URL_PARAM_NAME, "the WASAPI server URL at which login credentials are passed"),
-    buildArgOption(USERNAME_PARAM_NAME, "the username for WASAPI server login"),
-    buildArgOption(PASSWORD_PARAM_NAME, "the password for WASAPI server login"),
-    buildArgOption(ACCCOUNT_ID_PARAM_NAME, "the ID for the account from which WARC files are downloaded"),
-    buildArgOption(COLLECTION_ID_PARAM_NAME, "a collection from which to download crawl files"),
-    buildArgOption(CRAWL_ID_PARAM_NAME, "crawl id from which to download files"),
-    buildArgOption(CRAWL_START_AFTER_PARAM_NAME, "only download crawl files created after this date"),
-    buildArgOption(CRAWL_START_BEFORE_PARAM_NAME, "only download crawl files created before this date"),
-    buildArgOption(CRAWL_ID_LOWER_BOUND_PARAM_NAME, "\"last crawl downloaded\": only download crawl files with a higher crawl ID (not inclusive)"),
-    buildArgOption(OUTPUT_BASE_DIR_PARAM_NAME, "destination directory for downloaded WARC files"),
-    buildArgOption(FILENAME_PARAM_NAME, "single filename to download"),
-    buildArgOption(CHECKSUM_ALGORITHM_PARAM_NAME, "checksum algorithm to use (either md5 or sha1")
+    Option.builder("h").longOpt(HELP_PARAM_NAME).desc("print this message describing arguments and current configuration)").build(),
+    buildArgOption(ACCCOUNT_ID_PARAM_NAME, "limit files to this account (e.g. when multiple accounts per username)"),
+    buildArgOption(AUTH_URL_PARAM_NAME, "WASAPI server URL for login credentials"),
+    buildArgOption(BASE_URL_PARAM_NAME, "base URL of WASAPI server (expects ending slash)"),
+    buildArgOption(CHECKSUM_ALGORITHM_PARAM_NAME, "checksum algorithm to use (md5 or sha1"),
+    buildArgOption(COLLECTION_ID_PARAM_NAME, "limit files to this collection"),
+    buildArgOption(CRAWL_ID_PARAM_NAME, "limit files to this crawl id"),
+    buildArgOption(CRAWL_ID_LOWER_BOUND_PARAM_NAME, "\"last crawl downloaded\": limit files to crawls with a higher crawl ID (not inclusive)"),
+    buildArgOption(CRAWL_START_AFTER_PARAM_NAME, "limit files to crawls started after this date"),
+    buildArgOption(CRAWL_START_BEFORE_PARAM_NAME, "limit files to crawls started before this date"),
+    buildArgOption(FILENAME_PARAM_NAME, "name of single file to download"),
+    buildArgOption(OUTPUT_BASE_DIR_PARAM_NAME, "destination directory for downloaded files (expects ending slash)"),
+    buildArgOption(PASSWORD_PARAM_NAME, "password for WASAPI server login"),
+    buildArgOption(USERNAME_PARAM_NAME, "username for WASAPI server login")
   };
 
   static {
@@ -101,24 +101,20 @@ public class WasapiDownloaderSettings {
     return settings.getProperty(HELP_PARAM_NAME) != null;
   }
 
-  public String baseUrlString() {
-    return settings.getProperty(BASE_URL_PARAM_NAME);
+  public String accountId() {
+    return settings.getProperty(ACCCOUNT_ID_PARAM_NAME);
   }
 
   public String authUrlString() {
     return settings.getProperty(AUTH_URL_PARAM_NAME);
   }
 
-  public String username() {
-    return settings.getProperty(USERNAME_PARAM_NAME);
+  public String baseUrlString() {
+    return settings.getProperty(BASE_URL_PARAM_NAME);
   }
 
-  public String password() {
-    return settings.getProperty(PASSWORD_PARAM_NAME);
-  }
-
-  public String accountId() {
-    return settings.getProperty(ACCCOUNT_ID_PARAM_NAME);
+  public String checksumAlgorithm() {
+    return settings.getProperty(CHECKSUM_ALGORITHM_PARAM_NAME);
   }
 
   public String collectionId() {
@@ -127,6 +123,10 @@ public class WasapiDownloaderSettings {
 
   public String crawlId() {
     return settings.getProperty(CRAWL_ID_PARAM_NAME);
+  }
+
+  public String crawlIdLowerBound() {
+    return settings.getProperty(CRAWL_ID_LOWER_BOUND_PARAM_NAME);
   }
 
   // e.g. 2014-01-01, see https://github.com/WASAPI-Community/data-transfer-apis/tree/master/ait-reference-specification#paths--examples
@@ -139,21 +139,22 @@ public class WasapiDownloaderSettings {
     return settings.getProperty(CRAWL_START_BEFORE_PARAM_NAME);
   }
 
-  public String crawlIdLowerBound() {
-    return settings.getProperty(CRAWL_ID_LOWER_BOUND_PARAM_NAME);
+  public String filename() {
+    return settings.getProperty(FILENAME_PARAM_NAME);
   }
 
   public String outputBaseDir() {
     return settings.getProperty(OUTPUT_BASE_DIR_PARAM_NAME);
   }
 
-  public String filename() {
-    return settings.getProperty(FILENAME_PARAM_NAME);
+  public String password() {
+    return settings.getProperty(PASSWORD_PARAM_NAME);
   }
 
-  public String checksumAlgorithm() {
-    return settings.getProperty(CHECKSUM_ALGORITHM_PARAM_NAME);
+  public String username() {
+    return settings.getProperty(USERNAME_PARAM_NAME);
   }
+
 
   public String getHelpAndSettingsMessage() {
     if (helpAndSettingsMessage == null)

@@ -55,33 +55,36 @@ public class TestWasapiDownloaderSettings {
     String helpAndSettingsMsg = settings.getHelpAndSettingsMessage();
 
     assertThat("helpAndSettingsMsg has a usage example", helpAndSettingsMsg, containsString("usage: bin/wasapi-downloader"));
-    assertThat("helpAndSettingsMsg lists baseurl arg", helpAndSettingsMsg, containsString("--baseurl <arg>"));
-    assertThat("helpAndSettingsMsg lists authurl arg", helpAndSettingsMsg, containsString("--authurl <arg>"));
-    assertThat("helpAndSettingsMsg lists username arg", helpAndSettingsMsg, containsString("--username <arg>"));
-    assertThat("helpAndSettingsMsg lists password arg", helpAndSettingsMsg, containsString("--password <arg>"));
+
+    // allowable settings
     assertThat("helpAndSettingsMsg lists accountId arg", helpAndSettingsMsg, containsString("--accountId <arg>"));
+    assertThat("helpAndSettingsMsg lists authurl arg", helpAndSettingsMsg, containsString("--authurl <arg>"));
+    assertThat("helpAndSettingsMsg lists baseurl arg", helpAndSettingsMsg, containsString("--baseurl <arg>"));
+    assertThat("helpAndSettingsMsg lists checksumAlgorithm arg", helpAndSettingsMsg, containsString("--checksumAlgorithm <arg>"));
     assertThat("helpAndSettingsMsg lists collectionId arg", helpAndSettingsMsg, containsString("--collectionId <arg>"));
-    assertThat("helpAndSettingsMsg lists crawlStartAfter arg", helpAndSettingsMsg, containsString("--crawlStartAfter <arg>"));
-    assertThat("helpAndSettingsMsg lists crawlStartBefore arg", helpAndSettingsMsg, containsString("--crawlStartBefore <arg>"));
-    assertThat("helpAndSettingsMsg lists help flag", helpAndSettingsMsg, containsString("-h,--help"));
     assertThat("helpAndSettingsMsg lists crawlId arg", helpAndSettingsMsg, containsString("--crawlId <arg>"));
     assertThat("helpAndSettingsMsg lists crawlIdLowerBound arg", helpAndSettingsMsg, containsString("--crawlIdLowerBound <arg>"));
+    assertThat("helpAndSettingsMsg lists crawlStartAfter arg", helpAndSettingsMsg, containsString("--crawlStartAfter <arg>"));
+    assertThat("helpAndSettingsMsg lists crawlStartBefore arg", helpAndSettingsMsg, containsString("--crawlStartBefore <arg>"));
     assertThat("helpAndSettingsMsg lists filename arg", helpAndSettingsMsg, containsString("--filename <arg>"));
-    assertThat("helpAndSettingsMsg lists checksumAlgorithm arg", helpAndSettingsMsg, containsString("--checksumAlgorithm <arg>"));
+    assertThat("helpAndSettingsMsg lists help flag", helpAndSettingsMsg, containsString("-h,--help"));
+    assertThat("helpAndSettingsMsg lists password arg", helpAndSettingsMsg, containsString("--password <arg>"));
+    assertThat("helpAndSettingsMsg lists username arg", helpAndSettingsMsg, containsString("--username <arg>"));
 
-    assertThat("helpAndSettingsMsg hides password value", helpAndSettingsMsg, containsString("password : [password hidden]"));
+    // values
+    assertThat("helpAndSettingsMsg lists accountId value", helpAndSettingsMsg, containsString("accountId : 1"));
+    assertThat("helpAndSettingsMsg lists authurl value", helpAndSettingsMsg, containsString("authurl : https://example.org/login"));
+    assertThat("helpAndSettingsMsg lists baseurl value", helpAndSettingsMsg, containsString("baseurl : https://example.org"));
+    assertThat("helpAndSettingsMsg lists checksumAlgorithm value", helpAndSettingsMsg, containsString("checksumAlgorithm : md5"));
+    assertThat("helpAndSettingsMsg lists collectionId value", helpAndSettingsMsg, containsString("collectionId : 123"));
+    assertThat("helpAndSettingsMsg lists crawlId value", helpAndSettingsMsg, containsString("crawlId : 456"));
+    assertThat("helpAndSettingsMsg lists crawlIdLowerBound value", helpAndSettingsMsg, containsString("crawlIdLowerBound : 400"));
     assertThat("helpAndSettingsMsg lists crawlStartAfter value", helpAndSettingsMsg, containsString("crawlStartAfter : 2014-03-14"));
     assertThat("helpAndSettingsMsg lists crawlStartBefore value", helpAndSettingsMsg, containsString("crawlStartBefore : 2017-03-14"));
-    assertThat("helpAndSettingsMsg lists crawlIdLowerBound value", helpAndSettingsMsg, containsString("crawlIdLowerBound : 400"));
-    assertThat("helpAndSettingsMsg lists help flag value", helpAndSettingsMsg, containsString("help : true"));
-    assertThat("helpAndSettingsMsg lists crawlId value", helpAndSettingsMsg, containsString("crawlId : 456"));
-    assertThat("helpAndSettingsMsg lists collectionId value", helpAndSettingsMsg, containsString("collectionId : 123"));
-    assertThat("helpAndSettingsMsg lists baseurl value", helpAndSettingsMsg, containsString("baseurl : https://example.org"));
-    assertThat("helpAndSettingsMsg lists authurl value", helpAndSettingsMsg, containsString("authurl : https://example.org/login"));
-    assertThat("helpAndSettingsMsg lists username value", helpAndSettingsMsg, containsString("username : user"));
-    assertThat("helpAndSettingsMsg lists accountId value", helpAndSettingsMsg, containsString("accountId : 1"));
     assertThat("helpAndSettingsMsg lists filename value", helpAndSettingsMsg, containsString("filename : filename.warc.gz"));
-    assertThat("helpAndSettingsMsg lists checksumAlgorithm value", helpAndSettingsMsg, containsString("checksumAlgorithm : md5"));
+    assertThat("helpAndSettingsMsg lists help flag value", helpAndSettingsMsg, containsString("help : true"));
+    assertThat("helpAndSettingsMsg hides password value", helpAndSettingsMsg, containsString("password : [password hidden]"));
+    assertThat("helpAndSettingsMsg lists username value", helpAndSettingsMsg, containsString("username : user"));
   }
 
   @Test
@@ -143,32 +146,32 @@ public class TestWasapiDownloaderSettings {
 
     Properties internalSettings = new Properties();
     wdSettings.settings = internalSettings;
-    internalSettings.setProperty(WasapiDownloaderSettings.BASE_URL_PARAM_NAME, "ftp://foo.org");
-    internalSettings.setProperty(WasapiDownloaderSettings.AUTH_URL_PARAM_NAME, "http://foo.com/auth");
-    internalSettings.setProperty(WasapiDownloaderSettings.USERNAME_PARAM_NAME, "");
-    internalSettings.setProperty(WasapiDownloaderSettings.PASSWORD_PARAM_NAME, "");
     internalSettings.setProperty(WasapiDownloaderSettings.ACCCOUNT_ID_PARAM_NAME, "z26");
-    internalSettings.setProperty(WasapiDownloaderSettings.OUTPUT_BASE_DIR_PARAM_NAME, "does/not/exist");
+    internalSettings.setProperty(WasapiDownloaderSettings.AUTH_URL_PARAM_NAME, "http://foo.com/auth");
+    internalSettings.setProperty(WasapiDownloaderSettings.BASE_URL_PARAM_NAME, "ftp://foo.org");
+    internalSettings.setProperty(WasapiDownloaderSettings.CHECKSUM_ALGORITHM_PARAM_NAME, "foo");
     internalSettings.setProperty(WasapiDownloaderSettings.COLLECTION_ID_PARAM_NAME, "a1");
     internalSettings.setProperty(WasapiDownloaderSettings.CRAWL_ID_PARAM_NAME, "b2");
     internalSettings.setProperty(WasapiDownloaderSettings.CRAWL_ID_LOWER_BOUND_PARAM_NAME, "c3");
-    internalSettings.setProperty(WasapiDownloaderSettings.CRAWL_START_BEFORE_PARAM_NAME, "01/01/2001");
     internalSettings.setProperty(WasapiDownloaderSettings.CRAWL_START_AFTER_PARAM_NAME, "12/31/2010");
-    internalSettings.setProperty(WasapiDownloaderSettings.CHECKSUM_ALGORITHM_PARAM_NAME, "foo");
+    internalSettings.setProperty(WasapiDownloaderSettings.CRAWL_START_BEFORE_PARAM_NAME, "01/01/2001");
+    internalSettings.setProperty(WasapiDownloaderSettings.OUTPUT_BASE_DIR_PARAM_NAME, "does/not/exist");
+    internalSettings.setProperty(WasapiDownloaderSettings.PASSWORD_PARAM_NAME, "");
+    internalSettings.setProperty(WasapiDownloaderSettings.USERNAME_PARAM_NAME, "");
 
     List<String> errMsgs = wdSettings.getSettingsErrorMessages();
-    assertThat("error messages has entry for invalid base URL", errMsgs, hasItem("baseurl is required, and must be a valid URL"));
-    assertThat("error messages has entry for invalid auth URL", errMsgs, hasItem("authurl is required, and must be a valid URL"));
-    assertThat("error messages has entry for invalid username", errMsgs, hasItem("username is required"));
-    assertThat("error messages has entry for invalid password", errMsgs, hasItem("password is required"));
     assertThat("error messages has entry for invalid account ID", errMsgs, hasItem("accountId must be an integer (if specified)"));
-    assertThat("error messages has entry for invalid outputBaseDir", errMsgs, hasItem("outputBaseDir is required (and must be an extant, writable directory)"));
+    assertThat("error messages has entry for invalid auth URL", errMsgs, hasItem("authurl is required, and must be a valid URL"));
+    assertThat("error messages has entry for invalid base URL", errMsgs, hasItem("baseurl is required, and must be a valid URL"));
+    assertThat("error messages has entry for invalid checksumAlgorithm", errMsgs, hasItem("checksumAlgorithm is required and must be md5 or sha1"));
     assertThat("error messages has entry for invalid collectionId", errMsgs, hasItem("collectionId must be an integer (if specified)"));
     assertThat("error messages has entry for invalid crawlId", errMsgs, hasItem("crawlId must be an integer (if specified)"));
-    assertThat("error messages has entry for invalid crawlStartBefore", errMsgs, hasItem("crawlStartBefore must be a valid ISO 8601 date string (if specified)"));
-    assertThat("error messages has entry for invalid crawlStartAfter", errMsgs, hasItem("crawlStartAfter must be a valid ISO 8601 date string (if specified)"));
     assertThat("error messages has entry for invalid crawlIdLowerBound", errMsgs, hasItem("crawlIdLowerBound must be an integer (if specified)"));
-    assertThat("error messages has entry for invalid checksumAlgorithm", errMsgs, hasItem("checksumAlgorithm is required and must be md5 or sha1"));
+    assertThat("error messages has entry for invalid crawlStartAfter", errMsgs, hasItem("crawlStartAfter must be a valid ISO 8601 date string (if specified)"));
+    assertThat("error messages has entry for invalid crawlStartBefore", errMsgs, hasItem("crawlStartBefore must be a valid ISO 8601 date string (if specified)"));
+    assertThat("error messages has entry for invalid outputBaseDir", errMsgs, hasItem("outputBaseDir is required (and must be an extant, writable directory)"));
+    assertThat("error messages has entry for invalid password", errMsgs, hasItem("password is required"));
+    assertThat("error messages has entry for invalid username", errMsgs, hasItem("username is required"));
   }
 
   @Test
