@@ -42,6 +42,6 @@ public class TestJsonResponseHandler {
     Mockito.when(mockEntity.getContent()).thenReturn(new FileInputStream(new File(FIXTURE_FILE)));
 
     WasapiResponse parsedResponse = handler.handleResponse(mockResponse);
-    assertEquals(parsedResponse.getCount(), 5);
+    assertEquals("parsed response count value wrong", 5, parsedResponse.getCount());
   }
 }

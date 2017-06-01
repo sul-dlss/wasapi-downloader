@@ -18,7 +18,7 @@ public class TestWasapiClient {
     assertNotNull(testClient.wasapiClient);
     assertNotNull(testClient.wasapiContext);
     assertNotNull(testClient.cookieStore);
-    assertEquals(testClient.settings, settings);
+    assertEquals("incorrect settings", settings, testClient.settings);
   }
 
   @Test

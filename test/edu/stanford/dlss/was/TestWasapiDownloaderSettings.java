@@ -29,19 +29,19 @@ public class TestWasapiDownloaderSettings {
     String[] args = { "-h", "--collectionId", "123", "--crawlId=456", "--crawlStartAfter", "2014-03-14", "--crawlStartBefore=2017-03-14" };
     WasapiDownloaderSettings settings = new WasapiDownloaderSettings(WasapiDownloader.SETTINGS_FILE_LOCATION, args);
 
-    assertEquals("baseurl value should have come from settings file", settings.baseUrlString(), "https://example.org/");
-    assertEquals("authurl value should have come from settings file", settings.authUrlString(), "https://example.org/login");
-    assertEquals("username value should have come from settings file", settings.username(), "user");
-    assertEquals("password value should have come from settings file", settings.password(), "pass");
-    assertEquals("accountId value should have come from settings file", settings.accountId(), "1");
-    assertEquals("outputBaseDir value should have come from settings file", settings.outputBaseDir(), "test/outputBaseDir/");
-    assertEquals("checksumAlgorithm value should have come from settings file", settings.checksumAlgorithm(), "md5");
-    assertEquals("retries value should have come from settings file", settings.retries(), "3");
+    assertEquals("baseurl value should have come from settings file", "https://example.org/", settings.baseUrlString());
+    assertEquals("authurl value should have come from settings file", "https://example.org/login", settings.authUrlString());
+    assertEquals("username value should have come from settings file", "user", settings.username());
+    assertEquals("password value should have come from settings file", "pass", settings.password());
+    assertEquals("accountId value should have come from settings file", "1", settings.accountId());
+    assertEquals("outputBaseDir value should have come from settings file", "test/outputBaseDir/", settings.outputBaseDir());
+    assertEquals("checksumAlgorithm value should have come from settings file", "md5", settings.checksumAlgorithm());
+    assertEquals("retries value should have come from settings file", "3", settings.retries());
 
-    assertEquals("collectionId value should have come from args", settings.collectionId(), "123");
-    assertEquals("crawlId value should have come from args", settings.crawlId(), "456");
-    assertEquals("crawlStartAfter value should have come from args", settings.crawlStartAfter(), "2014-03-14");
-    assertEquals("crawlStartBefore value should have come from args", settings.crawlStartBefore(), "2017-03-14");
+    assertEquals("collectionId value should have come from args", "123", settings.collectionId());
+    assertEquals("crawlId value should have come from args", "456", settings.crawlId());
+    assertEquals("crawlStartAfter value should have come from args", "2014-03-14", settings.crawlStartAfter());
+    assertEquals("crawlStartBefore value should have come from args", "2017-03-14", settings.crawlStartBefore());
     assertTrue("shouldDisplayHelp value should have come from args", settings.shouldDisplayHelp());
   }
 
@@ -96,8 +96,8 @@ public class TestWasapiDownloaderSettings {
   public void argsOverrideSettings() throws SettingsLoadException {
     String[] args = { "--username=user2", "--outputBaseDir=test/outputBaseDir2" };
     WasapiDownloaderSettings settings = new WasapiDownloaderSettings(WasapiDownloader.SETTINGS_FILE_LOCATION, args);
-    assertEquals("the username from the .properties file should get overridden by the command-line arg", settings.username(), "user2");
-    assertEquals("the outputBaseDir from the .properties file should get overridden by the command-line arg", settings.outputBaseDir(), "test/outputBaseDir2");
+    assertEquals("the username from the .properties file should get overridden by the command-line arg", "user2", settings.username());
+    assertEquals("the outputBaseDir from the .properties file should get overridden by the command-line arg", "test/outputBaseDir2", settings.outputBaseDir());
   }
 
   @Test

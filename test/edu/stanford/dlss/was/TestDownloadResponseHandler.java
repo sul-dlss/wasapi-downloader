@@ -62,7 +62,7 @@ public class TestDownloadResponseHandler {
     }).when(mockEntity).writeTo(ArgumentMatchers.<FileOutputStream>any(FileOutputStream.class));
 
     boolean returnValue = handler.handleResponse(mockResponse);
-    assertEquals(returnValue, true);
-    assertEquals(new File(OUTPUT_FILE_PATH).exists(), true);
+    assertEquals("return value incorrect", true, returnValue);
+    assertEquals("output file path should exist", true, new File(OUTPUT_FILE_PATH).exists());
   }
 }
