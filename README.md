@@ -5,7 +5,7 @@
 # wasapi-downloader
 Java command line application to download crawls from WASAPI.
 
-## Development
+## Local Setup
 
 You'll need the following prerequisites installed on your local computer:
 
@@ -16,7 +16,7 @@ The minimal sequence of steps to verify that you can work with the code is:
 
 1. `git clone https://github.com/sul-dlss/wasapi-downloader.git`
 2. `cd wasapi-downloader`
-3. `./gradlew build installDist`  (compile and test the code and create a script to execute it)
+3. `./gradlew installDist`  (compile and test the code and create a script to execute it)
 4. `./build/install/wasapi-downloader/bin/wasapi-downloader --help` (explain usage)
 
 An example invocation of the downloader:
@@ -26,25 +26,37 @@ An example invocation of the downloader:
 
 ### Configuration
 
-This repository contains an example `config/settings.properties` file with dummy values for the required configuration settings. In order to successfully execute the Java application, you will need to override these default settings. The production settings are stored in `shared_configs`.
+This repository contains an example `config/settings.properties` file with dummy values for the required configuration settings. In order to successfully execute the Java application, you will need to override these default settings.
 
-### Building
+### Usage
 
-wasapi-downloader is built using [Gradle](https://gradle.org/docs). To compile the code into a jar file:
+#### Building
 
-`./gradlew jar`
+wasapi-downloader uses the gradle wrapper (https://docs.gradle.org/3.3/userguide/gradle_wrapper.html) so users don't have to worry about installing gradle.  However, using the gradle wrapper once (`gradlew [task]`) installs gradle on your system and from then forward you can simply execute `gradle [tasks]` rather than `gradlew [tasks]` (though either will work).
 
-Build from scratch (cleaning first):
 
-`./gradlew clean build installDist`
+wasapi-downloader is built using [Gradle](https://gradle.org/docs).  To create a runnable installation with all needed jars and shell script (cleaning out old builds first):
+
+`./gradle clean installDist`
 
 List all available build tasks:
 
-`./gradlew tasks`
+`./gradle tasks`
+
+#### Running
+
+To run:
+
+`./build/install/wasapi-downloader/bin/wasapi-downloader --help` (explain usage)
+
+An example invocation of the downloader:
+```
+./build/install/wasapi-downloader/bin/wasapi-downloader --collectionId 123 --crawlStartAfter 2014-03-14
+```
 
 ## Deployment
 
-Capistrano is used for deployment.
+Capistrano is used for deployment to Stanford VMs.
 
 1. On your laptop, run
 
@@ -58,7 +70,9 @@ Capistrano is used for deployment.
 
    `<environment>` is either `dev`, `stage` or `prod`, as specified in `config/deploy/`.
 
-## Production Use
+   This will also get our (Stanford's) latest configuration settings.
+
+## (Stanford) Production Use
 
 The deployment command shown above creates an executable Java application. After logging onto the production server you may run wasapi-downloader by following these steps:
 ```cd wasapi-downloader/current/
