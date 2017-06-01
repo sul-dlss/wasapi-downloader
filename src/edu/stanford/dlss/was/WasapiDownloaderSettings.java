@@ -39,10 +39,10 @@ public class WasapiDownloaderSettings {
   public static final String ACCCOUNT_ID_PARAM_NAME = "accountId";
   public static final String HELP_PARAM_NAME = "help";
   public static final String COLLECTION_ID_PARAM_NAME = "collectionId";
-  public static final String JOB_ID_PARAM_NAME = "jobId";
+  public static final String CRAWL_ID_PARAM_NAME = "crawlId";
   public static final String CRAWL_START_AFTER_PARAM_NAME = "crawlStartAfter";
   public static final String CRAWL_START_BEFORE_PARAM_NAME = "crawlStartBefore";
-  public static final String JOB_ID_LOWER_BOUND_PARAM_NAME = "jobIdLowerBound";
+  public static final String CRAWL_ID_LOWER_BOUND_PARAM_NAME = "crawlIdLowerBound";
   public static final String OUTPUT_BASE_DIR_PARAM_NAME = "outputBaseDir";
   public static final String FILENAME_PARAM_NAME = "filename";
   public static final String CHECKSUM_ALGORITHM_PARAM_NAME = "checksumAlgorithm";
@@ -62,10 +62,10 @@ public class WasapiDownloaderSettings {
     buildArgOption(PASSWORD_PARAM_NAME, "the password for WASAPI server login"),
     buildArgOption(ACCCOUNT_ID_PARAM_NAME, "the ID for the account from which WARC files are downloaded"),
     buildArgOption(COLLECTION_ID_PARAM_NAME, "a collection from which to download crawl files"),
-    buildArgOption(JOB_ID_PARAM_NAME, "a job from which to download crawl files"),
+    buildArgOption(CRAWL_ID_PARAM_NAME, "crawl id from which to download files"),
     buildArgOption(CRAWL_START_AFTER_PARAM_NAME, "only download crawl files created after this date"),
     buildArgOption(CRAWL_START_BEFORE_PARAM_NAME, "only download crawl files created before this date"),
-    buildArgOption(JOB_ID_LOWER_BOUND_PARAM_NAME, "\"last crawl downloaded\": only download crawl files with a higher job ID (not inclusive)"),
+    buildArgOption(CRAWL_ID_LOWER_BOUND_PARAM_NAME, "\"last crawl downloaded\": only download crawl files with a higher crawl ID (not inclusive)"),
     buildArgOption(OUTPUT_BASE_DIR_PARAM_NAME, "destination directory for downloaded WARC files"),
     buildArgOption(FILENAME_PARAM_NAME, "single filename to download"),
     buildArgOption(CHECKSUM_ALGORITHM_PARAM_NAME, "checksum algorithm to use (either md5 or sha1")
@@ -125,8 +125,8 @@ public class WasapiDownloaderSettings {
     return settings.getProperty(COLLECTION_ID_PARAM_NAME);
   }
 
-  public String jobId() {
-    return settings.getProperty(JOB_ID_PARAM_NAME);
+  public String crawlId() {
+    return settings.getProperty(CRAWL_ID_PARAM_NAME);
   }
 
   // e.g. 2014-01-01, see https://github.com/WASAPI-Community/data-transfer-apis/tree/master/ait-reference-specification#paths--examples
@@ -139,8 +139,8 @@ public class WasapiDownloaderSettings {
     return settings.getProperty(CRAWL_START_BEFORE_PARAM_NAME);
   }
 
-  public String jobIdLowerBound() {
-    return settings.getProperty(JOB_ID_LOWER_BOUND_PARAM_NAME);
+  public String crawlIdLowerBound() {
+    return settings.getProperty(CRAWL_ID_LOWER_BOUND_PARAM_NAME);
   }
 
   public String outputBaseDir() {
@@ -207,14 +207,14 @@ public class WasapiDownloaderSettings {
       errMessages.add(ACCCOUNT_ID_PARAM_NAME + " must be an integer (if specified)");
     if (!isNullOrEmpty(collectionId()) && !intValidator.isValid(collectionId()))
       errMessages.add(COLLECTION_ID_PARAM_NAME + " must be an integer (if specified)");
-    if (!isNullOrEmpty(jobId()) && !intValidator.isValid(jobId()))
-      errMessages.add(JOB_ID_PARAM_NAME + " must be an integer (if specified)");
+    if (!isNullOrEmpty(crawlId()) && !intValidator.isValid(crawlId()))
+      errMessages.add(CRAWL_ID_PARAM_NAME + " must be an integer (if specified)");
     if (!isNullOrEmpty(crawlStartBefore()) && !normalizeIso8601Setting(CRAWL_START_BEFORE_PARAM_NAME))
       errMessages.add(CRAWL_START_BEFORE_PARAM_NAME + " must be a valid ISO 8601 date string (if specified)");
     if (!isNullOrEmpty(crawlStartAfter()) && !normalizeIso8601Setting(CRAWL_START_AFTER_PARAM_NAME))
       errMessages.add(CRAWL_START_AFTER_PARAM_NAME + " must be a valid ISO 8601 date string (if specified)");
-    if (!isNullOrEmpty(jobIdLowerBound()) && !intValidator.isValid(jobIdLowerBound()))
-      errMessages.add(JOB_ID_LOWER_BOUND_PARAM_NAME + " must be an integer (if specified)");
+    if (!isNullOrEmpty(crawlIdLowerBound()) && !intValidator.isValid(crawlIdLowerBound()))
+      errMessages.add(CRAWL_ID_LOWER_BOUND_PARAM_NAME + " must be an integer (if specified)");
 
     return errMessages;
   }

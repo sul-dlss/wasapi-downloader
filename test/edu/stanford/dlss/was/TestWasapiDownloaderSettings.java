@@ -24,9 +24,9 @@ public class TestWasapiDownloaderSettings {
     // args is a String array, in the style of the `String[] args` param taken by the main method of a Java class.
     // JVM splits the whole command line argument string on whitespace, and passes the resultant String array into main, so
     // the below args array would come from something like:
-    //   wasapi-downloader -h --collectionId 123 --jobId=456 --crawlStartAfter 2014-03-14 --crawlStartBefore=2017-03-14
+    //   wasapi-downloader -h --collectionId 123 --crawlId=456 --crawlStartAfter 2014-03-14 --crawlStartBefore=2017-03-14
     // The Apache CLI parser should be able to handle all of those different styles of argument without any trouble.
-    String[] args = { "-h", "--collectionId", "123", "--jobId=456", "--crawlStartAfter", "2014-03-14", "--crawlStartBefore=2017-03-14" };
+    String[] args = { "-h", "--collectionId", "123", "--crawlId=456", "--crawlStartAfter", "2014-03-14", "--crawlStartBefore=2017-03-14" };
     WasapiDownloaderSettings settings = new WasapiDownloaderSettings(WasapiDownloader.SETTINGS_FILE_LOCATION, args);
 
     assertEquals("baseurl value should have come from settings file", settings.baseUrlString(), "https://example.org/");
@@ -37,7 +37,7 @@ public class TestWasapiDownloaderSettings {
     assertEquals("outputBaseDir value should have come from settings file", settings.outputBaseDir(), "test/outputBaseDir/");
     assertEquals("checksumAlgorithm value should have come from settings file", settings.checksumAlgorithm(), "md5");
     assertEquals("collectionId value should have come from args", settings.collectionId(), "123");
-    assertEquals("jobId value should have come from args", settings.jobId(), "456");
+    assertEquals("crawlId value should have come from args", settings.crawlId(), "456");
     assertEquals("crawlStartAfter value should have come from args", settings.crawlStartAfter(), "2014-03-14");
     assertEquals("crawlStartBefore value should have come from args", settings.crawlStartBefore(), "2017-03-14");
     assertTrue("shouldDisplayHelp value should have come from args", settings.shouldDisplayHelp());
@@ -46,9 +46,9 @@ public class TestWasapiDownloaderSettings {
   @Test
   @SuppressWarnings({"checkstyle:NoWhitespaceAfter", "checkstyle:MethodLength"})
   public void getHelpAndSettingsMessage_containsUsageAndSettingsInfo() throws SettingsLoadException {
-    //TODO: if settings validation flags possibly nonsensical/redundant combos like jobId
-    // and jobIdLowerBound, this test might have to be broken up a bit.
-    String[] args = { "-h", "--collectionId", "123", "--jobId=456", "--jobIdLowerBound=400",
+    //TODO: if settings validation flags possibly nonsensical/redundant combos like crawlId and crawlIdLowerBound,
+    // then this test might have to be broken up a bit.
+    String[] args = { "-h", "--collectionId", "123", "--crawlId=456", "--crawlIdLowerBound=400",
         "--crawlStartAfter", "2014-03-14", "--crawlStartBefore=2017-03-14", "--filename=filename.warc.gz" };
     WasapiDownloaderSettings settings = new WasapiDownloaderSettings(WasapiDownloader.SETTINGS_FILE_LOCATION, args);
 
@@ -64,17 +64,17 @@ public class TestWasapiDownloaderSettings {
     assertThat("helpAndSettingsMsg lists crawlStartAfter arg", helpAndSettingsMsg, containsString("--crawlStartAfter <arg>"));
     assertThat("helpAndSettingsMsg lists crawlStartBefore arg", helpAndSettingsMsg, containsString("--crawlStartBefore <arg>"));
     assertThat("helpAndSettingsMsg lists help flag", helpAndSettingsMsg, containsString("-h,--help"));
-    assertThat("helpAndSettingsMsg lists jobId arg", helpAndSettingsMsg, containsString("--jobId <arg>"));
-    assertThat("helpAndSettingsMsg lists jobIdLowerBound arg", helpAndSettingsMsg, containsString("--jobIdLowerBound <arg>"));
+    assertThat("helpAndSettingsMsg lists crawlId arg", helpAndSettingsMsg, containsString("--crawlId <arg>"));
+    assertThat("helpAndSettingsMsg lists crawlIdLowerBound arg", helpAndSettingsMsg, containsString("--crawlIdLowerBound <arg>"));
     assertThat("helpAndSettingsMsg lists filename arg", helpAndSettingsMsg, containsString("--filename <arg>"));
     assertThat("helpAndSettingsMsg lists checksumAlgorithm arg", helpAndSettingsMsg, containsString("--checksumAlgorithm <arg>"));
 
     assertThat("helpAndSettingsMsg hides password value", helpAndSettingsMsg, containsString("password : [password hidden]"));
     assertThat("helpAndSettingsMsg lists crawlStartAfter value", helpAndSettingsMsg, containsString("crawlStartAfter : 2014-03-14"));
     assertThat("helpAndSettingsMsg lists crawlStartBefore value", helpAndSettingsMsg, containsString("crawlStartBefore : 2017-03-14"));
-    assertThat("helpAndSettingsMsg lists jobIdLowerBound value", helpAndSettingsMsg, containsString("jobIdLowerBound : 400"));
+    assertThat("helpAndSettingsMsg lists crawlIdLowerBound value", helpAndSettingsMsg, containsString("crawlIdLowerBound : 400"));
     assertThat("helpAndSettingsMsg lists help flag value", helpAndSettingsMsg, containsString("help : true"));
-    assertThat("helpAndSettingsMsg lists jobId value", helpAndSettingsMsg, containsString("jobId : 456"));
+    assertThat("helpAndSettingsMsg lists crawlId value", helpAndSettingsMsg, containsString("crawlId : 456"));
     assertThat("helpAndSettingsMsg lists collectionId value", helpAndSettingsMsg, containsString("collectionId : 123"));
     assertThat("helpAndSettingsMsg lists baseurl value", helpAndSettingsMsg, containsString("baseurl : https://example.org"));
     assertThat("helpAndSettingsMsg lists authurl value", helpAndSettingsMsg, containsString("authurl : https://example.org/login"));
@@ -96,7 +96,7 @@ public class TestWasapiDownloaderSettings {
   @Test
   @SuppressWarnings("checkstyle:NoWhitespaceAfter")
   public void toString_aliasesGetHelpAndSettingsMessage() throws SettingsLoadException {
-    String[] args = { "-h", "--collectionId", "123", "--jobId=456", "--crawlStartAfter", "2014-03-14", "--crawlStartBefore=2017-03-14" };
+    String[] args = { "-h", "--collectionId", "123", "--crawlId=456", "--crawlStartAfter", "2014-03-14", "--crawlStartBefore=2017-03-14" };
     WasapiDownloaderSettings settings = new WasapiDownloaderSettings(WasapiDownloader.SETTINGS_FILE_LOCATION, args);
 
     assertSame("toString should return the same String obj as getHelpAndSettingsMessage", settings.getHelpAndSettingsMessage(), settings.toString());
@@ -150,8 +150,8 @@ public class TestWasapiDownloaderSettings {
     internalSettings.setProperty(WasapiDownloaderSettings.ACCCOUNT_ID_PARAM_NAME, "z26");
     internalSettings.setProperty(WasapiDownloaderSettings.OUTPUT_BASE_DIR_PARAM_NAME, "does/not/exist");
     internalSettings.setProperty(WasapiDownloaderSettings.COLLECTION_ID_PARAM_NAME, "a1");
-    internalSettings.setProperty(WasapiDownloaderSettings.JOB_ID_PARAM_NAME, "b2");
-    internalSettings.setProperty(WasapiDownloaderSettings.JOB_ID_LOWER_BOUND_PARAM_NAME, "c3");
+    internalSettings.setProperty(WasapiDownloaderSettings.CRAWL_ID_PARAM_NAME, "b2");
+    internalSettings.setProperty(WasapiDownloaderSettings.CRAWL_ID_LOWER_BOUND_PARAM_NAME, "c3");
     internalSettings.setProperty(WasapiDownloaderSettings.CRAWL_START_BEFORE_PARAM_NAME, "01/01/2001");
     internalSettings.setProperty(WasapiDownloaderSettings.CRAWL_START_AFTER_PARAM_NAME, "12/31/2010");
     internalSettings.setProperty(WasapiDownloaderSettings.CHECKSUM_ALGORITHM_PARAM_NAME, "foo");
@@ -164,10 +164,10 @@ public class TestWasapiDownloaderSettings {
     assertThat("error messages has entry for invalid account ID", errMsgs, hasItem("accountId must be an integer (if specified)"));
     assertThat("error messages has entry for invalid outputBaseDir", errMsgs, hasItem("outputBaseDir is required (and must be an extant, writable directory)"));
     assertThat("error messages has entry for invalid collectionId", errMsgs, hasItem("collectionId must be an integer (if specified)"));
-    assertThat("error messages has entry for invalid jobId", errMsgs, hasItem("jobId must be an integer (if specified)"));
+    assertThat("error messages has entry for invalid crawlId", errMsgs, hasItem("crawlId must be an integer (if specified)"));
     assertThat("error messages has entry for invalid crawlStartBefore", errMsgs, hasItem("crawlStartBefore must be a valid ISO 8601 date string (if specified)"));
     assertThat("error messages has entry for invalid crawlStartAfter", errMsgs, hasItem("crawlStartAfter must be a valid ISO 8601 date string (if specified)"));
-    assertThat("error messages has entry for invalid jobIdLowerBound", errMsgs, hasItem("jobIdLowerBound must be an integer (if specified)"));
+    assertThat("error messages has entry for invalid crawlIdLowerBound", errMsgs, hasItem("crawlIdLowerBound must be an integer (if specified)"));
     assertThat("error messages has entry for invalid checksumAlgorithm", errMsgs, hasItem("checksumAlgorithm is required and must be md5 or sha1"));
   }
 

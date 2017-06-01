@@ -123,10 +123,10 @@ public class WasapiDownloader {
 
   private List<Integer> desiredCrawlIds(WasapiCrawlSelector crawlSelector) {
     // TODO: want cleaner grab of int from settings: wasapi-downloader#83
-    Integer myInteger = IntegerValidator.getInstance().validate(settings.jobIdLowerBound());
+    Integer myInteger = IntegerValidator.getInstance().validate(settings.crawlIdLowerBound());
     if (myInteger != null) {
-      int jobsAfter = myInteger.intValue();
-      return crawlSelector.getSelectedCrawlIds(jobsAfter);
+      int crawlsAfter = myInteger.intValue();
+      return crawlSelector.getSelectedCrawlIds(crawlsAfter);
     }
     else
       return crawlSelector.getSelectedCrawlIds(0); // all returns all crawl ids from FileSet
@@ -159,8 +159,8 @@ public class WasapiDownloader {
       params.add("crawl-start-after=" + settings.crawlStartAfter());
     if (settings.crawlStartBefore()!= null)
       params.add("crawl-start-before=" + settings.crawlStartBefore());
-    if (settings.jobId() != null)
-      params.add("crawl=" + settings.jobId());
+    if (settings.crawlId() != null)
+      params.add("crawl=" + settings.crawlId());
     return params;
   }
 
