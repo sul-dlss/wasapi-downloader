@@ -1,5 +1,7 @@
 package edu.stanford.dlss.was;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.io.IOException;
 import java.util.List;
 import java.util.LinkedList;
@@ -171,6 +173,8 @@ public class TestWasapiDownloaderSettings {
     TimeZone.setDefault(TimeZone.getTimeZone("PDT")); // for test repeatability in different environments
 
     WasapiDownloaderSettings wdSettings = new WasapiDownloaderSettings();
+    ByteArrayOutputStream errStream = new ByteArrayOutputStream();
+    wdSettings.setErrStream(new PrintStream(errStream));
     Properties dateStrSettings = new Properties();
     wdSettings.settings = dateStrSettings;
     dateStrSettings.setProperty("yearOnly", "1999");
@@ -196,6 +200,16 @@ public class TestWasapiDownloaderSettings {
     assertEquals("date with UTC time gets truncated to year-month-day", "2010-01-01", dateStrSettings.getProperty("dateWithTimeUtc"));
     assertEquals("date with pacific time gets truncated to year-month-day", "2010-01-01", dateStrSettings.getProperty("dateWithTimePacific"));
     assertEquals("invalid iso8601 gets nulled out", null, dateStrSettings.getProperty("01/01/2001"));
+
+    String errStreamContent = errStream.toString();
+    assertThat("yearOnly has a warning message",
+        errStreamContent, containsString("Normalized yearOnly to 1999-01-01 from 1999"));
+    assertThat("dateWithTime has a warning message",
+        errStreamContent, containsString("Normalized dateWithTime to 2010-01-01 from 2010-01-01T03:14:00"));
+    assertThat("dateWithTimeUtc has a warning message",
+        errStreamContent, containsString("Normalized dateWithTimeUtc to 2010-01-01 from 2010-01-01T03:14:00Z"));
+    assertThat("dateWithTimePacific has a warning message",
+        errStreamContent, containsString("Normalized dateWithTimePacific to 2010-01-01 from 2010-01-01T03:14:00-07:00"));
   }
 
   @Test

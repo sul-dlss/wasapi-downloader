@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.text.SimpleDateFormat;
@@ -23,7 +24,7 @@ import org.apache.commons.cli.ParseException;
 import org.apache.commons.validator.routines.IntegerValidator;
 import org.apache.commons.validator.routines.UrlValidator;
 
-@SuppressWarnings("checkstyle:ClassDataAbstractionCoupling")
+@SuppressWarnings({"checkstyle:ClassDataAbstractionCoupling", "checkstyle:ClassFanOutComplexity"})
 public class WasapiDownloaderSettings {
   // to add a new setting:
   // * add a String constant for the setting/arg name
@@ -45,6 +46,7 @@ public class WasapiDownloaderSettings {
   public static final String OUTPUT_BASE_DIR_PARAM_NAME = "outputBaseDir";
   public static final String FILENAME_PARAM_NAME = "filename";
 
+  protected PrintStream errStream = System.err;
   protected Properties settings;
 
   private HelpFormatter helpFormatter;
@@ -88,6 +90,10 @@ public class WasapiDownloaderSettings {
 
   protected WasapiDownloaderSettings() { } //for testing
 
+
+  public void setErrStream(PrintStream errStream) {
+    this.errStream = errStream;
+  }
 
   public boolean shouldDisplayHelp() {
     return settings.getProperty(HELP_PARAM_NAME) != null;
@@ -226,7 +232,7 @@ public class WasapiDownloaderSettings {
       String normalizedDateStr = normalizeIso8601StringForEndpoint(rawDateStr);
       if (!rawDateStr.equals(normalizedDateStr)) {
         settings.setProperty(settingName, normalizedDateStr);
-        System.err.println("Normalized " + settingName + " to " + normalizedDateStr + " from " + rawDateStr + " (possible loss in time precision)");
+        errStream.println("Normalized " + settingName + " to " + normalizedDateStr + " from " + rawDateStr + " (possible loss in time precision)");
       }
     } catch(IllegalArgumentException e) {
       return false;
@@ -324,7 +330,7 @@ public class WasapiDownloaderSettings {
       }
     } else {
       // should never get here, since this method is private, and only gets called once from the constructor
-      System.err.println("Properties already loaded from " + settingsFileLocation);
+      errStream.println("Properties already loaded from " + settingsFileLocation);
     }
   }
 }
