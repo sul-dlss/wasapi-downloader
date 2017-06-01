@@ -1,8 +1,12 @@
 package edu.stanford.dlss.was;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.io.IOException;
 import java.util.List;
 import java.util.LinkedList;
+import java.util.Properties;
+import java.util.TimeZone;
 
 import org.apache.commons.cli.ParseException;
 
@@ -133,21 +137,23 @@ public class TestWasapiDownloaderSettings {
   @SuppressWarnings({"checkstyle:NoWhitespaceAfter", "checkstyle:LineLength", "checkstyle:MethodLength"})
   public void getSettingsErrorMessages_listsAllErrors() {
     // use the no arg constructor, so that validateSettings() doesn't get called, so we can test the method it relies on
-    WasapiDownloaderSettings settings = spy(new WasapiDownloaderSettings());
+    WasapiDownloaderSettings wdSettings = new WasapiDownloaderSettings();
 
-    doReturn("ftp://foo.org").when(settings).baseUrlString();
-    doReturn("http://foo.com/auth").when(settings).authUrlString();
-    doReturn("").when(settings).username();
-    doReturn("").when(settings).password();
-    doReturn("z26").when(settings).accountId();
-    doReturn("does/not/exist").when(settings).outputBaseDir();
-    doReturn("a1").when(settings).collectionId();
-    doReturn("b2").when(settings).jobId();
-    doReturn("c3").when(settings).jobIdLowerBound();
-    doReturn("01/01/2001").when(settings).crawlStartBefore();
-    doReturn("12/31/2010").when(settings).crawlStartAfter();
+    Properties internalSettings = new Properties();
+    wdSettings.settings = internalSettings;
+    internalSettings.setProperty(WasapiDownloaderSettings.BASE_URL_PARAM_NAME, "ftp://foo.org");
+    internalSettings.setProperty(WasapiDownloaderSettings.AUTH_URL_PARAM_NAME, "http://foo.com/auth");
+    internalSettings.setProperty(WasapiDownloaderSettings.USERNAME_PARAM_NAME, "");
+    internalSettings.setProperty(WasapiDownloaderSettings.PASSWORD_PARAM_NAME, "");
+    internalSettings.setProperty(WasapiDownloaderSettings.ACCCOUNT_ID_PARAM_NAME, "z26");
+    internalSettings.setProperty(WasapiDownloaderSettings.OUTPUT_BASE_DIR_PARAM_NAME, "does/not/exist");
+    internalSettings.setProperty(WasapiDownloaderSettings.COLLECTION_ID_PARAM_NAME, "a1");
+    internalSettings.setProperty(WasapiDownloaderSettings.JOB_ID_PARAM_NAME, "b2");
+    internalSettings.setProperty(WasapiDownloaderSettings.JOB_ID_LOWER_BOUND_PARAM_NAME, "c3");
+    internalSettings.setProperty(WasapiDownloaderSettings.CRAWL_START_BEFORE_PARAM_NAME, "01/01/2001");
+    internalSettings.setProperty(WasapiDownloaderSettings.CRAWL_START_AFTER_PARAM_NAME, "12/31/2010");
 
-    List<String> errMsgs = settings.getSettingsErrorMessages();
+    List<String> errMsgs = wdSettings.getSettingsErrorMessages();
     assertThat("error messages has entry for invalid base URL", errMsgs, hasItem("baseurl is required, and must be a valid URL"));
     assertThat("error messages has entry for invalid auth URL", errMsgs, hasItem("authurl is required, and must be a valid URL"));
     assertThat("error messages has entry for invalid username", errMsgs, hasItem("username is required"));
@@ -159,6 +165,51 @@ public class TestWasapiDownloaderSettings {
     assertThat("error messages has entry for invalid crawlStartBefore", errMsgs, hasItem("crawlStartBefore must be a valid ISO 8601 date string (if specified)"));
     assertThat("error messages has entry for invalid crawlStartAfter", errMsgs, hasItem("crawlStartAfter must be a valid ISO 8601 date string (if specified)"));
     assertThat("error messages has entry for invalid jobIdLowerBound", errMsgs, hasItem("jobIdLowerBound must be an integer (if specified)"));
+  }
+
+  @Test
+  @SuppressWarnings("checkstyle:MethodLength")
+  public void normalizeIso8601Setting_behavesCorrectly() {
+    TimeZone.setDefault(TimeZone.getTimeZone("PDT")); // for test repeatability in different environments
+
+    WasapiDownloaderSettings wdSettings = new WasapiDownloaderSettings();
+    ByteArrayOutputStream errStream = new ByteArrayOutputStream();
+    wdSettings.setErrStream(new PrintStream(errStream));
+    Properties dateStrSettings = new Properties();
+    wdSettings.settings = dateStrSettings;
+    dateStrSettings.setProperty("yearOnly", "1999");
+    dateStrSettings.setProperty("date", "2001-03-14");
+    dateStrSettings.setProperty("dateWithTime", "2010-01-01T03:14:00");
+    dateStrSettings.setProperty("dateWithTimeUtc", "2010-01-01T03:14:00Z");
+    dateStrSettings.setProperty("dateWithTimePacific", "2010-01-01T03:14:00-07:00");
+    dateStrSettings.setProperty("invalidIso8601Date", "01/01/2001");
+
+    // this is sort of a bad example of normalizeIso8601Setting usage: we are failing slightly to
+    // follow the method's javadoc in this somewhat contrived example, since we're filling a Properties
+    // map with different style dates and not using the _PARAM_NAME constants to retrieve them.
+    assertTrue("yearOnly can be parsed and normalized", wdSettings.normalizeIso8601Setting("yearOnly"));
+    assertTrue("year-month-day can be parsed and normalized", wdSettings.normalizeIso8601Setting("date"));
+    assertTrue("date with time can be parsed and normalized", wdSettings.normalizeIso8601Setting("dateWithTime"));
+    assertTrue("date with UTC time can be parsed and normalized", wdSettings.normalizeIso8601Setting("dateWithTimeUtc"));
+    assertTrue("date with pacific time can be parsed and normalized", wdSettings.normalizeIso8601Setting("dateWithTimePacific"));
+    assertFalse("invalid iso8601 string can't be parsed and normalized", wdSettings.normalizeIso8601Setting("invalidIso8601Date"));
+
+    assertEquals("yearOnly gets expanded to become first day of year", "1999-01-01", dateStrSettings.getProperty("yearOnly"));
+    assertEquals("year-month-day gets used as-is", "2001-03-14", dateStrSettings.getProperty("date"));
+    assertEquals("date with implied system time zone gets truncated to year-month-day", "2010-01-01", dateStrSettings.getProperty("dateWithTime"));
+    assertEquals("date with UTC time gets truncated to year-month-day", "2010-01-01", dateStrSettings.getProperty("dateWithTimeUtc"));
+    assertEquals("date with pacific time gets truncated to year-month-day", "2010-01-01", dateStrSettings.getProperty("dateWithTimePacific"));
+    assertEquals("invalid iso8601 gets nulled out", null, dateStrSettings.getProperty("01/01/2001"));
+
+    String errStreamContent = errStream.toString();
+    assertThat("yearOnly has a warning message",
+        errStreamContent, containsString("Normalized yearOnly to 1999-01-01 from 1999"));
+    assertThat("dateWithTime has a warning message",
+        errStreamContent, containsString("Normalized dateWithTime to 2010-01-01 from 2010-01-01T03:14:00"));
+    assertThat("dateWithTimeUtc has a warning message",
+        errStreamContent, containsString("Normalized dateWithTimeUtc to 2010-01-01 from 2010-01-01T03:14:00Z"));
+    assertThat("dateWithTimePacific has a warning message",
+        errStreamContent, containsString("Normalized dateWithTimePacific to 2010-01-01 from 2010-01-01T03:14:00-07:00"));
   }
 
   @Test

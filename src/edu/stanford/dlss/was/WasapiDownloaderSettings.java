@@ -4,8 +4,11 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 import java.util.LinkedList;
 import java.util.Properties;
@@ -21,7 +24,7 @@ import org.apache.commons.cli.ParseException;
 import org.apache.commons.validator.routines.IntegerValidator;
 import org.apache.commons.validator.routines.UrlValidator;
 
-@SuppressWarnings("checkstyle:ClassDataAbstractionCoupling")
+@SuppressWarnings({"checkstyle:ClassDataAbstractionCoupling", "checkstyle:ClassFanOutComplexity"})
 public class WasapiDownloaderSettings {
   // to add a new setting:
   // * add a String constant for the setting/arg name
@@ -43,9 +46,11 @@ public class WasapiDownloaderSettings {
   public static final String OUTPUT_BASE_DIR_PARAM_NAME = "outputBaseDir";
   public static final String FILENAME_PARAM_NAME = "filename";
 
+  protected PrintStream errStream = System.err;
+  protected Properties settings;
+
   private HelpFormatter helpFormatter;
   private static Options wdsOpts;
-  private Properties settings;
   private String helpAndSettingsMessage;
 
   private static Option[] optList = {
@@ -85,6 +90,10 @@ public class WasapiDownloaderSettings {
 
   protected WasapiDownloaderSettings() { } //for testing
 
+
+  public void setErrStream(PrintStream errStream) {
+    this.errStream = errStream;
+  }
 
   public boolean shouldDisplayHelp() {
     return settings.getProperty(HELP_PARAM_NAME) != null;
@@ -191,9 +200,9 @@ public class WasapiDownloaderSettings {
       errMessages.add(COLLECTION_ID_PARAM_NAME + " must be an integer (if specified)");
     if (!isNullOrEmpty(jobId()) && !intValidator.isValid(jobId()))
       errMessages.add(JOB_ID_PARAM_NAME + " must be an integer (if specified)");
-    if (!isNullOrEmpty(crawlStartBefore()) && !isValidIso8601String(crawlStartBefore()))
+    if (!isNullOrEmpty(crawlStartBefore()) && !normalizeIso8601Setting(CRAWL_START_BEFORE_PARAM_NAME))
       errMessages.add(CRAWL_START_BEFORE_PARAM_NAME + " must be a valid ISO 8601 date string (if specified)");
-    if (!isNullOrEmpty(crawlStartAfter()) && !isValidIso8601String(crawlStartAfter()))
+    if (!isNullOrEmpty(crawlStartAfter()) && !normalizeIso8601Setting(CRAWL_START_AFTER_PARAM_NAME))
       errMessages.add(CRAWL_START_AFTER_PARAM_NAME + " must be a valid ISO 8601 date string (if specified)");
     if (!isNullOrEmpty(jobIdLowerBound()) && !intValidator.isValid(jobIdLowerBound()))
       errMessages.add(JOB_ID_LOWER_BOUND_PARAM_NAME + " must be an integer (if specified)");
@@ -210,18 +219,45 @@ public class WasapiDownloaderSettings {
     return outputBaseDirFile.exists() && outputBaseDirFile.isDirectory() && outputBaseDirFile.canWrite();
   }
 
-  // neither the java.util. Date and Calendar classes, nor the apache commons
-  // validator classes provide an easy way to parse or validate ISO 8601 date strings.
-  // but javax.xml.bind.DatatypeConverter does it, since xsd:dateTime is ISO 8601.
-  // https://www.w3.org/TR/xmlschema11-2/#dateTime
-  // https://docs.oracle.com/javase/7/docs/api/javax/xml/bind/DatatypeConverter.html
-  private static boolean isValidIso8601String(String dateStr) {
+  /**
+   * Attempts to normalize an ISO 8601 date string setting to the format accepted by the WASAPI endpoint.  Prints a warning
+   * if normalization results in a change to the setting value.
+   *
+   * @param settingName  the name of the setting field that contains the date string.  you should use a _PARAM_NAME constant.
+   * @return boolean  indicating whether the setting string was successfully parsed and normalized (true if successful, false otherwise)
+   */
+  protected boolean normalizeIso8601Setting(String settingName) {
     try {
-      DatatypeConverter.parseDateTime(dateStr);
-    } catch(java.lang.IllegalArgumentException e) {
+      String rawDateStr = settings.getProperty(settingName);
+      String normalizedDateStr = normalizeIso8601StringForEndpoint(rawDateStr);
+      if (!rawDateStr.equals(normalizedDateStr)) {
+        settings.setProperty(settingName, normalizedDateStr);
+        errStream.println("Normalized " + settingName + " to " + normalizedDateStr + " from " + rawDateStr + " (possible loss in time precision)");
+      }
+    } catch(IllegalArgumentException e) {
       return false;
     }
     return true;
+  }
+
+
+  /**
+   * Takes an ISO 8601 date string, and normalizes it to a format acceptable by the WASAPI endpoint.
+   * As of this writing, the WASAPI endpoint only accepts dates of the format yyyy-MM-dd.
+   * Accepting any ISO 8601 date and normalizing it makes parsing (and testing of parsing) easier.
+   *
+   * @param settingName  the name of the setting field that contains the date string.  you should use one of the _PARAM_NAME constants.
+   * @return a boolean indicating whether the setting string was successfully parsed and normalized (true if successful, false otherwise)
+   */
+  private static String normalizeIso8601StringForEndpoint(String rawDateStr) throws IllegalArgumentException {
+    // neither the java.util. Date and Calendar classes, nor the apache commons
+    // validator classes provide an easy way to parse or validate ISO 8601 date strings.
+    // but javax.xml.bind.DatatypeConverter does it, since xsd:dateTime is ISO 8601.
+    // https://www.w3.org/TR/xmlschema11-2/#dateTime
+    // https://docs.oracle.com/javase/7/docs/api/javax/xml/bind/DatatypeConverter.html
+    Calendar cal = DatatypeConverter.parseDateTime(rawDateStr);
+    SimpleDateFormat wasapiFormat = new SimpleDateFormat("yyyy-MM-dd");
+    return wasapiFormat.format(cal.getTime());
   }
 
   private CharSequence getCliHelpMessageCharSeq() {
@@ -294,7 +330,7 @@ public class WasapiDownloaderSettings {
       }
     } else {
       // should never get here, since this method is private, and only gets called once from the constructor
-      System.err.println("Properties already loaded from " + settingsFileLocation);
+      errStream.println("Properties already loaded from " + settingsFileLocation);
     }
   }
 }
