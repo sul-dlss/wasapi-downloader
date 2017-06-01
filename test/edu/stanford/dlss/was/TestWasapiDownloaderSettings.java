@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.LinkedList;
 import java.util.Properties;
+import java.util.TimeZone;
 
 import org.apache.commons.cli.ParseException;
 
@@ -162,6 +163,39 @@ public class TestWasapiDownloaderSettings {
     assertThat("error messages has entry for invalid crawlStartBefore", errMsgs, hasItem("crawlStartBefore must be a valid ISO 8601 date string (if specified)"));
     assertThat("error messages has entry for invalid crawlStartAfter", errMsgs, hasItem("crawlStartAfter must be a valid ISO 8601 date string (if specified)"));
     assertThat("error messages has entry for invalid jobIdLowerBound", errMsgs, hasItem("jobIdLowerBound must be an integer (if specified)"));
+  }
+
+  @Test
+  @SuppressWarnings("checkstyle:MethodLength")
+  public void normalizeIso8601Setting_behavesCorrectly() {
+    TimeZone.setDefault(TimeZone.getTimeZone("PDT")); // for test repeatability in different environments
+
+    WasapiDownloaderSettings wdSettings = new WasapiDownloaderSettings();
+    Properties dateStrSettings = new Properties();
+    wdSettings.settings = dateStrSettings;
+    dateStrSettings.setProperty("yearOnly", "1999");
+    dateStrSettings.setProperty("date", "2001-03-14");
+    dateStrSettings.setProperty("dateWithTime", "2010-01-01T03:14:00");
+    dateStrSettings.setProperty("dateWithTimeUtc", "2010-01-01T03:14:00Z");
+    dateStrSettings.setProperty("dateWithTimePacific", "2010-01-01T03:14:00-07:00");
+    dateStrSettings.setProperty("invalidIso8601Date", "01/01/2001");
+
+    // this is sort of a bad example of normalizeIso8601Setting usage: we are failing slightly to
+    // follow the method's javadoc in this somewhat contrived example, since we're filling a Properties
+    // map with different style dates and not using the _PARAM_NAME constants to retrieve them.
+    assertTrue("yearOnly can be parsed and normalized", wdSettings.normalizeIso8601Setting("yearOnly"));
+    assertTrue("year-month-day can be parsed and normalized", wdSettings.normalizeIso8601Setting("date"));
+    assertTrue("date with time can be parsed and normalized", wdSettings.normalizeIso8601Setting("dateWithTime"));
+    assertTrue("date with UTC time can be parsed and normalized", wdSettings.normalizeIso8601Setting("dateWithTimeUtc"));
+    assertTrue("date with pacific time can be parsed and normalized", wdSettings.normalizeIso8601Setting("dateWithTimePacific"));
+    assertFalse("invalid iso8601 string can't be parsed and normalized", wdSettings.normalizeIso8601Setting("invalidIso8601Date"));
+
+    assertEquals("yearOnly gets expanded to become first day of year", "1999-01-01", dateStrSettings.getProperty("yearOnly"));
+    assertEquals("year-month-day gets used as-is", "2001-03-14", dateStrSettings.getProperty("date"));
+    assertEquals("date with implied system time zone gets truncated to year-month-day", "2010-01-01", dateStrSettings.getProperty("dateWithTime"));
+    assertEquals("date with UTC time gets truncated to year-month-day", "2010-01-01", dateStrSettings.getProperty("dateWithTimeUtc"));
+    assertEquals("date with pacific time gets truncated to year-month-day", "2010-01-01", dateStrSettings.getProperty("dateWithTimePacific"));
+    assertEquals("invalid iso8601 gets nulled out", null, dateStrSettings.getProperty("01/01/2001"));
   }
 
   @Test
