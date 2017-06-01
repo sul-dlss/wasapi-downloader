@@ -17,7 +17,8 @@ import org.apache.http.client.HttpResponseException;
 @SuppressWarnings("checkstyle:HideUtilityClassConstructor")
 public class WasapiValidator {
 
-  public static boolean validateResponse(StatusLine statusLine, boolean entityIsNull) throws ClientProtocolException, HttpResponseException {
+  public static boolean validateResponse(StatusLine statusLine, boolean entityIsNull)
+      throws ClientProtocolException, HttpResponseException {
     if(statusLine.getStatusCode() != HttpStatus.SC_OK) {
       throw new HttpResponseException(statusLine.getStatusCode(), statusLine.getReasonPhrase());
     }

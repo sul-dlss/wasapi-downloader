@@ -25,7 +25,7 @@
         <module name="AnonInnerLength"/> <!-- default 20 lines -->
         <module name="ExecutableStatementCount"/> <!-- default 30 for methods, constructors, inits -->
         <module name="LineLength">
-            <property name="max" value="150"/>
+            <property name="max" value="120"/>
         </module>
         <module name="MethodLength"> <!-- for methods, constructors -->
             <property name="max" value="20"/>

@@ -11,7 +11,8 @@ import org.apache.http.client.ResponseHandler;
 public class JsonResponseHandler implements ResponseHandler<WasapiResponse> {
 
   @Override
-  public WasapiResponse handleResponse(final HttpResponse response) throws ClientProtocolException, HttpResponseException, IOException {
+  public WasapiResponse handleResponse(final HttpResponse response)
+      throws ClientProtocolException, HttpResponseException, IOException {
     HttpEntity entity = response.getEntity();
     if (WasapiValidator.validateResponse(response.getStatusLine(), entity == null))
       return new WasapiResponseParser().parse(entity.getContent());

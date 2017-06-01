@@ -24,7 +24,7 @@ import org.apache.commons.cli.ParseException;
 import org.apache.commons.validator.routines.IntegerValidator;
 import org.apache.commons.validator.routines.UrlValidator;
 
-@SuppressWarnings({"checkstyle:ClassDataAbstractionCoupling", "checkstyle:ClassFanOutComplexity"})
+@SuppressWarnings({"checkstyle:ClassDataAbstractionCoupling", "checkstyle:ClassFanOutComplexity", "checkstyle:LineLength"})
 public class WasapiDownloaderSettings {
   // to add a new setting:
   // * add a String constant for the setting/arg name

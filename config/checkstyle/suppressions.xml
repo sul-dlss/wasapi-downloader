@@ -4,6 +4,7 @@
 <suppressions>
   <suppress checks="AvoidStarImport" files="Test.+.java"/>
   <suppress checks="ClassDataAbstractionCoupling" files="Test.+.java"/>
+  <suppress checks="LineLength" files="Test.+.java"/>
   <suppress checks="MagicNumberCheck" files="Test.+.java"/>
   <suppress checks="MultipleStringLiterals" files="Test.+.java"/>
   <suppress id="MethodNameRegular" files="Test.+.java"  />

@@ -79,11 +79,13 @@ public class WasapiDownloader {
           checksumValidated = true; // break out of loop
         }
       } catch (HttpResponseException e) {
-        System.err.println("ERROR: HttpResponseException (" + e.getMessage() + ") downloading file (will not retry): " + file.getLocations()[0]);
+        String prefix = "ERROR: HttpResponseException (" + e.getMessage() + ") downloading file (will not retry): ";
+        System.err.println(prefix + file.getLocations()[0]);
         System.err.println(" HTTP ResponseCode was " + e.getStatusCode());
         attempts = NUM_RETRIES + 1;  // no more attempts
       } catch (ClientProtocolException e) {
-        System.err.println("ERROR: ClientProtocolException (" + e.getMessage() + ") downloading file (will not retry): " + file.getLocations()[0]);
+        String prefix = "ERROR: ClientProtocolException (" + e.getMessage() + ") downloading file (will not retry): ";
+        System.err.println(prefix + file.getLocations()[0]);
         attempts = NUM_RETRIES + 1;  // no more attempts
       } catch (IOException e) {
         // swallow exception and try again - it may be a network issue
@@ -98,13 +100,15 @@ public class WasapiDownloader {
 
   // package level method for testing
   String prepareOutputLocation(WasapiFile file) {
-    String outputPath = settings.outputBaseDir() + "AIT_" + file.getCollectionId() + SEP + file.getCrawlId() + SEP + file.getCrawlStartDateStr();
+    String outputPath = settings.outputBaseDir() + "AIT_" + file.getCollectionId() +
+        SEP + file.getCrawlId() + SEP + file.getCrawlStartDateStr();
     new File(outputPath).mkdirs();
     return outputPath + SEP + file.getFilename();
   }
 
   // package level method for testing
-  boolean checksumValidate(String algorithm, WasapiFile file, String fullFilePath) throws NoSuchAlgorithmException, IOException {
+  boolean checksumValidate(String algorithm, WasapiFile file, String fullFilePath)
+      throws NoSuchAlgorithmException, IOException {
     String checksum = file.getChecksums().get(algorithm);
     if (checksum == null) {
       System.err.println("No checksum of type: " + algorithm + " available: " + file.getChecksums().toString());

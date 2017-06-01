@@ -17,7 +17,8 @@ public class DownloadResponseHandler implements ResponseHandler<Boolean> {
   }
 
   @Override
-  public Boolean handleResponse(final HttpResponse response) throws ClientProtocolException, HttpResponseException, IOException {
+  public Boolean handleResponse(final HttpResponse response)
+      throws ClientProtocolException, HttpResponseException, IOException {
     HttpEntity entity = response.getEntity();
 
     if (WasapiValidator.validateResponse(response.getStatusLine(), entity == null)) {
