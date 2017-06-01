@@ -74,7 +74,7 @@ public class WasapiDownloader {
       attempts++;
       try {
         boolean downloadSuccess = getWasapiConn().downloadQuery(file.getLocations()[0], fullFilePath);
-        if (downloadSuccess && checksumValidate("md5", file, fullFilePath)) {
+        if (downloadSuccess && checksumValidate(settings.checksumAlgorithm(), file, fullFilePath)) {
           System.out.println("file retrieved successfully: " + file.getLocations()[0]);
           checksumValidated = true; // break out of loop
         }
@@ -105,7 +105,6 @@ public class WasapiDownloader {
 
   // package level method for testing
   boolean checksumValidate(String algorithm, WasapiFile file, String fullFilePath) throws NoSuchAlgorithmException, IOException {
-    // TODO:  use setting to decide md5 vs sha1 (see wasapi-downloader#92 in github)
     String checksum = file.getChecksums().get(algorithm);
     if (checksum == null) {
       System.err.println("No checksum of type: " + algorithm + " available: " + file.getChecksums().toString());
