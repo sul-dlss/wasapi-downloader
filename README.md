@@ -17,7 +17,7 @@ The minimal sequence of steps to verify that you can work with the code is:
 1. `git clone https://github.com/sul-dlss/wasapi-downloader.git`
 2. `cd wasapi-downloader`
 3. `./gradlew installDist`  (compile and test the code and create a script to execute it)
-4. `./build/install/wasapi-downloader/bin/wasapi-downloader --help` (explain usage)
+4. `./build/install/wasapi-downloader/bin/wasapi-downloader --help` (explains usage)
 
 An example invocation of the downloader:
 ```
@@ -54,6 +54,8 @@ An example invocation of the downloader:
 ./build/install/wasapi-downloader/bin/wasapi-downloader --collectionId 123 --crawlStartAfter 2014-03-14
 ```
 
+See more examples below in the [Production section](#stanford-production-use).
+
 ## Deployment
 
 Capistrano is used for deployment to Stanford VMs.
@@ -75,7 +77,8 @@ Capistrano is used for deployment to Stanford VMs.
 ## (Stanford) Production Use
 
 The deployment command shown above creates an executable Java application. After logging onto the production server you may run wasapi-downloader by following these steps:
-```cd wasapi-downloader/current/
+```
+cd wasapi-downloader/current/
 ./build/install/wasapi-downloader/bin/wasapi-downloader <args>
 ```
 
@@ -83,17 +86,33 @@ The `--help` option will display a message listing all of the arguments:
 
 `./build/install/wasapi-downloader/bin/wasapi-downloader --help`
 
-Some of the arguments have a default value in `config/settings.properties`. `--help` will display the current configuration.
+Some of the available command line arguments have a default value set in `config/settings.properties`. `--help` will display the current configuration as taken from the `settings.properties` file. Command line arguments will override values set from `config/settings.properties`.
 
-Download all crawl files created after 2014:
+### Common Usage Examples
 
-`./build/install/wasapi-downloader/bin/wasapi-downloader --crawlStartAfter 2014-01-01`
+For many users of the production instance of wasapi-downloader, the following examples will be relevant/helpful:
 
-Download crawl files created before 2012, into /tmp/:
+#### Download all crawl files available across all collections available to your account (less likely)
 
-`./build/install/wasapi-downloader/bin/wasapi-downloader --crawlStartBefore 2012-01-01 --outputBaseDir /tmp/`
+`./build/install/wasapi-downloader/bin/wasapi-downloader`
 
-Download a single file:
+#### Download all crawl files available for a certain collection (more likely)
+
+`./build/install/wasapi-downloader/bin/wasapi-downloader --collectionId 8001`
+
+#### Download all crawl files for a certain collection (ex. 8001) after a certain date (ex: 2014)
+
+`./build/install/wasapi-downloader/bin/wasapi-downloader --collectionId 8001 --crawlStartAfter 2014-01-01`
+
+#### Download all crawl files for a certain collection (ex. 8001) created before a certain date (ex: 2012) into a particular output file (ex. `/tmp/`, which override the `config.settings` default value):
+
+`./build/install/wasapi-downloader/bin/wasapi-downloader --collectionId 8001 --crawlStartBefore 2012-01-01 --outputBaseDir /tmp/`
+
+#### Download all crawl files available for a certain collection (more likely) created before a certain date (ex: 2012) and after a certain date (ex: 2014)
+
+`./build/install/wasapi-downloader/bin/wasapi-downloader --collectionId 8001 --crawlStartBefore 2012-01-01 --crawlStartAfter 2014-01-01`
+
+#### Download a single file:
 
 `./build/install/wasapi-downloader/bin/wasapi-downloader --filename ARCHIVEIT-5425-MONTHLY-JOB302671-20170526114117181-00049.warc.gz`
 
