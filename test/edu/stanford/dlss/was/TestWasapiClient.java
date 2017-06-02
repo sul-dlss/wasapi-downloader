@@ -5,7 +5,6 @@ import java.io.IOException;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 
-import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 import org.junit.*;
 import static org.mockito.Mockito.*;
@@ -19,7 +18,7 @@ public class TestWasapiClient {
     assertNotNull(testClient.wasapiClient);
     assertNotNull(testClient.wasapiContext);
     assertNotNull(testClient.cookieStore);
-    assertEquals(testClient.settings, settings);
+    assertEquals("incorrect settings", settings, testClient.settings);
   }
 
   @Test

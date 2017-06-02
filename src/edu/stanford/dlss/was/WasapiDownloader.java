@@ -15,9 +15,6 @@ public class WasapiDownloader {
   public static final String SETTINGS_FILE_LOCATION = "config/settings.properties";
   private static final char SEP = File.separatorChar;
 
-  // TODO:  use setting (see wasapi-downloader#93 in github)
-  public static final int NUM_RETRIES = 3;
-
   public WasapiDownloaderSettings settings;
 
   private WasapiConnection wasapiConn;
@@ -68,6 +65,7 @@ public class WasapiDownloader {
       System.err.println("fullFilePath is null - can't retrieve file");
       return;
     }
+    int numRetries = Integer.parseInt(settings.retries());
     int attempts = 0;
     boolean checksumValidated = false;
     do {
@@ -79,32 +77,36 @@ public class WasapiDownloader {
           checksumValidated = true; // break out of loop
         }
       } catch (HttpResponseException e) {
-        System.err.println("ERROR: HttpResponseException (" + e.getMessage() + ") downloading file (will not retry): " + file.getLocations()[0]);
+        String prefix = "ERROR: HttpResponseException (" + e.getMessage() + ") downloading file (will not retry): ";
+        System.err.println(prefix + file.getLocations()[0]);
         System.err.println(" HTTP ResponseCode was " + e.getStatusCode());
-        attempts = NUM_RETRIES + 1;  // no more attempts
+        attempts = numRetries + 1;  // no more attempts
       } catch (ClientProtocolException e) {
-        System.err.println("ERROR: ClientProtocolException (" + e.getMessage() + ") downloading file (will not retry): " + file.getLocations()[0]);
-        attempts = NUM_RETRIES + 1;  // no more attempts
+        String prefix = "ERROR: ClientProtocolException (" + e.getMessage() + ") downloading file (will not retry): ";
+        System.err.println(prefix + file.getLocations()[0]);
+        attempts = numRetries + 1;  // no more attempts
       } catch (IOException e) {
         // swallow exception and try again - it may be a network issue
         System.err.println("WARNING: exception downloading file (will retry): " + file.getLocations()[0]);
         e.printStackTrace(System.err);
       }
-    } while (attempts <= NUM_RETRIES && !checksumValidated);
+    } while (attempts <= numRetries && !checksumValidated);
 
-    if (attempts == NUM_RETRIES + 1) // RE-tries, not number of attempts
+    if (attempts == numRetries + 1) // RE-tries, not number of attempts
       System.err.println("file not retrieved or unable to validate checksum: " + file.getLocations()[0]);
   }
 
   // package level method for testing
   String prepareOutputLocation(WasapiFile file) {
-    String outputPath = settings.outputBaseDir() + "AIT_" + file.getCollectionId() + SEP + file.getCrawlId() + SEP + file.getCrawlStartDateStr();
+    String outputPath = settings.outputBaseDir() + "AIT_" + file.getCollectionId() +
+        SEP + file.getCrawlId() + SEP + file.getCrawlStartDateStr();
     new File(outputPath).mkdirs();
     return outputPath + SEP + file.getFilename();
   }
 
   // package level method for testing
-  boolean checksumValidate(String algorithm, WasapiFile file, String fullFilePath) throws NoSuchAlgorithmException, IOException {
+  boolean checksumValidate(String algorithm, WasapiFile file, String fullFilePath)
+      throws NoSuchAlgorithmException, IOException {
     String checksum = file.getChecksums().get(algorithm);
     if (checksum == null) {
       System.err.println("No checksum of type: " + algorithm + " available: " + file.getChecksums().toString());
@@ -123,10 +125,10 @@ public class WasapiDownloader {
 
   private List<Integer> desiredCrawlIds(WasapiCrawlSelector crawlSelector) {
     // TODO: want cleaner grab of int from settings: wasapi-downloader#83
-    Integer myInteger = IntegerValidator.getInstance().validate(settings.jobIdLowerBound());
+    Integer myInteger = IntegerValidator.getInstance().validate(settings.crawlIdLowerBound());
     if (myInteger != null) {
-      int jobsAfter = myInteger.intValue();
-      return crawlSelector.getSelectedCrawlIds(jobsAfter);
+      int crawlsAfter = myInteger.intValue();
+      return crawlSelector.getSelectedCrawlIds(crawlsAfter);
     }
     else
       return crawlSelector.getSelectedCrawlIds(0); // all returns all crawl ids from FileSet
@@ -159,8 +161,8 @@ public class WasapiDownloader {
       params.add("crawl-start-after=" + settings.crawlStartAfter());
     if (settings.crawlStartBefore()!= null)
       params.add("crawl-start-before=" + settings.crawlStartBefore());
-    if (settings.jobId() != null)
-      params.add("crawl=" + settings.jobId());
+    if (settings.crawlId() != null)
+      params.add("crawl=" + settings.crawlId());
     return params;
   }
 

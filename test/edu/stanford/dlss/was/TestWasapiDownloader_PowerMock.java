@@ -38,7 +38,8 @@ public class TestWasapiDownloader_PowerMock {
 
   @Test
   public void main_executesFileSetRequest_usesAllAppropArgsSettings() throws Exception {
-    String[] args = {"--collectionId", "123", "--jobId=456", "--crawlStartAfter", "2014-03-14", "--crawlStartBefore=2017-03-14", "--username=Fred" };
+    String[] args = {"--collectionId", "123", "--crawlId=456",
+        "--crawlStartAfter", "2014-03-14", "--crawlStartBefore=2017-03-14", "--username=Fred" };
     WasapiConnection mockConn = Mockito.mock(WasapiConnection.class);
     Mockito.when(mockConn.pagedJsonQuery(anyString())).thenReturn(null);
     WasapiDownloader downloaderSpy = PowerMockito.spy(new WasapiDownloader(WasapiDownloader.SETTINGS_FILE_LOCATION, args));
@@ -144,9 +145,9 @@ public class TestWasapiDownloader_PowerMock {
 
   @Test
   @SuppressWarnings("checkstyle:NoWhitespaceAfter")
-  public void downloadSelectedWarcs_byJobIdLowerBound() throws Exception {
+  public void downloadSelectedWarcs_byCrawlIdLowerBound() throws Exception {
     String argValue = "666";
-    String[] args = { "--jobIdLowerBound=" + argValue };
+    String[] args = { "--crawlIdLowerBound=" + argValue };
 
     WasapiCrawlSelector mockCrawlSelector = PowerMockito.mock(WasapiCrawlSelector.class);
     List<WasapiResponse> wasapiRespList = getWasapiRespList();

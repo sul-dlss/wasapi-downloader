@@ -40,7 +40,8 @@ public class WasapiConnection {
     return wasapiRespList;
   }
 
-  public Boolean downloadQuery(String downloadURL, final String outputPath) throws ClientProtocolException, HttpResponseException, IOException {
+  public Boolean downloadQuery(String downloadURL, final String outputPath)
+      throws ClientProtocolException, HttpResponseException, IOException {
     HttpGet fileRequest = new HttpGet(downloadURL);
     return wasapiClient.execute(fileRequest, new DownloadResponseHandler(outputPath));
   }

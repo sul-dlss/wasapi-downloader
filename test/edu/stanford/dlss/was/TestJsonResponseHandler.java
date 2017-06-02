@@ -15,7 +15,6 @@ import org.apache.http.message.BasicStatusLine;
 import org.junit.*;
 import static org.junit.Assert.*;
 import org.mockito.*;
-import org.mockito.Mockito.*;
 
 public class TestJsonResponseHandler {
 
@@ -33,7 +32,6 @@ public class TestJsonResponseHandler {
     handler.handleResponse(mockResponse);
   }
 
-
   @Test
   public void validResponseParsesCorrectly() throws ClientProtocolException, HttpResponseException, IOException {
     JsonResponseHandler handler = new JsonResponseHandler();
@@ -44,6 +42,6 @@ public class TestJsonResponseHandler {
     Mockito.when(mockEntity.getContent()).thenReturn(new FileInputStream(new File(FIXTURE_FILE)));
 
     WasapiResponse parsedResponse = handler.handleResponse(mockResponse);
-    assertEquals(parsedResponse.getCount(), 5);
+    assertEquals("parsed response count value wrong", 5, parsedResponse.getCount());
   }
 }

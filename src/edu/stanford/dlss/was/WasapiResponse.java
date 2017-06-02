@@ -2,6 +2,7 @@ package edu.stanford.dlss.was;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+@SuppressWarnings("checkstyle:LineLength")
 /**
  * Class corresponding to JSON received after making WASAPI request ("FileSet")
  * @see https://github.com/WASAPI-Community/data-transfer-apis/blob/master/ait-implementation/wasapi/implemented-swagger.yaml#L184-L213
