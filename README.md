@@ -104,7 +104,7 @@ For many users of the production instance of wasapi-downloader, the following ex
 
 `./build/install/wasapi-downloader/bin/wasapi-downloader --collectionId 8001 --crawlStartAfter 2014-01-01`
 
-#### Download all crawl files for a certain collection (ex. 8001) created before a certain date (ex: 2012) into a particular output file (ex. `/tmp/`, which override the `config.settings` default value):
+#### Download all crawl files for a certain collection (ex. 8001) created before a certain date (ex: 2012) into a particular output directory (ex. `/tmp/`, which override the `config.settings` default value):
 
 `./build/install/wasapi-downloader/bin/wasapi-downloader --collectionId 8001 --crawlStartBefore 2012-01-01 --outputBaseDir /tmp/`
 
