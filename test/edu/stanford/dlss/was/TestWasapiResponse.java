@@ -24,5 +24,6 @@ public class TestWasapiResponse {
     assertThat(responseAsString, containsString("includes-extra: false"));
     assertThat(responseAsString, containsString("files:"));
     assertThat(responseAsString, containsString("file 0:"));
+    assertThat(responseAsString, containsString("request-url: https://partner.archive-it.org/wasapi/v1/webdata?collection=4666&format=json"));
   }
 }

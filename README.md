@@ -26,7 +26,7 @@ An example invocation of the downloader:
 
 ### Configuration
 
-This repository contains an example `config/settings.properties` file with dummy values for the required configuration settings. In order to successfully execute the Java application, you will need to override these default settings.
+This repository contains an example `config/settings.properties.example` file with dummy values for the required configuration settings. In order to successfully execute the Java application, you will need to copy these to `config/settings.properties` with your own values.
 
 ### Usage
 

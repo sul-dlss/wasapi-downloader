@@ -25,6 +25,9 @@ public class WasapiFile {
   @JsonProperty("crawl-start")
   private String crawlStartDateStr;
 
+  @JsonProperty("crawl-time")
+  private String crawlTimeDateStr;
+
   private String filename;
   private String filetype;
   private String[] locations;
@@ -63,6 +66,13 @@ public class WasapiFile {
   }
   public void setCrawlStartDateStr(String crawlStartDateStr) {
     this.crawlStartDateStr = crawlStartDateStr;
+  }
+
+  public String getCrawlTimeDateStr() {
+    return crawlTimeDateStr;
+  }
+  public void setCrawlTimeDateStr(String crawlTimeDateStr) {
+    this.crawlTimeDateStr = crawlTimeDateStr;
   }
 
   public String getFilename() {
@@ -112,6 +122,7 @@ public class WasapiFile {
     sb.append("collection: " + Integer.toString(getCollectionId()) + "\n");
     sb.append("crawl: " + Integer.toString(getCrawlId()) + "\n");
     sb.append("crawl_start: " + getCrawlStartDateStr() + "\n");
+    sb.append("crawl-time: " + getCrawlTimeDateStr() + "\n");
     return sb.toString();
   }
 }
