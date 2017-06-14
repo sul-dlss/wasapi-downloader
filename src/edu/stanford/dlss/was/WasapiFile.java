@@ -4,7 +4,7 @@ import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-@SuppressWarnings("checkstyle:LineLength")
+@SuppressWarnings({"checkstyle:LineLength", "checkstyle:MethodCount", "checkstyle:MethodLength"})
 /**
  * Class corresponding to JSON returned by WASAPI that represents WebdataFile
  * @see https://github.com/WASAPI-Community/data-transfer-apis/blob/master/ait-implementation/wasapi/implemented-swagger.yaml#L132-L183
@@ -24,6 +24,9 @@ public class WasapiFile {
 
   @JsonProperty("crawl-start")
   private String crawlStartDateStr;
+
+  @JsonProperty("crawl-time")
+  private String crawlTimeDateStr;
 
   private String filename;
   private String filetype;
@@ -63,6 +66,13 @@ public class WasapiFile {
   }
   public void setCrawlStartDateStr(String crawlStartDateStr) {
     this.crawlStartDateStr = crawlStartDateStr;
+  }
+
+  public String getCrawlTimeDateStr() {
+    return crawlTimeDateStr;
+  }
+  public void setCrawlTimeDateStr(String crawlTimeDateStr) {
+    this.crawlTimeDateStr = crawlTimeDateStr;
   }
 
   public String getFilename() {
@@ -112,6 +122,7 @@ public class WasapiFile {
     sb.append("collection: " + Integer.toString(getCollectionId()) + "\n");
     sb.append("crawl: " + Integer.toString(getCrawlId()) + "\n");
     sb.append("crawl_start: " + getCrawlStartDateStr() + "\n");
+    sb.append("crawl-time: " + getCrawlTimeDateStr() + "\n");
     return sb.toString();
   }
 }

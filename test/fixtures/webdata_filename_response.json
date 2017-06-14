@@ -4,6 +4,7 @@
         "locations": ["https://partner.archive-it.org/webdatafile/ARCHIVEIT-5425-CRAWL_SELECTED_SEEDS-JOB299019-20170504225811451-00000.warc.gz"],
         "collection": 5425,
         "crawl-start": "2017-05-04T22:58:04Z",
+        "crawl-time": "2014-09-22T23:53:12Z",
         "size": 231145356,
         "filetype": "warc",
         "account": 925,
@@ -15,6 +16,7 @@
     }],
     "next": null,
     "previous": null,
+    "request-url":  "https://partner.archive-it.org/wasapi/v1/webdata?collection=4666&format=json",
     "includes-extra": false,
     "count": 1
 }
