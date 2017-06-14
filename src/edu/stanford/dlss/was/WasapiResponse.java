@@ -15,17 +15,17 @@ public class WasapiResponse {
   private boolean includesExtra;
 
   @JsonProperty("request-url")
-  private String RequestsUrlStr;
+  private String requestsUrlStr;
 
   private String next;
   private String previous;
   private WasapiFile[] files;
 
   public String getRequestsUrlStr() {
-    return RequestsUrlStr;
+    return requestsUrlStr;
   }
-  public void setRequestsUrlStr(String RequestsUrlStr) {
-    this.RequestsUrlStr = RequestsUrlStr;
+  public void setRequestsUrlStr(String requestsUrlStr) {
+    this.requestsUrlStr = requestsUrlStr;
   }
 
   public int getCount() {
