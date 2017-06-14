@@ -14,3 +14,5 @@ build.xml
 
 eclipse-bin/
 test/outputBaseDir/
+
+config/settings.properties
