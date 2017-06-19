@@ -1,6 +1,4 @@
-# dev specific deployment info goes here
-set :deploy_host, "was-downloader-dev.stanford.edu"
-server fetch(:deploy_host), user: fetch(:user), roles: 'app'
+server 'was-downloader-dev.stanford.edu', user: 'was', roles: 'app'
 
 set :bundle_without, 'deployment'
 

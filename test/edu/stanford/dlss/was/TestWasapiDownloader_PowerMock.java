@@ -171,7 +171,7 @@ public class TestWasapiDownloader_PowerMock {
     wfile.setChecksums(checksumsMap);
 
     PowerMockito.mockStatic(WasapiValidator.class);
-    Mockito.when(WasapiValidator.validateMd5(expectedChecksum, anyString())).thenReturn(anyBoolean());
+    Mockito.when(WasapiValidator.validateMd5(eq(expectedChecksum), anyString())).thenReturn(anyBoolean());
 
     WasapiDownloader wd = new WasapiDownloader(WasapiDownloader.SETTINGS_FILE_LOCATION, null);
     wd.checksumValidate("md5", wfile, anyString());
@@ -189,7 +189,7 @@ public class TestWasapiDownloader_PowerMock {
     wfile.setChecksums(checksumsMap);
 
     PowerMockito.mockStatic(WasapiValidator.class);
-    Mockito.when(WasapiValidator.validateSha1(expectedChecksum, anyString())).thenReturn(anyBoolean());
+    Mockito.when(WasapiValidator.validateSha1(eq(expectedChecksum), anyString())).thenReturn(anyBoolean());
 
     WasapiDownloader wd = new WasapiDownloader(WasapiDownloader.SETTINGS_FILE_LOCATION, null);
     wd.checksumValidate("sha1", wfile, anyString());
