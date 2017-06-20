@@ -4,7 +4,7 @@ import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-@SuppressWarnings({"checkstyle:LineLength", "checkstyle:MethodCount", "checkstyle:MethodLength"})
+@SuppressWarnings({"checkstyle:LineLength", "checkstyle:MethodCount"})
 /**
  * Class corresponding to JSON returned by WASAPI that represents WebdataFile
  * @see https://github.com/WASAPI-Community/data-transfer-apis/blob/master/ait-implementation/wasapi/implemented-swagger.yaml#L132-L183
@@ -23,14 +23,18 @@ public class WasapiFile {
   private int crawlId;
 
   @JsonProperty("crawl-start")
+  /** Time the crawl started */
   private String crawlStartDateStr;
 
   @JsonProperty("crawl-time")
-  private String crawlTimeDateStr;
+  /** Time the original content of the file was crawled */
+  private String fileCrawlDateStr;
 
   private String filename;
+  /** The format of the archive file, e.g. `warc`, `wat`, `cdx` */
   private String filetype;
   private String[] locations;
+  /** The size in bytes of the file */
   private long size;
 
   public int getAccountId() {
@@ -68,11 +72,11 @@ public class WasapiFile {
     this.crawlStartDateStr = crawlStartDateStr;
   }
 
-  public String getCrawlTimeDateStr() {
-    return crawlTimeDateStr;
+  public String getFileCrawlDateStr() {
+    return fileCrawlDateStr;
   }
-  public void setCrawlTimeDateStr(String crawlTimeDateStr) {
-    this.crawlTimeDateStr = crawlTimeDateStr;
+  public void setFileCrawlDateStr(String fileCrawlDateStr) {
+    this.fileCrawlDateStr = fileCrawlDateStr;
   }
 
   public String getFilename() {
@@ -104,6 +108,7 @@ public class WasapiFile {
   }
 
   @Override
+  @SuppressWarnings("checkstyle:MethodLength")
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("***** Wasapi File Details *****\n");
@@ -122,7 +127,7 @@ public class WasapiFile {
     sb.append("collection: " + Integer.toString(getCollectionId()) + "\n");
     sb.append("crawl: " + Integer.toString(getCrawlId()) + "\n");
     sb.append("crawl_start: " + getCrawlStartDateStr() + "\n");
-    sb.append("crawl-time: " + getCrawlTimeDateStr() + "\n");
+    sb.append("crawl-time: " + getFileCrawlDateStr() + "\n");
     return sb.toString();
   }
 }
