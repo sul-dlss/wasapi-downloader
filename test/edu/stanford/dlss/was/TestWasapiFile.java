@@ -31,5 +31,6 @@ public class TestWasapiFile {
     assertThat(fileAsString, containsString("collection: 5425"));
     assertThat(fileAsString, containsString("crawl: 299019"));
     assertThat(fileAsString, containsString("crawl_start: 2017-05-04T22:58:04Z"));
+    assertThat(fileAsString, containsString("crawl-time: 2014-09-22T23:53:12Z"));
   }
 }

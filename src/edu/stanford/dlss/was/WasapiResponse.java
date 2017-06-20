@@ -14,9 +14,19 @@ public class WasapiResponse {
   @JsonProperty("includes-extra")
   private boolean includesExtra;
 
+  @JsonProperty("request-url")
+  private String requestsUrlStr;
+
   private String next;
   private String previous;
   private WasapiFile[] files;
+
+  public String getRequestsUrlStr() {
+    return requestsUrlStr;
+  }
+  public void setRequestsUrlStr(String requestsUrlStr) {
+    this.requestsUrlStr = requestsUrlStr;
+  }
 
   public int getCount() {
     return count;
@@ -60,6 +70,7 @@ public class WasapiResponse {
     sb.append("count: " + Integer.toString(getCount()) + "\n");
     sb.append("previous: " + getPrevious() + "\n");
     sb.append("next: " + getNext() + "\n");
+    sb.append("request-url: " + getRequestsUrlStr() + "\n");
     sb.append("includes-extra: " + Boolean.toString(isIncludesExtra()) + "\n");
     sb.append("files:\n");
     for (int i = 0; i < files.length; i++) {

@@ -1,6 +1,7 @@
 {
     "previous": "https://partner.archive-it.org/wasapi/v1/webdata?page=1",
     "includes-extra": false,
+    "request-url": "https://partner.archive-it.org/wasapi/v1/webdata?collection=4666&format=json",
     "count": 874,
     "files": [{
         "locations": ["https://partner.archive-it.org/webdatafile/ARCHIVEIT-5425-MONTHLY-JOB286007-20170325010932686-00007.warc.gz"],
@@ -8,6 +9,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-5425-MONTHLY-JOB286007-20170325010932686-00007.warc.gz",
         "crawl-start": "2017-03-23T18:19:38Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 5425,
         "account": 925,
         "checksums": {
@@ -21,6 +23,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-5425-MONTHLY-JOB286007-20170325002917452-00006.warc.gz",
         "crawl-start": "2017-03-23T18:19:38Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 5425,
         "account": 925,
         "checksums": {
@@ -34,6 +37,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-5425-MONTHLY-JOB286007-20170324220900594-00005.warc.gz",
         "crawl-start": "2017-03-23T18:19:38Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 5425,
         "account": 925,
         "checksums": {
@@ -47,6 +51,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-5425-MONTHLY-JOB286007-20170324181442175-00004.warc.gz",
         "crawl-start": "2017-03-23T18:19:38Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 5425,
         "account": 925,
         "checksums": {
@@ -60,6 +65,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-5425-MONTHLY-JOB286007-20170324052707871-00003.warc.gz",
         "crawl-start": "2017-03-23T18:19:38Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 5425,
         "account": 925,
         "checksums": {
@@ -73,6 +79,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-5425-MONTHLY-JOB286007-20170323231411744-00002.warc.gz",
         "crawl-start": "2017-03-23T18:19:38Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 5425,
         "account": 925,
         "checksums": {
@@ -86,6 +93,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-5425-CRAWL_SELECTED_SEEDS-JOB286011-SEED1352848-20170323182723579-00000-5hcbt739.warc.gz",
         "crawl-start": "2017-03-23T18:24:45Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 5425,
         "account": 925,
         "checksums": {
@@ -99,6 +107,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-5425-MONTHLY-JOB286007-20170323211222675-00001.warc.gz",
         "crawl-start": "2017-03-23T18:19:38Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 5425,
         "account": 925,
         "checksums": {
@@ -112,6 +121,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-5425-MONTHLY-JOB286007-20170323181951722-00000.warc.gz",
         "crawl-start": "2017-03-23T18:19:38Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 5425,
         "account": 925,
         "checksums": {
@@ -125,6 +135,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-QUARTERLY-JOB267417-20170222213254392-00036.warc.gz",
         "crawl-start": "2017-02-15T21:48:54Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -138,6 +149,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-QUARTERLY-JOB267417-20170222200423956-00035.warc.gz",
         "crawl-start": "2017-02-15T21:48:54Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -151,6 +163,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-QUARTERLY-JOB267417-20170222182155385-00034.warc.gz",
         "crawl-start": "2017-02-15T21:48:54Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -164,6 +177,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-QUARTERLY-JOB267417-20170222164126350-00033.warc.gz",
         "crawl-start": "2017-02-15T21:48:54Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -177,6 +191,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-QUARTERLY-JOB267417-20170222150917679-00032.warc.gz",
         "crawl-start": "2017-02-15T21:48:54Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -190,6 +205,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-QUARTERLY-JOB267417-20170222130958283-00031.warc.gz",
         "crawl-start": "2017-02-15T21:48:54Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -203,6 +219,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-QUARTERLY-JOB267417-20170222104746777-00030.warc.gz",
         "crawl-start": "2017-02-15T21:48:54Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -216,6 +233,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-QUARTERLY-JOB267417-20170222082240169-00029.warc.gz",
         "crawl-start": "2017-02-15T21:48:54Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -229,6 +247,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-TEST-JOB267119-20170215014854408-00004.warc.gz",
         "crawl-start": "2017-02-14T20:06:21Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -242,6 +261,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-TEST-JOB267119-20170215084837119-00006.warc.gz",
         "crawl-start": "2017-02-14T20:06:21Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -255,6 +275,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-TEST-JOB267119-20170215045807707-00005.warc.gz",
         "crawl-start": "2017-02-14T20:06:21Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -268,6 +289,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-TEST-JOB267119-20170214211755941-00001.warc.gz",
         "crawl-start": "2017-02-14T20:06:21Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -281,6 +303,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-TEST-JOB267119-20170215000301447-00003.warc.gz",
         "crawl-start": "2017-02-14T20:06:21Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -294,6 +317,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-TEST-JOB267119-20170214225035358-00002.warc.gz",
         "crawl-start": "2017-02-14T20:06:21Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -307,6 +331,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-TEST-JOB267119-20170215191440924-00008.warc.gz",
         "crawl-start": "2017-02-14T20:06:21Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -320,6 +345,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-TEST-JOB267119-20170214200640319-00000.warc.gz",
         "crawl-start": "2017-02-14T20:06:21Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -333,6 +359,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-TEST-JOB267119-20170215145400547-00007.warc.gz",
         "crawl-start": "2017-02-14T20:06:21Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -346,6 +373,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-QUARTERLY-JOB267417-20170222052245957-00028.warc.gz",
         "crawl-start": "2017-02-15T21:48:54Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -359,6 +387,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-QUARTERLY-JOB267417-20170222033022791-00027.warc.gz",
         "crawl-start": "2017-02-15T21:48:54Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -372,6 +401,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-QUARTERLY-JOB267417-20170222003127981-00026.warc.gz",
         "crawl-start": "2017-02-15T21:48:54Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -385,6 +415,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-QUARTERLY-JOB267417-20170221230913474-00025.warc.gz",
         "crawl-start": "2017-02-15T21:48:54Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -398,6 +429,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-QUARTERLY-JOB267417-20170221205632043-00024.warc.gz",
         "crawl-start": "2017-02-15T21:48:54Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -411,6 +443,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-QUARTERLY-JOB267417-20170221060743385-00023.warc.gz",
         "crawl-start": "2017-02-15T21:48:54Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -424,6 +457,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-QUARTERLY-JOB267417-20170220192118568-00022.warc.gz",
         "crawl-start": "2017-02-15T21:48:54Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -437,6 +471,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-QUARTERLY-JOB267417-20170220140539933-00021.warc.gz",
         "crawl-start": "2017-02-15T21:48:54Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -450,6 +485,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-QUARTERLY-JOB267417-20170220003754144-00020.warc.gz",
         "crawl-start": "2017-02-15T21:48:54Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -463,6 +499,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-QUARTERLY-JOB267417-20170219124748344-00019.warc.gz",
         "crawl-start": "2017-02-15T21:48:54Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -476,6 +513,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-QUARTERLY-JOB267417-20170219012551496-00018.warc.gz",
         "crawl-start": "2017-02-15T21:48:54Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -489,6 +527,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-QUARTERLY-JOB267417-20170218171424954-00017.warc.gz",
         "crawl-start": "2017-02-15T21:48:54Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -502,6 +541,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-QUARTERLY-JOB267417-20170218145957957-00016.warc.gz",
         "crawl-start": "2017-02-15T21:48:54Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -515,6 +555,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-QUARTERLY-JOB267417-20170218131617359-00015.warc.gz",
         "crawl-start": "2017-02-15T21:48:54Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -528,6 +569,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-QUARTERLY-JOB267417-20170218105233816-00014.warc.gz",
         "crawl-start": "2017-02-15T21:48:54Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -541,6 +583,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-QUARTERLY-JOB267417-20170218062748759-00013.warc.gz",
         "crawl-start": "2017-02-15T21:48:54Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -554,6 +597,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-QUARTERLY-JOB267417-20170217213720485-00012.warc.gz",
         "crawl-start": "2017-02-15T21:48:54Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -567,6 +611,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-QUARTERLY-JOB267417-20170217133416711-00011.warc.gz",
         "crawl-start": "2017-02-15T21:48:54Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -580,6 +625,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-QUARTERLY-JOB267417-20170217072710984-00010.warc.gz",
         "crawl-start": "2017-02-15T21:48:54Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -593,6 +639,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-QUARTERLY-JOB267417-20170216230657721-00009.warc.gz",
         "crawl-start": "2017-02-15T21:48:54Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -606,6 +653,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-QUARTERLY-JOB267417-20170216183811777-00008.warc.gz",
         "crawl-start": "2017-02-15T21:48:54Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -619,6 +667,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-QUARTERLY-JOB267417-20170216145546488-00007.warc.gz",
         "crawl-start": "2017-02-15T21:48:54Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -632,6 +681,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-QUARTERLY-JOB267417-20170216102130233-00006.warc.gz",
         "crawl-start": "2017-02-15T21:48:54Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -645,6 +695,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-QUARTERLY-JOB267417-20170216054453266-00005.warc.gz",
         "crawl-start": "2017-02-15T21:48:54Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -658,6 +709,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-QUARTERLY-JOB267417-20170216024551019-00004.warc.gz",
         "crawl-start": "2017-02-15T21:48:54Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -671,6 +723,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-QUARTERLY-JOB267417-20170216005827186-00003.warc.gz",
         "crawl-start": "2017-02-15T21:48:54Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -684,6 +737,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-QUARTERLY-JOB267417-20170215232809357-00002.warc.gz",
         "crawl-start": "2017-02-15T21:48:54Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -697,6 +751,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-QUARTERLY-JOB267417-20170215223157442-00001.warc.gz",
         "crawl-start": "2017-02-15T21:48:54Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -710,6 +765,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-QUARTERLY-JOB267417-20170215214902783-00000.warc.gz",
         "crawl-start": "2017-02-15T21:48:54Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -723,6 +779,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-5425-TEST-JOB264317-20170131013617439-00003.warc.gz",
         "crawl-start": "2017-01-31T00:30:37Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 5425,
         "account": 925,
         "checksums": {
@@ -736,6 +793,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-5425-TEST-JOB264317-20170131050138078-00007.warc.gz",
         "crawl-start": "2017-01-31T00:30:37Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 5425,
         "account": 925,
         "checksums": {
@@ -749,6 +807,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-5425-TEST-JOB264317-20170131024500208-00005.warc.gz",
         "crawl-start": "2017-01-31T00:30:37Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 5425,
         "account": 925,
         "checksums": {
@@ -762,6 +821,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-5425-TEST-JOB264317-20170131003045564-00000.warc.gz",
         "crawl-start": "2017-01-31T00:30:37Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 5425,
         "account": 925,
         "checksums": {
@@ -775,6 +835,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-5425-TEST-JOB264317-20170131035259230-00006.warc.gz",
         "crawl-start": "2017-01-31T00:30:37Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 5425,
         "account": 925,
         "checksums": {
@@ -788,6 +849,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-5425-TEST-JOB264317-20170131004827758-00001.warc.gz",
         "crawl-start": "2017-01-31T00:30:37Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 5425,
         "account": 925,
         "checksums": {
@@ -801,6 +863,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-5425-TEST-JOB264317-20170131021123444-00004.warc.gz",
         "crawl-start": "2017-01-31T00:30:37Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 5425,
         "account": 925,
         "checksums": {
@@ -814,6 +877,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-5425-TEST-JOB264317-20170131072141855-00008.warc.gz",
         "crawl-start": "2017-01-31T00:30:37Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 5425,
         "account": 925,
         "checksums": {
@@ -827,6 +891,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-5425-TEST-JOB264317-20170131010826969-00002.warc.gz",
         "crawl-start": "2017-01-31T00:30:37Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 5425,
         "account": 925,
         "checksums": {
@@ -840,6 +905,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-TEST-JOB248336-20161110204804352-00000.warc.gz",
         "crawl-start": "2016-11-10T20:47:49Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -853,6 +919,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-TEST-JOB248986-20161114225148538-00043.warc.gz",
         "crawl-start": "2016-11-14T19:10:56Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -866,6 +933,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-TEST-JOB248986-20161114195721856-00003.warc.gz",
         "crawl-start": "2016-11-14T19:10:56Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -879,6 +947,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-TEST-JOB248986-20161115052020729-00155.warc.gz",
         "crawl-start": "2016-11-14T19:10:56Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -892,6 +961,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-TEST-JOB248986-20161115061410278-00173.warc.gz",
         "crawl-start": "2016-11-14T19:10:56Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -905,6 +975,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-TEST-JOB248986-20161115060421005-00170.warc.gz",
         "crawl-start": "2016-11-14T19:10:56Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -918,6 +989,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-TEST-JOB248986-20161115055856926-00168.warc.gz",
         "crawl-start": "2016-11-14T19:10:56Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -931,6 +1003,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-TEST-JOB248986-20161115055615970-00167.warc.gz",
         "crawl-start": "2016-11-14T19:10:56Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -944,6 +1017,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-TEST-JOB248986-20161115021659176-00095.warc.gz",
         "crawl-start": "2016-11-14T19:10:56Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -957,6 +1031,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-TEST-JOB248986-20161114204529184-00010.warc.gz",
         "crawl-start": "2016-11-14T19:10:56Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -970,6 +1045,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-TEST-JOB248986-20161114221146387-00031.warc.gz",
         "crawl-start": "2016-11-14T19:10:56Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -983,6 +1059,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-TEST-JOB248986-20161114224522470-00041.warc.gz",
         "crawl-start": "2016-11-14T19:10:56Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -996,6 +1073,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-TEST-JOB248986-20161114230747970-00048.warc.gz",
         "crawl-start": "2016-11-14T19:10:56Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -1009,6 +1087,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-TEST-JOB248986-20161115002848973-00067.warc.gz",
         "crawl-start": "2016-11-14T19:10:56Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -1022,6 +1101,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-TEST-JOB248986-20161115061955423-00175.warc.gz",
         "crawl-start": "2016-11-14T19:10:56Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -1035,6 +1115,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-TEST-JOB248986-20161115022311428-00098.warc.gz",
         "crawl-start": "2016-11-14T19:10:56Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -1048,6 +1129,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-TEST-JOB248986-20161115041941616-00137.warc.gz",
         "crawl-start": "2016-11-14T19:10:56Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -1061,6 +1143,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-TEST-JOB248986-20161115030259224-00110.warc.gz",
         "crawl-start": "2016-11-14T19:10:56Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -1074,6 +1157,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-TEST-JOB248986-20161114215756889-00028.warc.gz",
         "crawl-start": "2016-11-14T19:10:56Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -1087,6 +1171,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-TEST-JOB248986-20161115000947582-00063.warc.gz",
         "crawl-start": "2016-11-14T19:10:56Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -1100,6 +1185,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-TEST-JOB248986-20161114200547156-00004.warc.gz",
         "crawl-start": "2016-11-14T19:10:56Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -1113,6 +1199,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-TEST-JOB248986-20161115041113800-00134.warc.gz",
         "crawl-start": "2016-11-14T19:10:56Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -1126,6 +1213,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-TEST-JOB248986-20161115013053744-00082.warc.gz",
         "crawl-start": "2016-11-14T19:10:56Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -1139,6 +1227,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-TEST-JOB248986-20161114214801003-00025.warc.gz",
         "crawl-start": "2016-11-14T19:10:56Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -1152,6 +1241,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-TEST-JOB248986-20161114223555492-00038.warc.gz",
         "crawl-start": "2016-11-14T19:10:56Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -1165,6 +1255,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-TEST-JOB248986-20161114205040022-00011.warc.gz",
         "crawl-start": "2016-11-14T19:10:56Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -1178,6 +1269,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-TEST-JOB248986-20161114221837664-00033.warc.gz",
         "crawl-start": "2016-11-14T19:10:56Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -1191,6 +1283,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-TEST-JOB248986-20161115032958118-00120.warc.gz",
         "crawl-start": "2016-11-14T19:10:56Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -1204,6 +1297,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-TEST-JOB248986-20161115035340206-00128.warc.gz",
         "crawl-start": "2016-11-14T19:10:56Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -1217,6 +1311,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-TEST-JOB248986-20161115020259115-00091.warc.gz",
         "crawl-start": "2016-11-14T19:10:56Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -1230,6 +1325,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-TEST-JOB248986-20161115045949618-00148.warc.gz",
         "crawl-start": "2016-11-14T19:10:56Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -1243,6 +1339,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-TEST-JOB248986-20161115011523152-00077.warc.gz",
         "crawl-start": "2016-11-14T19:10:56Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -1256,6 +1353,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-TEST-JOB248986-20161114223235843-00037.warc.gz",
         "crawl-start": "2016-11-14T19:10:56Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -1269,6 +1367,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-TEST-JOB248986-20161115042238955-00138.warc.gz",
         "crawl-start": "2016-11-14T19:10:56Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -1282,6 +1381,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-TEST-JOB248986-20161114213148968-00022.warc.gz",
         "crawl-start": "2016-11-14T19:10:56Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
@@ -1295,6 +1395,7 @@
         "filetype": "warc",
         "filename": "ARCHIVEIT-8001-TEST-JOB248986-20161115061036746-00172.warc.gz",
         "crawl-start": "2016-11-14T19:10:56Z",
+        "crawl-time": "2014-07-31T04:18:21Z",
         "collection": 8001,
         "account": 925,
         "checksums": {
