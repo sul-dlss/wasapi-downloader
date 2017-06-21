@@ -27,7 +27,7 @@ public class WasapiFile {
   private String crawlStartDateStr;
 
   @JsonProperty("crawl-time")
-  /** Time the original content of the file was crawled */
+  /** Time the original content of the file was crawled (when the warc was created/opened) */
   private String fileCrawlDateStr;
 
   private String filename;
@@ -126,7 +126,7 @@ public class WasapiFile {
     sb.append("account: " + Integer.toString(getAccountId()) + "\n");
     sb.append("collection: " + Integer.toString(getCollectionId()) + "\n");
     sb.append("crawl: " + Integer.toString(getCrawlId()) + "\n");
-    sb.append("crawl_start: " + getCrawlStartDateStr() + "\n");
+    sb.append("crawl-start: " + getCrawlStartDateStr() + "\n");
     sb.append("crawl-time: " + getFileCrawlDateStr() + "\n");
     return sb.toString();
   }
