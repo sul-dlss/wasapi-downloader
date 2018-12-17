@@ -26,7 +26,7 @@ public class TestWasapiDownloaderSettings {
     // the below args array would come from something like:
     //   wasapi-downloader -h --collectionId 123 --crawlId=456 --crawlStartAfter 2014-03-14 --crawlStartBefore=2017-03-14
     // The Apache CLI parser should be able to handle all of those different styles of argument without any trouble.
-    String[] args = { "-h", "--collectionId", "123", "--crawlId=456", "--crawlStartAfter", "2014-03-14", "--crawlStartBefore=2017-03-14" };
+    String[] args = { "-h", "--collectionId", "123", "--crawlId=456", "--crawlStartAfter", "2014-03-14", "--crawlStartBefore=2017-03-14", "--resume" };
     WasapiDownloaderSettings settings = new WasapiDownloaderSettings(WasapiDownloader.SETTINGS_FILE_LOCATION, args);
 
     assertEquals("baseurl value should have come from settings file", "https://example.org/", settings.baseUrlString());
@@ -43,6 +43,7 @@ public class TestWasapiDownloaderSettings {
     assertEquals("crawlStartAfter value should have come from args", "2014-03-14", settings.crawlStartAfter());
     assertEquals("crawlStartBefore value should have come from args", "2017-03-14", settings.crawlStartBefore());
     assertTrue("shouldDisplayHelp value should have come from args", settings.shouldDisplayHelp());
+    assertTrue("shouldResume value should have come from args", settings.shouldResume());
   }
 
   @Test
@@ -51,7 +52,7 @@ public class TestWasapiDownloaderSettings {
     //TODO: if settings validation flags possibly nonsensical/redundant combos like crawlId and crawlIdLowerBound,
     // then this test might have to be broken up a bit.
     String[] args = { "-h", "--collectionId", "123", "--crawlId=456", "--crawlIdLowerBound=400",
-        "--crawlStartAfter", "2014-03-14", "--crawlStartBefore=2017-03-14", "--filename=filename.warc.gz" };
+        "--crawlStartAfter", "2014-03-14", "--crawlStartBefore=2017-03-14", "--filename=filename.warc.gz", "--resume" };
     WasapiDownloaderSettings settings = new WasapiDownloaderSettings(WasapiDownloader.SETTINGS_FILE_LOCATION, args);
 
     String helpAndSettingsMsg = settings.getHelpAndSettingsMessage();
@@ -73,6 +74,7 @@ public class TestWasapiDownloaderSettings {
     assertThat("helpAndSettingsMsg lists password arg", helpAndSettingsMsg, containsString("--password <arg>"));
     assertThat("helpAndSettingsMsg lists retries arg", helpAndSettingsMsg, containsString("--retries <arg>"));
     assertThat("helpAndSettingsMsg lists username arg", helpAndSettingsMsg, containsString("--username <arg>"));
+    assertThat("helpAndSettingsMsg lists resume flag", helpAndSettingsMsg, containsString("--resume"));
 
     // values
     assertThat("helpAndSettingsMsg lists accountId value", helpAndSettingsMsg, containsString("accountId : 1"));

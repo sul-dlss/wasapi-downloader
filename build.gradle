@@ -35,15 +35,22 @@ dependencies {
     compile 'org.apache.httpcomponents:httpclient:4.5.3'
     compile 'org.apache.httpcomponents:httpcore:4.4.6'
 
+    // JAXB
+    compile 'javax.xml.bind:jaxb-api:2.3.0'
+    compile 'com.sun.xml.bind:jaxb-core:2.3.0'
+    compile 'com.sun.xml.bind:jaxb-impl:2.3.0'
+
     //Unit testing framework.
     testCompile 'junit:junit:4.12'
 
     //For creating mock objects in unit tests
-    testCompile "org.mockito:mockito-core:2.+"
+    // See https://github.com/powermock/powermock/wiki/Mockito#supported-versions
+    testCompile 'org.mockito:mockito-core:2.23.0+'
 
     // need PowerMock for mocking constructors (local objects within methods)
-    testCompile "org.powermock:powermock-module-junit4:1.7+"
-    testCompile "org.powermock:powermock-api-mockito2:1.7+"
+    testCompile "org.powermock:powermock-module-junit4:2.0.0-RC.4"
+    testCompile "org.powermock:powermock-api-mockito2:2.0.0-RC.4"
+
 }
 
 sourceSets {

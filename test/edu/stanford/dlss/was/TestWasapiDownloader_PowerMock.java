@@ -15,10 +15,12 @@ import org.mockito.ArgumentMatchers;
 import org.mockito.Mockito;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.core.classloader.annotations.PowerMockIgnore;
 import org.powermock.modules.junit4.PowerMockRunner;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({WasapiDownloader.class, WasapiValidator.class})
+@PowerMockIgnore({"com.sun.org.apache.xerces.*", "javax.xml.*", "org.xml.*", "org.w3c.dom.*"})
 @SuppressWarnings("TypeName")
 /**
  * Tests for WasapiDownloader that require PowerMock
@@ -176,7 +178,7 @@ public class TestWasapiDownloader_PowerMock {
     WasapiDownloader wd = new WasapiDownloader(WasapiDownloader.SETTINGS_FILE_LOCATION, null);
     wd.checksumValidate("md5", wfile, anyString());
 
-    PowerMockito.verifyStatic();
+    PowerMockito.verifyStatic(WasapiValidator.class);
     WasapiValidator.validateMd5(expectedChecksum, "");
   }
 
@@ -194,7 +196,7 @@ public class TestWasapiDownloader_PowerMock {
     WasapiDownloader wd = new WasapiDownloader(WasapiDownloader.SETTINGS_FILE_LOCATION, null);
     wd.checksumValidate("sha1", wfile, anyString());
 
-    PowerMockito.verifyStatic();
+    PowerMockito.verifyStatic(WasapiValidator.class);
     WasapiValidator.validateSha1(expectedChecksum, "");
   }
 }
