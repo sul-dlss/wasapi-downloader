@@ -24,7 +24,7 @@ import org.apache.commons.cli.ParseException;
 import org.apache.commons.validator.routines.IntegerValidator;
 import org.apache.commons.validator.routines.UrlValidator;
 
-@SuppressWarnings({"checkstyle:ClassDataAbstractionCoupling", "checkstyle:ClassFanOutComplexity", "checkstyle:LineLength"})
+@SuppressWarnings({"checkstyle:ClassDataAbstractionCoupling", "checkstyle:ClassFanOutComplexity", "checkstyle:LineLength", "checkstyle:MethodCount"})
 public class WasapiDownloaderSettings {
   // to add a new setting:
   // * add a String constant for the setting/arg name
@@ -47,6 +47,7 @@ public class WasapiDownloaderSettings {
   public static final String PASSWORD_PARAM_NAME = "password";
   public static final String RETRIES_PARAM_NAME = "retries";
   public static final String USERNAME_PARAM_NAME = "username";
+  public static final String RESUME_PARAM_NAME = "resume";
 
   protected PrintStream errStream = System.err;
   protected Properties settings;
@@ -70,7 +71,8 @@ public class WasapiDownloaderSettings {
     buildArgOption(OUTPUT_BASE_DIR_PARAM_NAME, "destination directory for downloaded files (expects ending slash)"),
     buildArgOption(PASSWORD_PARAM_NAME, "password for WASAPI server login"),
     buildArgOption(RETRIES_PARAM_NAME, "how many times to retry a download for each file (retries + 1 = total tries)"),
-    buildArgOption(USERNAME_PARAM_NAME, "username for WASAPI server login")
+    buildArgOption(USERNAME_PARAM_NAME, "username for WASAPI server login"),
+    Option.builder().longOpt(RESUME_PARAM_NAME).desc("Skip files that have been successfully downloaded").build()
   };
 
   static {
@@ -161,6 +163,9 @@ public class WasapiDownloaderSettings {
     return settings.getProperty(USERNAME_PARAM_NAME);
   }
 
+  public boolean shouldResume() {
+    return settings.getProperty(RESUME_PARAM_NAME) != null;
+  }
 
   public String getHelpAndSettingsMessage() {
     if (helpAndSettingsMessage == null)
@@ -326,7 +331,10 @@ public class WasapiDownloaderSettings {
     }
 
     if (parsedArgs.hasOption(HELP_PARAM_NAME))
-      settings.setProperty(HELP_PARAM_NAME, "true");
+      settings.setProperty(HELP_PARAM_NAME, Boolean.TRUE.toString());
+
+    if (parsedArgs.hasOption(RESUME_PARAM_NAME))
+      settings.setProperty(RESUME_PARAM_NAME, Boolean.TRUE.toString());
   }
 
   private void parseArgsIntoSettings(String[] args) throws ParseException {

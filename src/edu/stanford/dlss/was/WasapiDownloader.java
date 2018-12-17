@@ -57,7 +57,7 @@ public class WasapiDownloader {
   }
 
   // package level method for testing
-  @SuppressWarnings("checkstyle:MethodLength")
+  @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:CyclomaticComplexity"})
   void downloadAndValidateFile(WasapiFile file) throws NoSuchAlgorithmException {
     String fullFilePath = prepareOutputLocation(file);
     if (fullFilePath == null) {
@@ -68,7 +68,11 @@ public class WasapiDownloader {
     int numRetries = Integer.parseInt(settings.retries());
     int attempts = 0;
     boolean checksumValidated = false;
-    do {
+    if (tryResume(fullFilePath, file)) {
+      checksumValidated = true;
+      System.out.println("file already retrieved: " + file.getLocations()[0]);
+    }
+    while (attempts <= numRetries && !checksumValidated) {
       attempts++;
       try {
         boolean downloadSuccess = getWasapiConn().downloadQuery(file.getLocations()[0], fullFilePath);
@@ -90,10 +94,25 @@ public class WasapiDownloader {
         System.err.println("WARNING: exception downloading file (will retry): " + file.getLocations()[0]);
         e.printStackTrace(System.err);
       }
-    } while (attempts <= numRetries && !checksumValidated);
+    }
 
     if (attempts == numRetries + 1) // RE-tries, not number of attempts
       System.err.println("file not retrieved or unable to validate checksum: " + file.getLocations()[0]);
+  }
+
+  boolean tryResume(String fullFilePath, WasapiFile file) throws NoSuchAlgorithmException {
+    if (!settings.shouldResume())
+      return false;
+
+    File fullFile = new File(fullFilePath);
+    if (!fullFile.exists())
+      return false;
+
+    if (!checksumValidate(settings.checksumAlgorithm(), file, fullFilePath)) {
+      fullFile.delete();
+      return false;
+    }
+    return true;
   }
 
   // package level method for testing
@@ -105,22 +124,25 @@ public class WasapiDownloader {
   }
 
   // package level method for testing
-  boolean checksumValidate(String algorithm, WasapiFile file, String fullFilePath)
-      throws NoSuchAlgorithmException, IOException {
+  boolean checksumValidate(String algorithm, WasapiFile file, String fullFilePath) throws NoSuchAlgorithmException {
     String checksum = file.getChecksums().get(algorithm);
     if (checksum == null) {
       System.err.println("No checksum of type: " + algorithm + " available: " + file.getChecksums().toString());
       return false;
     }
 
-    if ("md5".equals(algorithm))
-      return WasapiValidator.validateMd5(checksum, fullFilePath);
-    else if ("sha1".equals(algorithm))
-      return WasapiValidator.validateSha1(checksum, fullFilePath);
-    else {
-      System.err.println("Unsupported checksum algorithm: " + algorithm + ".  Options are 'md5' or 'sha1'");
-      return false;
+    try {
+      if ("md5".equals(algorithm))
+        return WasapiValidator.validateMd5(checksum, fullFilePath);
+      else if ("sha1".equals(algorithm))
+        return WasapiValidator.validateSha1(checksum, fullFilePath);
+      else {
+        System.err.println("Unsupported checksum algorithm: " + algorithm + ".  Options are 'md5' or 'sha1'");
+      }
+    } catch (IOException e) {
+      // Somethings wrong, so fail validate
     }
+    return false;
   }
 
   private List<Integer> desiredCrawlIds(WasapiCrawlSelector crawlSelector) {
