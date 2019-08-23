@@ -12,7 +12,7 @@ plugins {
     id 'checkstyle'
 }
 
-version 1.0
+version 1.1
 
 mainClassName = 'edu.stanford.dlss.was.WasapiDownloader'
 
