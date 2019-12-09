@@ -30,6 +30,10 @@ public class WasapiFile {
   /** Time the original content of the file was crawled (when the warc was created/opened) */
   private String fileCrawlDateStr;
 
+  @JsonProperty("store-time")
+  /** Timestamp for the deposit of the WARC into storage */
+  private String storeDateStr;
+
   private String filename;
   /** The format of the archive file, e.g. `warc`, `wat`, `cdx` */
   private String filetype;
@@ -70,6 +74,13 @@ public class WasapiFile {
   }
   public void setCrawlStartDateStr(String crawlStartDateStr) {
     this.crawlStartDateStr = crawlStartDateStr;
+  }
+
+  public String getStoreDateStr() {
+    return storeDateStr;
+  }
+  public void setStoreDateStr(String storeDateStr) {
+    this.storeDateStr = storeDateStr;
   }
 
   public String getFileCrawlDateStr() {
@@ -128,6 +139,7 @@ public class WasapiFile {
     sb.append("crawl: " + Integer.toString(getCrawlId()) + "\n");
     sb.append("crawl-start: " + getCrawlStartDateStr() + "\n");
     sb.append("crawl-time: " + getFileCrawlDateStr() + "\n");
+    sb.append("store-time: " + getStoreDateStr() + "\n");
     return sb.toString();
   }
 }
