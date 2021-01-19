@@ -18,7 +18,7 @@ GEM
       net-ssh (>= 2.6.5, < 7.0.0)
     net-ssh (6.1.0)
     rake (13.0.3)
-    sshkit (1.21.1)
+    sshkit (1.21.2)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
 
@@ -32,4 +32,4 @@ DEPENDENCIES
   capistrano-shared_configs
 
 BUNDLED WITH
-   2.2.4
+   2.2.6
