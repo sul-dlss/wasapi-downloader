@@ -3,7 +3,7 @@ GEM
   specs:
     airbrussh (1.4.1)
       sshkit (>= 1.6.1, != 1.7.0)
-    capistrano (3.17.1)
+    capistrano (3.17.2)
       airbrussh (>= 1.0.0)
       i18n
       rake (>= 10.0.0)
@@ -11,7 +11,7 @@ GEM
     capistrano-one_time_key (0.1.0)
       capistrano (~> 3.0)
     capistrano-shared_configs (0.2.2)
-    concurrent-ruby (1.2.0)
+    concurrent-ruby (1.2.2)
     i18n (1.12.0)
       concurrent-ruby (~> 1.0)
     net-scp (4.0.0)
