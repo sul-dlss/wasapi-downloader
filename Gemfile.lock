@@ -11,7 +11,7 @@ GEM
     capistrano-one_time_key (0.1.0)
       capistrano (~> 3.0)
     capistrano-shared_configs (0.2.2)
-    concurrent-ruby (1.2.2)
+    concurrent-ruby (1.2.3)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     mutex_m (0.2.0)
