@@ -1,7 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    airbrussh (1.5.1)
+    airbrussh (1.5.2)
       sshkit (>= 1.6.1, != 1.7.0)
     base64 (0.2.0)
     capistrano (3.18.1)
