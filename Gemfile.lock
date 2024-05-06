@@ -22,7 +22,7 @@ GEM
       net-ssh (>= 5.0.0, < 8.0.0)
     net-ssh (7.2.3)
     rake (13.2.1)
-    sshkit (1.22.1)
+    sshkit (1.22.2)
       base64
       mutex_m
       net-scp (>= 1.1.2)
