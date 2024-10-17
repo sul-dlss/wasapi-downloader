@@ -9,7 +9,7 @@ Java command line application to download crawls from WASAPI.
 
 You'll need the following prerequisites installed on your local computer:
 
-- Java (7)
+- Java (11)
 - Ruby (we use Capistrano for deployment)
 
 The minimal sequence of steps to verify that you can work with the code is:
