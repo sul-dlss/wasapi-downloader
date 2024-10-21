@@ -22,7 +22,7 @@ GEM
     net-ssh (7.3.0)
     ostruct (0.6.0)
     rake (13.2.1)
-    sshkit (1.23.1)
+    sshkit (1.23.2)
       base64
       net-scp (>= 1.1.2)
       net-sftp (>= 2.1.2)
